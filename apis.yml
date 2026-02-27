@@ -1,0 +1,92 @@
+name: Workday Studio API
+description: Workday Studio is an integrated development environment (IDE) for building custom integrations and applications on the Workday platform. It provides tools for creating web services, custom reports, and integration solutions.
+image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
+url: https://www.workday.com/en-us/products/integration/workday-studio.html
+created: 2024-01-01 00:00:00+00:00
+modified: 2024-01-01 00:00:00+00:00
+specificationVersion: '0.18'
+tags:
+- Integration
+- Enterprise
+- HR
+- Finance
+- Cloud
+- Development
+- IDE
+apis:
+- name: Workday Studio Integration API
+  description: API for building and deploying custom integrations using Workday Studio
+  image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
+  humanUrl: https://doc.workday.com/
+  baseUrl: https://{tenant}.workday.com/ccx/service
+  tags:
+  - Integration
+  - Custom
+  - Development
+  properties:
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: OpenAPI
+    url: https://community.workday.com/api-specifications
+  - type: Swagger
+    url: https://community.workday.com/api-specifications
+  - type: Authentication
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
+  - type: Getting Started
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
+  - type: SDK
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+- name: Workday Web Services API
+  description: SOAP and REST web services for integrating with Workday applications
+  image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
+  humanUrl: https://doc.workday.com/
+  baseUrl: https://{tenant}.workday.com/ccx/service/{tenant}
+  tags:
+  - Web Services
+  - SOAP
+  - REST
+  - Enterprise
+  properties:
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
+  - type: API Reference
+    url: https://community.workday.com/api
+  - type: Rate Limits
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
+- name: Workday Custom Reports API
+  description: API for creating and executing custom reports built in Workday Studio
+  image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
+  humanUrl: https://doc.workday.com/
+  baseUrl: https://{tenant}.workday.com/ccx/service/customreport2/{tenant}
+  tags:
+  - Reports
+  - Analytics
+  - Custom
+  properties:
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/ziYjYJxh2YKGvz8I5V46bQ
+  - type: Tutorial
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/kPBEj3_Lz04YDSUvAEKl4w
+common:
+- type: Portal
+  url: https://community.workday.com/
+- type: Login
+  url: https://www.myworkday.com/
+- type: Support
+  url: https://www.workday.com/en-us/customer-experience/support.html
+- type: Terms of Service
+  url: https://www.workday.com/en-us/legal.html
+- type: Privacy Policy
+  url: https://www.workday.com/en-us/privacy.html
+- type: Status
+  url: https://status.workday.com/
+- type: Blog
+  url: https://blog.workday.com/
+- type: Contact
+  url: https://www.workday.com/en-us/company/about-workday/contact-us.html
+maintainers:
+- name: Workday
+  email: support@workday.com
+  url: https://www.workday.com
