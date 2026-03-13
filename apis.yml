@@ -3,7 +3,7 @@ description: Workday Studio is an integrated development environment (IDE) for b
 image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
 url: https://www.workday.com/en-us/products/integration/workday-studio.html
 created: 2024-01-01 00:00:00+00:00
-modified: 2024-01-01 00:00:00+00:00
+modified: 2026-03-04 00:00:00+00:00
 specificationVersion: '0.18'
 tags:
 - Integration
@@ -15,7 +15,7 @@ tags:
 - IDE
 apis:
 - name: Workday Studio Integration API
-  description: API for building and deploying custom integrations using Workday Studio
+  description: API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting.
   image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
   humanUrl: https://doc.workday.com/
   baseUrl: https://{tenant}.workday.com/ccx/service
@@ -36,8 +36,10 @@ apis:
     url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
   - type: SDK
     url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: Reference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
 - name: Workday Web Services API
-  description: SOAP and REST web services for integrating with Workday applications
+  description: SOAP and REST web services for integrating with Workday applications, providing programmatic access to business management services with WSDL and XML Schema definitions across 55 service areas including Human Resources, Payroll, Benefits, and Financial Management.
   image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
   humanUrl: https://doc.workday.com/
   baseUrl: https://{tenant}.workday.com/ccx/service/{tenant}
@@ -55,8 +57,27 @@ apis:
     url: https://community.workday.com/api
   - type: Rate Limits
     url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
+  - type: Reference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+- name: Workday REST API
+  description: RESTful API providing modern JSON-based access to Workday data and services. Uses OAuth 2.0 authentication and standard HTTP methods for operations across HCM, financial management, recruiting, payroll, and other Workday domains.
+  image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
+  humanUrl: https://community.workday.com/sites/default/files/file-hosting/restapi/index.html
+  baseUrl: https://{tenant}.workday.com/ccx/api
+  tags:
+  - REST
+  - JSON
+  - OAuth
+  - Data Access
+  properties:
+  - type: Documentation
+    url: https://community.workday.com/sites/default/files/file-hosting/restapi/index.html
+  - type: Reference
+    url: https://community.workday.com/sites/default/files/file-hosting/restapi/index.html
+  - type: Authentication
+    url: https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#authentication
 - name: Workday Custom Reports API
-  description: API for creating and executing custom reports built in Workday Studio
+  description: API for creating and executing custom reports built in Workday Studio. Exposes custom reports as RESTful web services through Report-as-a-Service (RaaS), enabling programmatic access to report data with support for query parameters and multiple output formats.
   image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
   humanUrl: https://doc.workday.com/
   baseUrl: https://{tenant}.workday.com/ccx/service/customreport2/{tenant}
@@ -64,11 +85,26 @@ apis:
   - Reports
   - Analytics
   - Custom
+  - Report As A Service
   properties:
   - type: Documentation
     url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/ziYjYJxh2YKGvz8I5V46bQ
   - type: Tutorial
     url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/kPBEj3_Lz04YDSUvAEKl4w
+- name: Workday Orchestrate API
+  description: Low-code integration and automation platform for building event-driven and batch integrations using a visual drag-and-drop builder. Enables developers to create workflows that connect Workday with external systems, automate business processes, and handle real-time data synchronization.
+  image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
+  humanUrl: https://www.workday.com/en-us/products/platform-product-extensions/integrations.html
+  baseUrl: https://{tenant}.workday.com/ccx/api
+  tags:
+  - Orchestration
+  - Automation
+  - Low Code
+  - Workflows
+  - Event Driven
+  properties:
+  - type: Documentation
+    url: https://www.workday.com/en-us/products/platform-product-extensions/integrations.html
 common:
 - type: Portal
   url: https://community.workday.com/
@@ -86,7 +122,31 @@ common:
   url: https://blog.workday.com/
 - type: Contact
   url: https://www.workday.com/en-us/company/about-workday/contact-us.html
+- type: Getting Started
+  url: https://community.workday.com/node/97816
+- type: Documentation
+  url: https://doc.workday.com/en-us/guides.html
+- type: Console
+  url: https://developer.workday.com/about
+- type: Website
+  url: https://www.workday.com/
+- type: Sign Up
+  url: https://community.workday.com/
+- type: GitHub Organization
+  url: https://github.com/Workday
+- type: Developer Blog
+  url: https://workday.github.io/
+- type: Marketplace
+  url: https://marketplace.workday.com/en-US/home
+- type: Training
+  url: https://www.workday.com/en-us/services/training-certifications.html
+- type: Authentication
+  url: https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#authentication
+- type: Reference
+  url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+- type: Studio Download
+  url: https://community.workday.com/studio-download
 maintainers:
-- name: Workday
-  email: support@workday.com
-  url: https://www.workday.com
+- name: Kin Lane
+  email: kin@apievangelist.com
+  url: https://apievangelist.com

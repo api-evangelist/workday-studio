@@ -1,0 +1,755 @@
+openapi: 3.1.0
+info:
+  title: Workday Studio Integration API
+  description: >-
+    API for building and deploying custom integrations using Workday Studio, an
+    Eclipse-based IDE that provides a graphical development environment with
+    drag-and-drop reusable components for creating sophisticated integrations
+    with flow control, data transformation, error handling, and scripting.
+    Enables programmatic management of integration systems, events, assemblies,
+    and launch parameters within the Workday platform.
+  version: v1
+  contact:
+    name: Workday API Support
+    email: api-support@workday.com
+    url: https://community.workday.com
+  license:
+    name: Proprietary
+    url: https://www.workday.com/en-us/legal/site-terms.html
+  termsOfService: https://www.workday.com/en-us/legal.html
+externalDocs:
+  description: Workday Studio Integration Documentation
+  url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+servers:
+  - url: https://{baseUrl}/ccx/service/{tenant}
+    description: Workday Integration Services Server
+    variables:
+      baseUrl:
+        default: wd2-impl-services1.workday.com
+        description: The Workday data center hostname
+      tenant:
+        default: tenant
+        description: The Workday tenant name
+tags:
+  - name: Integration Systems
+    description: >-
+      Manage integration systems configured in the Workday tenant, including
+      Studio-built integrations and core connector configurations.
+  - name: Integration Events
+    description: >-
+      Monitor and retrieve integration execution events including run status,
+      processing statistics, and error details.
+  - name: Integration Assemblies
+    description: >-
+      Manage Studio integration assemblies, which are the graphical
+      representations of integration logic composed of configurable components.
+  - name: Launch Parameters
+    description: >-
+      Configure and retrieve launch parameters used to control integration
+      execution behavior at runtime.
+  - name: Integration Templates
+    description: >-
+      Access available integration templates and core connectors that serve as
+      starting points for building new integrations.
+security:
+  - OAuth2:
+      - r:integrations
+      - w:integrations
+paths:
+  /integrationSystems:
+    get:
+      operationId: listIntegrationSystems
+      summary: List integration systems
+      description: >-
+        Returns a collection of integration systems configured in the tenant,
+        including Studio-built integrations, core connectors, and document
+        transformation integrations. Supports filtering by system name, type,
+        and active status.
+      tags:
+        - Integration Systems
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/search'
+      responses:
+        '200':
+          description: Successful response with integration systems
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationSystemsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /integrationSystems/{ID}:
+    get:
+      operationId: getIntegrationSystem
+      summary: Retrieve a specific integration system
+      description: >-
+        Returns the specified integration system with its full configuration
+        details including template reference, launch parameters, schedule
+        settings, and notification configuration.
+      tags:
+        - Integration Systems
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      responses:
+        '200':
+          description: Successful response with the integration system
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationSystem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /integrationSystems/{ID}/launch:
+    post:
+      operationId: launchIntegration
+      summary: Launch an integration system
+      description: >-
+        Triggers execution of the specified integration system. Accepts optional
+        launch parameters to control runtime behavior. Returns the newly created
+        integration event representing the running integration instance.
+      tags:
+        - Integration Systems
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      requestBody:
+        description: Optional launch parameters for the integration execution
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationLaunchRequest'
+      responses:
+        '201':
+          description: Integration launched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationEvent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /integrationEvents:
+    get:
+      operationId: listIntegrationEvents
+      summary: List integration events
+      description: >-
+        Returns a collection of integration event records showing the status
+        and details of integration runs. Includes information about start time,
+        end time, records processed, and any errors encountered during execution.
+      tags:
+        - Integration Events
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - name: status
+          in: query
+          description: Filter events by execution status
+          schema:
+            type: string
+            enum:
+              - Completed
+              - Failed
+              - In_Progress
+              - Cancelled
+        - name: fromDate
+          in: query
+          description: Filter events starting from this date
+          schema:
+            type: string
+            format: date-time
+        - name: toDate
+          in: query
+          description: Filter events up to this date
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Successful response with integration events
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationEventsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /integrationEvents/{ID}:
+    get:
+      operationId: getIntegrationEvent
+      summary: Retrieve a specific integration event
+      description: >-
+        Returns the specified integration event including run status, start time,
+        end time, records processed, records failed, and any error messages
+        generated during integration execution.
+      tags:
+        - Integration Events
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      responses:
+        '200':
+          description: Successful response with the integration event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationEvent'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /integrationEvents/{ID}/logs:
+    get:
+      operationId: getIntegrationEventLogs
+      summary: Retrieve logs for an integration event
+      description: >-
+        Returns the execution logs for the specified integration event, including
+        step-by-step processing details, warning messages, and error traces useful
+        for debugging Studio integration assemblies.
+      tags:
+        - Integration Events
+      parameters:
+        - $ref: '#/components/parameters/ID'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: Successful response with integration event logs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationLogsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /integrationAssemblies:
+    get:
+      operationId: listIntegrationAssemblies
+      summary: List integration assemblies
+      description: >-
+        Returns a collection of Studio integration assemblies deployed to the
+        tenant. Assemblies are the graphical representations of integration
+        logic composed of configurable components such as mediation steps,
+        transformations, and connectors.
+      tags:
+        - Integration Assemblies
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/search'
+      responses:
+        '200':
+          description: Successful response with integration assemblies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationAssembliesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /integrationAssemblies/{ID}:
+    get:
+      operationId: getIntegrationAssembly
+      summary: Retrieve a specific integration assembly
+      description: >-
+        Returns the specified integration assembly with its component
+        configuration, mediation chain details, and transformation mappings.
+      tags:
+        - Integration Assemblies
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      responses:
+        '200':
+          description: Successful response with the integration assembly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationAssembly'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /integrationTemplates:
+    get:
+      operationId: listIntegrationTemplates
+      summary: List integration templates
+      description: >-
+        Returns a collection of available integration templates including core
+        connectors and document transformation templates that can be used as
+        starting points for building new Studio integrations.
+      tags:
+        - Integration Templates
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/search'
+      responses:
+        '200':
+          description: Successful response with integration templates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationTemplatesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /integrationTemplates/{ID}:
+    get:
+      operationId: getIntegrationTemplate
+      summary: Retrieve a specific integration template
+      description: >-
+        Returns the specified integration template with its configuration
+        schema, supported services, and parameter definitions.
+      tags:
+        - Integration Templates
+      parameters:
+        - $ref: '#/components/parameters/ID'
+      responses:
+        '200':
+          description: Successful response with the integration template
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationTemplate'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /launchParameters:
+    get:
+      operationId: listLaunchParameters
+      summary: List available launch parameters
+      description: >-
+        Returns a collection of launch parameter definitions that can be
+        configured for integration systems to control runtime behavior such
+        as date ranges, file paths, and processing options.
+      tags:
+        - Launch Parameters
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: Successful response with launch parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LaunchParametersResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{baseUrl}/authorize
+          tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+          refreshUrl: https://{baseUrl}/oauth2/{tenant}/token
+          scopes:
+            r:integrations: Read integration data
+            w:integrations: Write integration data
+  parameters:
+    ID:
+      name: ID
+      in: path
+      required: true
+      description: The Workday ID of the resource
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: >-
+        The maximum number of objects in a single response. Default is 20,
+        maximum is 100.
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+    offset:
+      name: offset
+      in: query
+      description: The zero-based index of the first object in a response collection
+      schema:
+        type: integer
+        default: 0
+    search:
+      name: search
+      in: query
+      description: Search string used to filter results by name or descriptor
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A high-level error message
+        errors:
+          type: array
+          description: Detailed list of validation or processing errors
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+                description: Error code or type
+              field:
+                type: string
+                description: The field that caused the error
+              message:
+                type: string
+                description: Human-readable error message
+    ResourceReference:
+      type: object
+      description: A reference to a Workday resource with its identifier and display name
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API URL to retrieve the full resource
+    IntegrationSystem:
+      type: object
+      description: >-
+        An integration system configured in the Workday tenant, representing a
+        deployed Studio integration or core connector configuration.
+      properties:
+        id:
+          type: string
+          description: The unique Workday identifier for the integration system
+        descriptor:
+          type: string
+          description: The display name of the integration system
+        integrationSystemName:
+          type: string
+          description: The configured name of the integration system
+        template:
+          $ref: '#/components/schemas/ResourceReference'
+        integrationServiceProvider:
+          $ref: '#/components/schemas/ResourceReference'
+        isActive:
+          type: boolean
+          description: Whether the integration system is currently active
+        lastRunDateTime:
+          type: string
+          format: date-time
+          description: The date and time of the last successful execution
+        scheduleFrequency:
+          type: string
+          description: The configured schedule frequency for automatic execution
+        notificationRecipients:
+          type: array
+          description: Users or groups who receive notifications about integration events
+          items:
+            $ref: '#/components/schemas/ResourceReference'
+    IntegrationSystemsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of integration systems matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationSystem'
+    IntegrationEvent:
+      type: object
+      description: >-
+        A record of an integration execution, tracking the run status, timing,
+        and processing statistics of an integration system run.
+      properties:
+        id:
+          type: string
+          description: The unique Workday identifier for the integration event
+        descriptor:
+          type: string
+          description: The display name of the integration event
+        integrationSystem:
+          $ref: '#/components/schemas/ResourceReference'
+        status:
+          type: string
+          enum:
+            - Completed
+            - Failed
+            - In_Progress
+            - Cancelled
+          description: The execution status of the integration
+        startDateTime:
+          type: string
+          format: date-time
+          description: The date and time the integration started
+        endDateTime:
+          type:
+            - string
+            - 'null'
+          format: date-time
+          description: The date and time the integration completed
+        recordsProcessed:
+          type: integer
+          description: The number of records successfully processed
+        recordsFailed:
+          type: integer
+          description: The number of records that failed processing
+        initiatedBy:
+          $ref: '#/components/schemas/ResourceReference'
+        errorMessage:
+          type: string
+          description: Summary error message if the integration failed
+    IntegrationEventsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of integration events matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationEvent'
+    IntegrationLogEntry:
+      type: object
+      description: A single log entry from an integration execution
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: The time the log entry was created
+        severity:
+          type: string
+          enum:
+            - INFO
+            - WARNING
+            - ERROR
+          description: The severity level of the log entry
+        message:
+          type: string
+          description: The log message text
+        componentName:
+          type: string
+          description: The name of the assembly component that generated the log entry
+    IntegrationLogsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of log entries for the integration event
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationLogEntry'
+    IntegrationAssembly:
+      type: object
+      description: >-
+        A Studio integration assembly representing the graphical integration
+        logic composed of configurable components, mediation chains, and
+        transformation mappings.
+      properties:
+        id:
+          type: string
+          description: The unique Workday identifier for the assembly
+        descriptor:
+          type: string
+          description: The display name of the assembly
+        assemblyName:
+          type: string
+          description: The configured name of the assembly
+        version:
+          type: string
+          description: The version of the assembly
+        integrationSystem:
+          $ref: '#/components/schemas/ResourceReference'
+        deployedDateTime:
+          type: string
+          format: date-time
+          description: The date and time the assembly was last deployed
+        components:
+          type: array
+          description: The list of components configured in the assembly
+          items:
+            $ref: '#/components/schemas/AssemblyComponent'
+    IntegrationAssembliesResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of assemblies matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationAssembly'
+    AssemblyComponent:
+      type: object
+      description: >-
+        A configurable component within a Studio assembly, such as a mediation
+        step, XSLT transformation, connector, or flow control element.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the component within the assembly
+        componentType:
+          type: string
+          description: The type of assembly component
+          enum:
+            - Mediation
+            - Transformation
+            - Connector
+            - FlowControl
+            - ErrorHandler
+            - Script
+            - Variable
+        name:
+          type: string
+          description: The configured name of the component
+        description:
+          type: string
+          description: A description of the component purpose
+    IntegrationTemplate:
+      type: object
+      description: >-
+        An integration template providing a starting point for building new
+        integrations, including core connectors and document transformation
+        templates.
+      properties:
+        id:
+          type: string
+          description: The unique Workday identifier for the template
+        descriptor:
+          type: string
+          description: The display name of the template
+        templateName:
+          type: string
+          description: The configured name of the template
+        category:
+          type: string
+          description: The category of the template
+          enum:
+            - Core_Connector
+            - Document_Transformation
+            - Studio
+            - Cloud_Connect
+        supportedServices:
+          type: array
+          description: The Workday services supported by this template
+          items:
+            $ref: '#/components/schemas/ResourceReference'
+    IntegrationTemplatesResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of templates matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationTemplate'
+    IntegrationLaunchRequest:
+      type: object
+      description: Request body for launching an integration system
+      properties:
+        launchParameters:
+          type: array
+          description: Key-value pairs of launch parameters for the integration run
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The name of the launch parameter
+              value:
+                type: string
+                description: The value to set for the launch parameter
+    LaunchParameter:
+      type: object
+      description: A launch parameter definition that controls integration runtime behavior
+      properties:
+        id:
+          type: string
+          description: The unique Workday identifier for the launch parameter
+        descriptor:
+          type: string
+          description: The display name of the launch parameter
+        parameterName:
+          type: string
+          description: The configured name of the parameter
+        dataType:
+          type: string
+          description: The data type of the parameter value
+          enum:
+            - Text
+            - Date
+            - DateTime
+            - Boolean
+            - Integer
+            - Decimal
+        defaultValue:
+          type: string
+          description: The default value for the parameter
+        isRequired:
+          type: boolean
+          description: Whether the parameter is required at launch time
+    LaunchParametersResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of launch parameters matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LaunchParameter'

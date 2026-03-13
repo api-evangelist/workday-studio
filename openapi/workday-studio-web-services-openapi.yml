@@ -1,0 +1,838 @@
+openapi: 3.1.0
+info:
+  title: Workday Web Services API
+  description: >-
+    REST and SOAP web services for integrating with Workday applications,
+    providing programmatic access to business management services across 55
+    service areas including Human Resources, Payroll, Benefits, and Financial
+    Management. This specification covers the REST-accessible portions of the
+    Workday Web Services (WWS) directory, enabling discovery and invocation of
+    web service operations with WSDL and XML Schema definitions.
+  version: v45
+  contact:
+    name: Workday API Support
+    email: api-support@workday.com
+    url: https://community.workday.com
+  license:
+    name: Proprietary
+    url: https://www.workday.com/en-us/legal/site-terms.html
+  termsOfService: https://www.workday.com/en-us/legal.html
+externalDocs:
+  description: Workday Web Services Directory
+  url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+servers:
+  - url: https://{baseUrl}/ccx/service/{tenant}
+    description: Workday Web Services Server
+    variables:
+      baseUrl:
+        default: wd2-impl-services1.workday.com
+        description: The Workday data center hostname
+      tenant:
+        default: tenant
+        description: The Workday tenant name
+tags:
+  - name: Human Resources
+    description: >-
+      Web service operations for managing employee data, worker records,
+      organizational structures, and HR transactions.
+  - name: Financial Management
+    description: >-
+      Web service operations for financial accounting, expense management,
+      revenue management, and financial reporting.
+  - name: Payroll
+    description: >-
+      Web service operations for payroll processing, tax management,
+      compensation calculations, and pay component configurations.
+  - name: Benefits Administration
+    description: >-
+      Web service operations for benefits enrollment, plan management,
+      coverage administration, and life events processing.
+  - name: Absence Management
+    description: >-
+      Web service operations for managing time-off requests, leave balances,
+      absence plans, and return-to-work processes.
+  - name: Staffing
+    description: >-
+      Web service operations for position management, job requisitions,
+      hiring actions, and organizational staffing.
+  - name: Recruiting
+    description: >-
+      Web service operations for job postings, candidate management,
+      application tracking, and offer management.
+  - name: Talent Management
+    description: >-
+      Web service operations for performance reviews, goal management,
+      succession planning, and talent assessments.
+  - name: Compensation
+    description: >-
+      Web service operations for compensation plans, pay grades, salary
+      structures, and bonus configurations.
+  - name: Time Tracking
+    description: >-
+      Web service operations for time entry, timesheet management, time
+      calculations, and clock-in/clock-out records.
+  - name: Service Directory
+    description: >-
+      Operations for discovering available web services, their versions,
+      and WSDL definitions.
+security:
+  - OAuth2:
+      - r:wws
+      - w:wws
+  - WSSecurity: []
+paths:
+  /Human_Resources:
+    get:
+      operationId: getHumanResourcesService
+      summary: Retrieve Human Resources service metadata
+      description: >-
+        Returns metadata about the Human Resources web service including
+        available operations, supported versions, and WSDL location.
+      tags:
+        - Service Directory
+        - Human Resources
+      responses:
+        '200':
+          description: Service metadata for Human Resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceMetadata'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Human_Resources/Get_Workers:
+    post:
+      operationId: getWorkers
+      summary: Retrieve workers
+      description: >-
+        Returns a collection of worker records including employees and
+        contingent workers. Supports filtering by worker type, organization,
+        date ranges, and various worker attributes.
+      tags:
+        - Human Resources
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetWorkersRequest'
+      responses:
+        '200':
+          description: Successful response with worker data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkersResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /Human_Resources/Get_Organizations:
+    post:
+      operationId: getOrganizations
+      summary: Retrieve organizations
+      description: >-
+        Returns a collection of organization records including supervisory
+        organizations, cost centers, company structures, and custom
+        organization types.
+      tags:
+        - Human Resources
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetOrganizationsRequest'
+      responses:
+        '200':
+          description: Successful response with organization data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /Financial_Management/Get_Journal_Entries:
+    post:
+      operationId: getJournalEntries
+      summary: Retrieve journal entries
+      description: >-
+        Returns a collection of journal entry records for financial accounting,
+        including debit and credit line items, ledger accounts, and posting
+        status information.
+      tags:
+        - Financial Management
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetJournalEntriesRequest'
+      responses:
+        '200':
+          description: Successful response with journal entries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JournalEntriesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /Payroll/Get_Payroll_Results:
+    post:
+      operationId: getPayrollResults
+      summary: Retrieve payroll results
+      description: >-
+        Returns a collection of payroll result records including pay
+        calculations, deductions, tax withholdings, and net pay details
+        for processed payroll periods.
+      tags:
+        - Payroll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetPayrollResultsRequest'
+      responses:
+        '200':
+          description: Successful response with payroll results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayrollResultsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /Benefits_Administration/Get_Benefit_Plans:
+    post:
+      operationId: getBenefitPlans
+      summary: Retrieve benefit plans
+      description: >-
+        Returns a collection of benefit plan records including health insurance,
+        retirement plans, life insurance, and other benefit offerings
+        configured in the tenant.
+      tags:
+        - Benefits Administration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetBenefitPlansRequest'
+      responses:
+        '200':
+          description: Successful response with benefit plans
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BenefitPlansResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /Absence_Management/Get_Absence_Inputs:
+    post:
+      operationId: getAbsenceInputs
+      summary: Retrieve absence inputs
+      description: >-
+        Returns a collection of absence input records for time-off requests,
+        leave entries, and absence events within specified date ranges and
+        organizational scope.
+      tags:
+        - Absence Management
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetAbsenceInputsRequest'
+      responses:
+        '200':
+          description: Successful response with absence data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AbsenceInputsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /Staffing/Get_Job_Postings:
+    post:
+      operationId: getJobPostings
+      summary: Retrieve job postings
+      description: >-
+        Returns a collection of job posting records for open positions
+        including posting status, location, job profile, and application
+        information.
+      tags:
+        - Staffing
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetJobPostingsRequest'
+      responses:
+        '200':
+          description: Successful response with job postings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobPostingsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /Recruiting/Get_Candidates:
+    post:
+      operationId: getCandidates
+      summary: Retrieve candidates
+      description: >-
+        Returns a collection of candidate records for recruiting including
+        application status, source, and stage within the hiring workflow.
+      tags:
+        - Recruiting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetCandidatesRequest'
+      responses:
+        '200':
+          description: Successful response with candidate data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CandidatesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /Compensation/Get_Compensation_Plans:
+    post:
+      operationId: getCompensationPlans
+      summary: Retrieve compensation plans
+      description: >-
+        Returns a collection of compensation plan records including salary
+        plans, bonus plans, allowance plans, and their associated pay
+        grade structures.
+      tags:
+        - Compensation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetCompensationPlansRequest'
+      responses:
+        '200':
+          description: Successful response with compensation plans
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompensationPlansResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /Time_Tracking/Get_Time_Clock_Events:
+    post:
+      operationId: getTimeClockEvents
+      summary: Retrieve time clock events
+      description: >-
+        Returns a collection of time clock event records including clock-in
+        and clock-out timestamps, time entry types, and calculated hours
+        for workers within the specified date range.
+      tags:
+        - Time Tracking
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetTimeClockEventsRequest'
+      responses:
+        '200':
+          description: Successful response with time clock events
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeClockEventsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{baseUrl}/authorize
+          tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+          refreshUrl: https://{baseUrl}/oauth2/{tenant}/token
+          scopes:
+            r:wws: Read access to web services
+            w:wws: Write access to web services
+    WSSecurity:
+      type: http
+      scheme: basic
+      description: >-
+        WS-Security with X.509 certificates or username/password tokens for
+        SOAP API authentication.
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A high-level error message
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+              field:
+                type: string
+              message:
+                type: string
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API URL to retrieve the full resource
+    ServiceMetadata:
+      type: object
+      description: >-
+        Metadata about a Workday web service including its operations and
+        supported versions.
+      properties:
+        serviceName:
+          type: string
+          description: The name of the web service
+        version:
+          type: string
+          description: The current version of the web service
+        wsdlUrl:
+          type: string
+          format: uri
+          description: The URL to the WSDL definition for the service
+        operations:
+          type: array
+          description: The list of operations available in the service
+          items:
+            type: object
+            properties:
+              operationName:
+                type: string
+                description: The name of the operation
+              description:
+                type: string
+                description: A description of the operation
+    RequestCriteria:
+      type: object
+      description: Common request criteria for filtering web service results
+      properties:
+        effectiveDate:
+          type: string
+          format: date
+          description: The effective date for the request
+        fromDate:
+          type: string
+          format: date
+          description: The start date for date range filtering
+        toDate:
+          type: string
+          format: date
+          description: The end date for date range filtering
+        pageSize:
+          type: integer
+          description: The number of records to return per page
+          default: 100
+          maximum: 999
+        page:
+          type: integer
+          description: The page number to return
+          default: 1
+    GetWorkersRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        workerReferenceIDs:
+          type: array
+          description: Specific worker IDs to retrieve
+          items:
+            type: string
+        organizationReference:
+          $ref: '#/components/schemas/ResourceReference'
+    WorkersResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of workers matching the criteria
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Worker'
+    Worker:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the worker
+        descriptor:
+          type: string
+          description: The display name of the worker
+        workerID:
+          type: string
+          description: The employee or contingent worker ID
+        workerType:
+          type: string
+          description: The type of worker
+          enum:
+            - Employee
+            - Contingent_Worker
+        businessTitle:
+          type: string
+          description: The worker's current business title
+        primaryWorkEmail:
+          type: string
+          format: email
+          description: The worker's primary work email address
+        hireDate:
+          type: string
+          format: date
+          description: The date the worker was hired
+        supervisoryOrganization:
+          $ref: '#/components/schemas/ResourceReference'
+        location:
+          $ref: '#/components/schemas/ResourceReference'
+    GetOrganizationsRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        organizationType:
+          type: string
+          description: Filter by organization type
+    OrganizationsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
+    Organization:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the organization
+        descriptor:
+          type: string
+          description: The display name of the organization
+        organizationType:
+          type: string
+          description: The type of organization
+        organizationCode:
+          type: string
+          description: The organization reference code
+        isActive:
+          type: boolean
+          description: Whether the organization is currently active
+        manager:
+          $ref: '#/components/schemas/ResourceReference'
+        superior:
+          $ref: '#/components/schemas/ResourceReference'
+    GetJournalEntriesRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        companyReference:
+          $ref: '#/components/schemas/ResourceReference'
+    JournalEntriesResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              descriptor:
+                type: string
+              journalNumber:
+                type: string
+              accountingDate:
+                type: string
+                format: date
+              status:
+                type: string
+    GetPayrollResultsRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        payGroupReference:
+          $ref: '#/components/schemas/ResourceReference'
+    PayrollResultsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              descriptor:
+                type: string
+              worker:
+                $ref: '#/components/schemas/ResourceReference'
+              payPeriod:
+                type: string
+              grossPay:
+                type: number
+              netPay:
+                type: number
+              currency:
+                type: string
+    GetBenefitPlansRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        benefitPlanType:
+          type: string
+    BenefitPlansResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              descriptor:
+                type: string
+              planType:
+                type: string
+              coverageType:
+                type: string
+              isActive:
+                type: boolean
+    GetAbsenceInputsRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        workerReference:
+          $ref: '#/components/schemas/ResourceReference'
+    AbsenceInputsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              descriptor:
+                type: string
+              worker:
+                $ref: '#/components/schemas/ResourceReference'
+              absenceType:
+                type: string
+              startDate:
+                type: string
+                format: date
+              endDate:
+                type: string
+                format: date
+              quantity:
+                type: number
+              unit:
+                type: string
+    GetJobPostingsRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        positionReference:
+          $ref: '#/components/schemas/ResourceReference'
+    JobPostingsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              descriptor:
+                type: string
+              title:
+                type: string
+              status:
+                type: string
+              postingDate:
+                type: string
+                format: date
+              location:
+                $ref: '#/components/schemas/ResourceReference'
+    GetCandidatesRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        jobPostingReference:
+          $ref: '#/components/schemas/ResourceReference'
+    CandidatesResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              descriptor:
+                type: string
+              candidateName:
+                type: string
+              applicationDate:
+                type: string
+                format: date
+              status:
+                type: string
+              source:
+                type: string
+    GetCompensationPlansRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        compensationPlanType:
+          type: string
+    CompensationPlansResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              descriptor:
+                type: string
+              planType:
+                type: string
+              effectiveDate:
+                type: string
+                format: date
+              currency:
+                type: string
+    GetTimeClockEventsRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        workerReference:
+          $ref: '#/components/schemas/ResourceReference'
+    TimeClockEventsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              descriptor:
+                type: string
+              worker:
+                $ref: '#/components/schemas/ResourceReference'
+              clockInTime:
+                type: string
+                format: date-time
+              clockOutTime:
+                type: string
+                format: date-time
+              totalHours:
+                type: number
+              timeCode:
+                type: string
