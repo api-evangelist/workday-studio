@@ -1,10 +1,12 @@
+aid: workday-studio
 name: Workday Studio API
 description: Workday Studio is an integrated development environment (IDE) for building custom integrations and applications on the Workday platform. It provides tools for creating web services, custom reports, and integration solutions.
-image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
-url: https://www.workday.com/en-us/products/integration/workday-studio.html
-created: 2024-01-01 00:00:00+00:00
-modified: 2026-03-04 00:00:00+00:00
-specificationVersion: '0.18'
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/workday-studio/refs/heads/main/apis.yml
+created: '2024-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
 tags:
 - Integration
 - Enterprise
