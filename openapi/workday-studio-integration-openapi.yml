@@ -31,26 +31,26 @@ servers:
         default: tenant
         description: The Workday tenant name
 tags:
-  - name: Integration Systems
-    description: >-
-      Manage integration systems configured in the Workday tenant, including
-      Studio-built integrations and core connector configurations.
-  - name: Integration Events
-    description: >-
-      Monitor and retrieve integration execution events including run status,
-      processing statistics, and error details.
   - name: Integration Assemblies
     description: >-
       Manage Studio integration assemblies, which are the graphical
       representations of integration logic composed of configurable components.
-  - name: Launch Parameters
+  - name: Integration Events
     description: >-
-      Configure and retrieve launch parameters used to control integration
-      execution behavior at runtime.
+      Monitor and retrieve integration execution events including run status,
+      processing statistics, and error details.
+  - name: Integration Systems
+    description: >-
+      Manage integration systems configured in the Workday tenant, including
+      Studio-built integrations and core connector configurations.
   - name: Integration Templates
     description: >-
       Access available integration templates and core connectors that serve as
       starting points for building new integrations.
+  - name: Launch Parameters
+    description: >-
+      Configure and retrieve launch parameters used to control integration
+      execution behavior at runtime.
 security:
   - OAuth2:
       - r:integrations

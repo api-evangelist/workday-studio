@@ -31,50 +31,46 @@ servers:
         default: tenant
         description: The Workday tenant name
 tags:
-  - name: Human Resources
-    description: >-
-      Web service operations for managing employee data, worker records,
-      organizational structures, and HR transactions.
-  - name: Financial Management
-    description: >-
-      Web service operations for financial accounting, expense management,
-      revenue management, and financial reporting.
-  - name: Payroll
-    description: >-
-      Web service operations for payroll processing, tax management,
-      compensation calculations, and pay component configurations.
-  - name: Benefits Administration
-    description: >-
-      Web service operations for benefits enrollment, plan management,
-      coverage administration, and life events processing.
   - name: Absence Management
     description: >-
       Web service operations for managing time-off requests, leave balances,
       absence plans, and return-to-work processes.
-  - name: Staffing
+  - name: Benefits Administration
     description: >-
-      Web service operations for position management, job requisitions,
-      hiring actions, and organizational staffing.
-  - name: Recruiting
-    description: >-
-      Web service operations for job postings, candidate management,
-      application tracking, and offer management.
-  - name: Talent Management
-    description: >-
-      Web service operations for performance reviews, goal management,
-      succession planning, and talent assessments.
+      Web service operations for benefits enrollment, plan management,
+      coverage administration, and life events processing.
   - name: Compensation
     description: >-
       Web service operations for compensation plans, pay grades, salary
       structures, and bonus configurations.
-  - name: Time Tracking
+  - name: Financial Management
     description: >-
-      Web service operations for time entry, timesheet management, time
-      calculations, and clock-in/clock-out records.
+      Web service operations for financial accounting, expense management,
+      revenue management, and financial reporting.
+  - name: Human Resources
+    description: >-
+      Web service operations for managing employee data, worker records,
+      organizational structures, and HR transactions.
+  - name: Payroll
+    description: >-
+      Web service operations for payroll processing, tax management,
+      compensation calculations, and pay component configurations.
+  - name: Recruiting
+    description: >-
+      Web service operations for job postings, candidate management,
+      application tracking, and offer management.
   - name: Service Directory
     description: >-
       Operations for discovering available web services, their versions,
       and WSDL definitions.
+  - name: Staffing
+    description: >-
+      Web service operations for position management, job requisitions,
+      hiring actions, and organizational staffing.
+  - name: Time Tracking
+    description: >-
+      Web service operations for time entry, timesheet management, time
+      calculations, and clock-in/clock-out records.
 security:
   - OAuth2:
       - r:wws
@@ -89,8 +85,8 @@ paths:
         Returns metadata about the Human Resources web service including
         available operations, supported versions, and WSDL location.
       tags:
-        - Service Directory
         - Human Resources
+        - Service Directory
       responses:
         '200':
           description: Service metadata for Human Resources
