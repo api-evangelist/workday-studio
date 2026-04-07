@@ -59,7 +59,7 @@ paths:
   /integrationSystems:
     get:
       operationId: listIntegrationSystems
-      summary: List integration systems
+      summary: Workday Studio List integration systems
       description: >-
         Returns a collection of integration systems configured in the tenant,
         including Studio-built integrations, core connectors, and document
@@ -85,7 +85,7 @@ paths:
   /integrationSystems/{ID}:
     get:
       operationId: getIntegrationSystem
-      summary: Retrieve a specific integration system
+      summary: Workday Studio Retrieve a specific integration system
       description: >-
         Returns the specified integration system with its full configuration
         details including template reference, launch parameters, schedule
@@ -110,7 +110,7 @@ paths:
   /integrationSystems/{ID}/launch:
     post:
       operationId: launchIntegration
-      summary: Launch an integration system
+      summary: Workday Studio Launch an integration system
       description: >-
         Triggers execution of the specified integration system. Accepts optional
         launch parameters to control runtime behavior. Returns the newly created
@@ -143,7 +143,7 @@ paths:
   /integrationEvents:
     get:
       operationId: listIntegrationEvents
-      summary: List integration events
+      summary: Workday Studio List integration events
       description: >-
         Returns a collection of integration event records showing the status
         and details of integration runs. Includes information about start time,
@@ -189,7 +189,7 @@ paths:
   /integrationEvents/{ID}:
     get:
       operationId: getIntegrationEvent
-      summary: Retrieve a specific integration event
+      summary: Workday Studio Retrieve a specific integration event
       description: >-
         Returns the specified integration event including run status, start time,
         end time, records processed, records failed, and any error messages
@@ -214,7 +214,7 @@ paths:
   /integrationEvents/{ID}/logs:
     get:
       operationId: getIntegrationEventLogs
-      summary: Retrieve logs for an integration event
+      summary: Workday Studio Retrieve logs for an integration event
       description: >-
         Returns the execution logs for the specified integration event, including
         step-by-step processing details, warning messages, and error traces useful
@@ -241,7 +241,7 @@ paths:
   /integrationAssemblies:
     get:
       operationId: listIntegrationAssemblies
-      summary: List integration assemblies
+      summary: Workday Studio List integration assemblies
       description: >-
         Returns a collection of Studio integration assemblies deployed to the
         tenant. Assemblies are the graphical representations of integration
@@ -267,7 +267,7 @@ paths:
   /integrationAssemblies/{ID}:
     get:
       operationId: getIntegrationAssembly
-      summary: Retrieve a specific integration assembly
+      summary: Workday Studio Retrieve a specific integration assembly
       description: >-
         Returns the specified integration assembly with its component
         configuration, mediation chain details, and transformation mappings.
@@ -291,7 +291,7 @@ paths:
   /integrationTemplates:
     get:
       operationId: listIntegrationTemplates
-      summary: List integration templates
+      summary: Workday Studio List integration templates
       description: >-
         Returns a collection of available integration templates including core
         connectors and document transformation templates that can be used as
@@ -316,7 +316,7 @@ paths:
   /integrationTemplates/{ID}:
     get:
       operationId: getIntegrationTemplate
-      summary: Retrieve a specific integration template
+      summary: Workday Studio Retrieve a specific integration template
       description: >-
         Returns the specified integration template with its configuration
         schema, supported services, and parameter definitions.
@@ -340,7 +340,7 @@ paths:
   /launchParameters:
     get:
       operationId: listLaunchParameters
-      summary: List available launch parameters
+      summary: Workday Studio List available launch parameters
       description: >-
         Returns a collection of launch parameter definitions that can be
         configured for integration systems to control runtime behavior such

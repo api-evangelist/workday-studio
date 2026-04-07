@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Workday Web Services API
+  title: Workday Studio Workday Web Services API
   description: >-
     REST and SOAP web services for integrating with Workday applications,
     providing programmatic access to business management services across 55
@@ -84,7 +84,7 @@ paths:
   /Human_Resources:
     get:
       operationId: getHumanResourcesService
-      summary: Retrieve Human Resources service metadata
+      summary: Workday Studio Retrieve Human Resources service metadata
       description: >-
         Returns metadata about the Human Resources web service including
         available operations, supported versions, and WSDL location.
@@ -103,7 +103,7 @@ paths:
   /Human_Resources/Get_Workers:
     post:
       operationId: getWorkers
-      summary: Retrieve workers
+      summary: Workday Studio Retrieve workers
       description: >-
         Returns a collection of worker records including employees and
         contingent workers. Supports filtering by worker type, organization,
@@ -131,7 +131,7 @@ paths:
   /Human_Resources/Get_Organizations:
     post:
       operationId: getOrganizations
-      summary: Retrieve organizations
+      summary: Workday Studio Retrieve organizations
       description: >-
         Returns a collection of organization records including supervisory
         organizations, cost centers, company structures, and custom
@@ -159,7 +159,7 @@ paths:
   /Financial_Management/Get_Journal_Entries:
     post:
       operationId: getJournalEntries
-      summary: Retrieve journal entries
+      summary: Workday Studio Retrieve journal entries
       description: >-
         Returns a collection of journal entry records for financial accounting,
         including debit and credit line items, ledger accounts, and posting
@@ -187,7 +187,7 @@ paths:
   /Payroll/Get_Payroll_Results:
     post:
       operationId: getPayrollResults
-      summary: Retrieve payroll results
+      summary: Workday Studio Retrieve payroll results
       description: >-
         Returns a collection of payroll result records including pay
         calculations, deductions, tax withholdings, and net pay details
@@ -215,7 +215,7 @@ paths:
   /Benefits_Administration/Get_Benefit_Plans:
     post:
       operationId: getBenefitPlans
-      summary: Retrieve benefit plans
+      summary: Workday Studio Retrieve benefit plans
       description: >-
         Returns a collection of benefit plan records including health insurance,
         retirement plans, life insurance, and other benefit offerings
@@ -243,7 +243,7 @@ paths:
   /Absence_Management/Get_Absence_Inputs:
     post:
       operationId: getAbsenceInputs
-      summary: Retrieve absence inputs
+      summary: Workday Studio Retrieve absence inputs
       description: >-
         Returns a collection of absence input records for time-off requests,
         leave entries, and absence events within specified date ranges and
@@ -271,7 +271,7 @@ paths:
   /Staffing/Get_Job_Postings:
     post:
       operationId: getJobPostings
-      summary: Retrieve job postings
+      summary: Workday Studio Retrieve job postings
       description: >-
         Returns a collection of job posting records for open positions
         including posting status, location, job profile, and application
@@ -299,7 +299,7 @@ paths:
   /Recruiting/Get_Candidates:
     post:
       operationId: getCandidates
-      summary: Retrieve candidates
+      summary: Workday Studio Retrieve candidates
       description: >-
         Returns a collection of candidate records for recruiting including
         application status, source, and stage within the hiring workflow.
@@ -326,7 +326,7 @@ paths:
   /Compensation/Get_Compensation_Plans:
     post:
       operationId: getCompensationPlans
-      summary: Retrieve compensation plans
+      summary: Workday Studio Retrieve compensation plans
       description: >-
         Returns a collection of compensation plan records including salary
         plans, bonus plans, allowance plans, and their associated pay
@@ -354,7 +354,7 @@ paths:
   /Time_Tracking/Get_Time_Clock_Events:
     post:
       operationId: getTimeClockEvents
-      summary: Retrieve time clock events
+      summary: Workday Studio Retrieve time clock events
       description: >-
         Returns a collection of time clock event records including clock-in
         and clock-out timestamps, time entry types, and calculated hours
