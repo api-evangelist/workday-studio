@@ -1,0 +1,732 @@
+# =============================================================================
+# Workday Studio Spectral Ruleset
+# =============================================================================
+# Opinionated rules derived from the Workday Studio OpenAPI specifications:
+#   - openapi/workday-studio-integration-openapi.yml
+#   - openapi/workday-studio-web-services-openapi.yml
+#
+# Run with:
+#   spectral lint -r rules/workday-studio-spectral-rules.yml openapi/*.yml
+# =============================================================================
+
+rules:
+
+  # ===========================================================================
+  # INFO / METADATA
+  # ===========================================================================
+
+  info-title-required:
+    description: The info object must include a title.
+    message: "info.title is required."
+    severity: error
+    given: "$.info"
+    then:
+      field: title
+      function: truthy
+
+  info-title-workday-studio-prefix:
+    description: API title should start with "Workday Studio".
+    message: 'info.title should begin with "Workday Studio" (got "{{value}}").'
+    severity: warn
+    given: "$.info.title"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Workday Studio\\b"
+
+  info-description-required:
+    description: The info object must include a description.
+    message: "info.description is required."
+    severity: error
+    given: "$.info"
+    then:
+      field: description
+      function: truthy
+
+  info-description-min-length:
+    description: info.description should provide meaningful context (>= 100 chars).
+    message: "info.description should be at least 100 characters."
+    severity: warn
+    given: "$.info.description"
+    then:
+      function: length
+      functionOptions:
+        min: 100
+
+  info-version-required:
+    description: The info object must include a version.
+    message: "info.version is required."
+    severity: error
+    given: "$.info"
+    then:
+      field: version
+      function: truthy
+
+  info-contact-required:
+    description: A contact object should be defined for support.
+    message: "info.contact should be defined."
+    severity: warn
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+
+  info-contact-email-workday:
+    description: Contact email should be the Workday API support address.
+    message: "info.contact.email should be api-support@workday.com."
+    severity: info
+    given: "$.info.contact.email"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^api-support@workday\\.com$"
+
+  info-license-required:
+    description: A license object should be defined.
+    message: "info.license should be defined."
+    severity: warn
+    given: "$.info"
+    then:
+      field: license
+      function: truthy
+
+  info-terms-of-service-recommended:
+    description: termsOfService should be set on info.
+    message: "info.termsOfService should be defined."
+    severity: info
+    given: "$.info"
+    then:
+      field: termsOfService
+      function: truthy
+
+  # ===========================================================================
+  # OPENAPI VERSION
+  # ===========================================================================
+
+  openapi-version-3-1:
+    description: Specs in this repo must declare OpenAPI 3.1.0.
+    message: 'openapi must be "3.1.0" (got "{{value}}").'
+    severity: error
+    given: "$.openapi"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^3\\.1\\.0$"
+
+  # ===========================================================================
+  # SERVERS
+  # ===========================================================================
+
+  servers-defined:
+    description: At least one server must be defined.
+    message: "servers must be defined and non-empty."
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+
+  servers-https-only:
+    description: All server URLs must use HTTPS.
+    message: 'Server URL "{{value}}" must use https://.'
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  servers-description-required:
+    description: Every server must include a description.
+    message: "Each server should have a description."
+    severity: warn
+    given: "$.servers[*]"
+    then:
+      field: description
+      function: truthy
+
+  servers-tenant-templated:
+    description: Server URLs should template both baseUrl and tenant variables.
+    message: 'Server URL should include {baseUrl} and {tenant} variables (got "{{value}}").'
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "\\{baseUrl\\}.*\\{tenant\\}"
+
+  # ===========================================================================
+  # PATHS — NAMING CONVENTIONS
+  # ===========================================================================
+
+  paths-allowed-character-set:
+    description: >-
+      Paths may use camelCase (e.g. /integrationSystems) or Workday SOAP-style
+      PascalCase_With_Underscores (e.g. /Human_Resources/Get_Workers). No spaces,
+      hyphens, or other special characters.
+    message: 'Path "{{property}}" contains disallowed characters.'
+    severity: error
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^(/[A-Za-z][A-Za-z0-9_]*|/\\{[A-Za-z][A-Za-z0-9]*\\})+$"
+
+  paths-no-trailing-slash:
+    description: Paths must not end with a trailing slash (except the root).
+    message: 'Path "{{property}}" should not end with a trailing slash.'
+    severity: error
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: ".+/$"
+
+  paths-no-query-strings:
+    description: Path templates must not include query strings.
+    message: 'Path "{{property}}" must not contain "?" — use parameters instead.'
+    severity: error
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: "\\?"
+
+  paths-no-file-extensions:
+    description: Paths should not include file extensions.
+    message: 'Path "{{property}}" should not include a file extension.'
+    severity: warn
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: "\\.(json|xml|yaml|yml)$"
+
+  # ===========================================================================
+  # OPERATIONS
+  # ===========================================================================
+
+  operation-summary-required:
+    description: Every operation must have a summary.
+    message: "Operation summary is required."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete,head,options]"
+    then:
+      field: summary
+      function: truthy
+
+  operation-summary-workday-studio-prefix:
+    description: Operation summaries should begin with "Workday Studio ".
+    message: 'Operation summary should start with "Workday Studio " (got "{{value}}").'
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete,head,options].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Workday Studio\\s+\\S"
+
+  operation-description-required:
+    description: Every operation must have a description.
+    message: "Operation description is required."
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete,head,options]"
+    then:
+      field: description
+      function: truthy
+
+  operation-operationId-required:
+    description: Every operation must have an operationId.
+    message: "operationId is required."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete,head,options]"
+    then:
+      field: operationId
+      function: truthy
+
+  operation-operationId-camelcase:
+    description: operationId must be camelCase.
+    message: 'operationId "{{value}}" must be camelCase.'
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete,head,options].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  operation-operationId-verb-prefix:
+    description: >-
+      operationId should begin with an approved verb prefix (get, list, create,
+      update, delete, launch, search).
+    message: 'operationId "{{value}}" should start with get/list/create/update/delete/launch/search.'
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete,head,options].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(get|list|create|update|delete|launch|search)[A-Z]"
+
+  operation-tags-required:
+    description: Every operation must declare at least one tag.
+    message: "Operation must include tags."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete,head,options]"
+    then:
+      field: tags
+      function: truthy
+
+  operation-tag-count:
+    description: Operation tags array must not be empty.
+    message: "Operation tags array must not be empty."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete,head,options].tags"
+    then:
+      function: length
+      functionOptions:
+        min: 1
+
+  # ===========================================================================
+  # TAGS
+  # ===========================================================================
+
+  tags-defined-globally:
+    description: A top-level tags array must be defined.
+    message: "Global tags array must be defined."
+    severity: error
+    given: "$"
+    then:
+      field: tags
+      function: truthy
+
+  tags-name-required:
+    description: Every tag must have a name.
+    message: "tag.name is required."
+    severity: error
+    given: "$.tags[*]"
+    then:
+      field: name
+      function: truthy
+
+  tags-description-required:
+    description: Every tag must have a description.
+    message: "tag.description is required."
+    severity: warn
+    given: "$.tags[*]"
+    then:
+      field: description
+      function: truthy
+
+  tags-title-case:
+    description: >-
+      Tag names should use Title Case (e.g. "Integration Assemblies",
+      "Human Resources", "Benefits Administration").
+    message: 'Tag name "{{value}}" should use Title Case.'
+    severity: warn
+    given: "$.tags[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z]*( [A-Z][A-Za-z]*)*$"
+
+  operation-tags-must-be-defined-globally:
+    description: Every tag referenced on an operation must be defined in the global tags array.
+    message: 'Operation tag "{{value}}" is not declared in the top-level tags array.'
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete,head,options].tags[*]"
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - Integration Assemblies
+          - Integration Events
+          - Integration Systems
+          - Integration Templates
+          - Launch Parameters
+          - Absence Management
+          - Benefits Administration
+          - Compensation
+          - Financial Management
+          - Human Resources
+          - Payroll
+          - Recruiting
+          - Service Directory
+          - Staffing
+          - Time Tracking
+
+  # ===========================================================================
+  # PARAMETERS
+  # ===========================================================================
+
+  parameter-description-required:
+    description: Every parameter must have a description.
+    message: "Parameter description is required."
+    severity: warn
+    given: "$..parameters[*]"
+    then:
+      field: description
+      function: truthy
+
+  parameter-name-camelcase:
+    description: >-
+      Parameter names should use camelCase. The path identifier "ID" is
+      permitted as the canonical Workday resource identifier.
+    message: 'Parameter name "{{value}}" should be camelCase.'
+    severity: warn
+    given: "$..parameters[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([a-z][a-zA-Z0-9]*|ID)$"
+
+  parameter-no-apikey-in-query:
+    description: API keys must not be passed as query parameters.
+    message: 'Parameter "{{value}}" looks like an API key in the query string — use a header.'
+    severity: error
+    given: "$..parameters[?(@.in == 'query')].name"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "(?i)^(api[-_]?key|access[-_]?token|auth[-_]?token)$"
+
+  parameter-pagination-uses-limit-offset:
+    description: >-
+      Standardize pagination on limit/offset. The web services spec uses
+      pageSize/page; new operations should adopt limit/offset.
+    message: 'Pagination parameter "{{value}}" should be "limit" or "offset" — pageSize/page is discouraged.'
+    severity: warn
+    given: "$..parameters[?(@.in == 'query')].name"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "^(pageSize|page|page_size|page_number|per_page)$"
+
+  # ===========================================================================
+  # REQUEST BODIES
+  # ===========================================================================
+
+  request-body-json-content:
+    description: Request bodies must support application/json.
+    message: "Request body must declare application/json content."
+    severity: error
+    given: "$.paths[*][post,put,patch].requestBody.content"
+    then:
+      field: application/json
+      function: truthy
+
+  request-body-description-recommended:
+    description: Request bodies should include a description.
+    message: "Request body should have a description."
+    severity: info
+    given: "$.paths[*][post,put,patch].requestBody"
+    then:
+      field: description
+      function: truthy
+
+  # ===========================================================================
+  # RESPONSES
+  # ===========================================================================
+
+  response-success-required:
+    description: Every operation must define at least one 2xx response.
+    message: "Operation must define a 2xx success response."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete,head,options].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          patternProperties:
+            "^2[0-9][0-9]$":
+              type: object
+          anyOf:
+            - required: ["200"]
+            - required: ["201"]
+            - required: ["202"]
+            - required: ["204"]
+
+  response-401-required:
+    description: Operations should declare a 401 response since the API requires authentication.
+    message: "Operation should declare a 401 Unauthorized response."
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete,head,options].responses"
+    then:
+      field: "401"
+      function: truthy
+
+  response-403-recommended:
+    description: Operations should declare a 403 response for permission errors.
+    message: "Operation should declare a 403 Forbidden response."
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete,head,options].responses"
+    then:
+      field: "403"
+      function: truthy
+
+  response-404-on-id-paths:
+    description: Operations on /{ID} paths should declare a 404 response.
+    message: "Operation on a templated path should declare a 404 response."
+    severity: warn
+    given: "$.paths[?(@property.match(/\\{[A-Za-z]+\\}/))][get,post,put,patch,delete].responses"
+    then:
+      field: "404"
+      function: truthy
+
+  response-description-required:
+    description: Every response must have a description.
+    message: "Response description is required."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete,head,options].responses[*]"
+    then:
+      field: description
+      function: truthy
+
+  response-2xx-json-content:
+    description: 2xx responses must return application/json.
+    message: "2xx response must declare application/json content."
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete,head,options].responses[?(@property.match(/^2[0-9][0-9]$/))].content"
+    then:
+      field: application/json
+      function: truthy
+
+  response-error-schema-has-message:
+    description: The shared ErrorResponse schema should expose a message-bearing field.
+    message: "ErrorResponse should expose at least one of: error, message, errors."
+    severity: warn
+    given: "$.components.schemas.ErrorResponse.properties"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["error"]
+            - required: ["message"]
+            - required: ["errors"]
+
+  response-list-uses-total-data-wrapper:
+    description: >-
+      Collection responses should use the standard {total, data[]} wrapper
+      shape used throughout the Workday Studio specs.
+    message: "Collection response schema should expose 'total' and 'data' properties."
+    severity: warn
+    given: "$.components.schemas[?(@property.match(/Response$/))].properties"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          allOf:
+            - required: ["data"]
+
+  # ===========================================================================
+  # SCHEMAS — PROPERTY NAMING
+  # ===========================================================================
+
+  schema-property-name-camelcase:
+    description: >-
+      Schema property names should use camelCase. The canonical "ID" path
+      identifier is permitted at any depth.
+    message: 'Property name "{{property}}" should be camelCase.'
+    severity: warn
+    given: "$.components.schemas..properties"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^([a-z][a-zA-Z0-9]*|ID)$"
+
+  schema-id-property-name:
+    description: >-
+      Resource identifier properties should be named "id" (lowercase), matching
+      the convention used across the Workday Studio specs.
+    message: 'Use "id" rather than "{{property}}" for resource identifiers.'
+    severity: warn
+    given: "$.components.schemas..properties"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: "^(Id|ID|_id|identifier)$"
+
+  schema-timestamp-property-suffix:
+    description: >-
+      Date-time properties should be named with a "DateTime" suffix
+      (e.g. startDateTime, endDateTime, lastRunDateTime).
+    message: 'date-time property "{{property}}" should end with "DateTime".'
+    severity: info
+    given: "$.components.schemas..properties[?(@.format == 'date-time')]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "DateTime$"
+
+  schema-date-property-suffix:
+    description: >-
+      Date-only properties should be named with a "Date" suffix
+      (e.g. hireDate, startDate, effectiveDate).
+    message: 'date property "{{property}}" should end with "Date".'
+    severity: info
+    given: "$.components.schemas..properties[?(@.format == 'date')]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "Date$"
+
+  schema-top-level-description:
+    description: Top-level schemas in components should include a description.
+    message: 'Schema "{{property}}" should include a description.'
+    severity: info
+    given: "$.components.schemas[*]"
+    then:
+      field: description
+      function: truthy
+
+  schema-type-required:
+    description: Every schema definition should declare a type.
+    message: "Schema should declare a type."
+    severity: warn
+    given: "$.components.schemas[*]"
+    then:
+      field: type
+      function: truthy
+
+  # ===========================================================================
+  # SECURITY
+  # ===========================================================================
+
+  security-global-defined:
+    description: A global security requirement must be defined.
+    message: "Global security must be defined."
+    severity: error
+    given: "$"
+    then:
+      field: security
+      function: truthy
+
+  security-schemes-defined:
+    description: components.securitySchemes must be defined.
+    message: "components.securitySchemes must be defined."
+    severity: error
+    given: "$.components"
+    then:
+      field: securitySchemes
+      function: truthy
+
+  security-oauth2-required:
+    description: Specs must define an OAuth2 security scheme named "OAuth2".
+    message: 'A security scheme named "OAuth2" must be defined.'
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      field: OAuth2
+      function: truthy
+
+  security-oauth2-flow-authorization-code:
+    description: The OAuth2 scheme must declare an authorizationCode flow.
+    message: "OAuth2 must declare an authorizationCode flow."
+    severity: warn
+    given: "$.components.securitySchemes.OAuth2.flows"
+    then:
+      field: authorizationCode
+      function: truthy
+
+  security-oauth2-token-url-tenant:
+    description: OAuth2 tokenUrl should template the tenant in the path.
+    message: 'OAuth2 tokenUrl should include "{tenant}" (got "{{value}}").'
+    severity: info
+    given: "$.components.securitySchemes.OAuth2.flows.authorizationCode.tokenUrl"
+    then:
+      function: pattern
+      functionOptions:
+        match: "\\{tenant\\}"
+
+  security-scope-naming:
+    description: >-
+      OAuth2 scope names should use the Workday Studio convention of
+      "<r|w>:<resource>" (e.g. r:integrations, w:integrations, r:wws, w:wws).
+    message: 'Scope "{{property}}" should match "<r|w>:<resource>".'
+    severity: warn
+    given: "$.components.securitySchemes.OAuth2.flows.authorizationCode.scopes"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^[rw]:[a-z][a-z0-9_]*$"
+
+  # ===========================================================================
+  # HTTP METHOD CONVENTIONS
+  # ===========================================================================
+
+  no-request-body-on-get:
+    description: GET operations must not declare a request body.
+    message: "GET operations must not have a requestBody."
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: requestBody
+      function: falsy
+
+  no-request-body-on-delete:
+    description: DELETE operations should not declare a request body.
+    message: "DELETE operations should not have a requestBody."
+    severity: warn
+    given: "$.paths[*].delete"
+    then:
+      field: requestBody
+      function: falsy
+
+  put-patch-request-body-required:
+    description: PUT and PATCH operations must declare a request body.
+    message: "PUT/PATCH operations should declare a requestBody."
+    severity: warn
+    given: "$.paths[*][put,patch]"
+    then:
+      field: requestBody
+      function: truthy
+
+  # ===========================================================================
+  # GENERAL QUALITY
+  # ===========================================================================
+
+  no-empty-descriptions:
+    description: Description fields, when present, must not be empty strings.
+    message: "Empty description is not allowed."
+    severity: error
+    given: "$..description"
+    then:
+      function: truthy
+
+  external-docs-encouraged:
+    description: A top-level externalDocs object is encouraged for discoverability.
+    message: "Consider adding a top-level externalDocs entry."
+    severity: info
+    given: "$"
+    then:
+      field: externalDocs
+      function: truthy
+
+  examples-encouraged:
+    description: Adding examples to schemas helps consumers understand payloads.
+    message: 'Schema "{{property}}" has no example or examples — consider adding one.'
+    severity: info
+    given: "$.components.schemas[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["example"]
+            - required: ["examples"]
+
+  deprecation-must-be-documented:
+    description: Deprecated operations must explain the deprecation in their description.
+    message: 'Deprecated operation should mention "deprecat" in its description.'
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete,head,options][?(@.deprecated == true)].description"
+    then:
+      function: pattern
+      functionOptions:
+        match: "(?i)deprecat"

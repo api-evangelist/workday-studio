@@ -1,0 +1,555 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Workday Studio"
+  description: "Unified vocabulary covering the operational dimension of the Workday Studio platform — integration systems, web services, custom reports, and orchestration — across all published APIs."
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+# OPERATIONAL DIMENSION (from OpenAPI)
+operational:
+
+  apis:
+    - name: "Workday Studio Integration API"
+      namespace: "integration"
+      version: "v1"
+      baseUrl: "https://{tenant}.workday.com/ccx/service"
+      status: "active"
+      hasOpenApi: true
+      tags:
+        - "Custom"
+        - "Development"
+        - "Integration"
+    - name: "Workday Web Services API"
+      namespace: "wws"
+      version: "v45"
+      baseUrl: "https://{tenant}.workday.com/ccx/service/{tenant}"
+      status: "active"
+      hasOpenApi: true
+      tags:
+        - "Enterprise"
+        - "REST"
+        - "SOAP"
+        - "Web Services"
+    - name: "Workday REST API"
+      namespace: "rest"
+      version: "current"
+      baseUrl: "https://{tenant}.workday.com/ccx/api"
+      status: "active"
+      hasOpenApi: false
+      tags:
+        - "Data Access"
+        - "JSON"
+        - "OAuth"
+        - "REST"
+    - name: "Workday Custom Reports API"
+      namespace: "customreport"
+      version: "v2"
+      baseUrl: "https://{tenant}.workday.com/ccx/service/customreport2/{tenant}"
+      status: "active"
+      hasOpenApi: false
+      tags:
+        - "Analytics"
+        - "Custom"
+        - "Report as a Service"
+        - "Reports"
+    - name: "Workday Orchestrate API"
+      namespace: "orchestrate"
+      version: "current"
+      baseUrl: "https://{tenant}.workday.com/ccx/api"
+      status: "active"
+      hasOpenApi: false
+      tags:
+        - "Automation"
+        - "Event Driven"
+        - "Low Code"
+        - "Orchestration"
+        - "Workflows"
+
+  resources:
+    # Integration API resources
+    - name: "integrationSystems"
+      api: "Workday Studio Integration API"
+      domain: "Integration"
+      description: "Deployed integration systems including Studio-built integrations, core connectors, and document transformation integrations."
+      actions: ["list", "get", "launch"]
+    - name: "integrationEvents"
+      api: "Workday Studio Integration API"
+      domain: "Integration"
+      description: "Records of integration executions including run status, processing statistics, and execution logs."
+      actions: ["list", "get", "getLogs"]
+    - name: "integrationAssemblies"
+      api: "Workday Studio Integration API"
+      domain: "Integration"
+      description: "Studio assemblies — the graphical integration logic composed of mediation steps, transformations, and connectors."
+      actions: ["list", "get"]
+    - name: "integrationTemplates"
+      api: "Workday Studio Integration API"
+      domain: "Integration"
+      description: "Available integration templates and core connectors used as starting points for new Studio integrations."
+      actions: ["list", "get"]
+    - name: "launchParameters"
+      api: "Workday Studio Integration API"
+      domain: "Integration"
+      description: "Launch parameter definitions controlling integration runtime behavior."
+      actions: ["list"]
+    # Web Services API resources
+    - name: "humanResourcesService"
+      api: "Workday Web Services API"
+      domain: "Service Directory"
+      description: "Service directory metadata for the Human Resources web service."
+      actions: ["getMetadata"]
+    - name: "workers"
+      api: "Workday Web Services API"
+      domain: "Human Resources"
+      description: "Worker records including employees and contingent workers with organizational and demographic attributes."
+      actions: ["query"]
+    - name: "organizations"
+      api: "Workday Web Services API"
+      domain: "Human Resources"
+      description: "Organization records including supervisory orgs, cost centers, and company structures."
+      actions: ["query"]
+    - name: "journalEntries"
+      api: "Workday Web Services API"
+      domain: "Financial Management"
+      description: "Financial accounting journal entries with debit and credit line items, ledger accounts, and posting status."
+      actions: ["query"]
+    - name: "payrollResults"
+      api: "Workday Web Services API"
+      domain: "Payroll"
+      description: "Payroll result records including pay calculations, deductions, tax withholdings, and net pay."
+      actions: ["query"]
+    - name: "benefitPlans"
+      api: "Workday Web Services API"
+      domain: "Benefits Administration"
+      description: "Benefit plan records including health insurance, retirement, life insurance, and other benefit offerings."
+      actions: ["query"]
+    - name: "absenceInputs"
+      api: "Workday Web Services API"
+      domain: "Absence Management"
+      description: "Absence input records for time-off requests, leave entries, and absence events."
+      actions: ["query"]
+    - name: "jobPostings"
+      api: "Workday Web Services API"
+      domain: "Staffing"
+      description: "Job posting records for open positions including status, location, and job profile."
+      actions: ["query"]
+    - name: "candidates"
+      api: "Workday Web Services API"
+      domain: "Recruiting"
+      description: "Candidate records for recruiting including application status, source, and hiring stage."
+      actions: ["query"]
+    - name: "compensationPlans"
+      api: "Workday Web Services API"
+      domain: "Compensation"
+      description: "Compensation plan records including salary, bonus, allowance plans, and pay grade structures."
+      actions: ["query"]
+    - name: "timeClockEvents"
+      api: "Workday Web Services API"
+      domain: "Time Tracking"
+      description: "Time clock event records including clock-in and clock-out timestamps and calculated hours."
+      actions: ["query"]
+
+  actions:
+    - name: "list"
+      httpMethod: "GET"
+      pattern: "read"
+      description: "Retrieve a paginated collection of resources."
+    - name: "get"
+      httpMethod: "GET"
+      pattern: "read"
+      description: "Retrieve a single resource by Workday ID."
+    - name: "getLogs"
+      httpMethod: "GET"
+      pattern: "read"
+      description: "Retrieve nested log entries for a parent resource (integration event)."
+    - name: "getMetadata"
+      httpMethod: "GET"
+      pattern: "read"
+      description: "Retrieve service-level metadata such as available operations, version, and WSDL location."
+    - name: "launch"
+      httpMethod: "POST"
+      pattern: "write"
+      description: "Trigger execution of an integration system, creating a new integration event."
+    - name: "query"
+      httpMethod: "POST"
+      pattern: "query"
+      description: "Web Services Get_* style operations that return collections filtered by request criteria (legacy SOAP-derived REST pattern)."
+
+  schemas:
+    core:
+      - name: "ResourceReference"
+        description: "Reference to a Workday resource with id, descriptor, and href."
+        keyProperties: ["id", "descriptor", "href"]
+      - name: "ErrorResponse"
+        description: "Error envelope with high-level error and detailed validation errors."
+        keyProperties: ["error", "errors"]
+      - name: "ServiceMetadata"
+        description: "Web service metadata including service name, version, WSDL URL, and operations."
+        keyProperties: ["serviceName", "version", "wsdlUrl", "operations"]
+      - name: "RequestCriteria"
+        description: "Common Web Services request criteria for date ranges and pagination."
+        keyProperties: ["effectiveDate", "fromDate", "toDate", "pageSize", "page"]
+    integration:
+      - name: "IntegrationSystem"
+        description: "A configured integration system in the tenant."
+        keyProperties: ["id", "integrationSystemName", "template", "isActive", "lastRunDateTime", "scheduleFrequency"]
+      - name: "IntegrationEvent"
+        description: "A single integration execution record with status and processing stats."
+        keyProperties: ["id", "integrationSystem", "status", "startDateTime", "endDateTime", "recordsProcessed", "recordsFailed"]
+      - name: "IntegrationLogEntry"
+        description: "A single log entry from an integration execution."
+        keyProperties: ["timestamp", "severity", "message", "componentName"]
+      - name: "IntegrationAssembly"
+        description: "A Studio assembly with components and mediation chain."
+        keyProperties: ["id", "assemblyName", "version", "integrationSystem", "deployedDateTime", "components"]
+      - name: "AssemblyComponent"
+        description: "A configurable component within a Studio assembly."
+        keyProperties: ["id", "componentType", "name"]
+      - name: "IntegrationTemplate"
+        description: "An integration template providing a starting point for new integrations."
+        keyProperties: ["id", "templateName", "category", "supportedServices"]
+      - name: "IntegrationLaunchRequest"
+        description: "Request body for launching an integration with optional parameters."
+        keyProperties: ["launchParameters"]
+      - name: "LaunchParameter"
+        description: "A launch parameter definition controlling runtime behavior."
+        keyProperties: ["id", "parameterName", "dataType", "defaultValue", "isRequired"]
+    hcm:
+      - name: "Worker"
+        description: "A Workday worker (employee or contingent worker)."
+        keyProperties: ["id", "workerID", "workerType", "businessTitle", "primaryWorkEmail", "hireDate", "supervisoryOrganization", "location"]
+      - name: "Organization"
+        description: "A Workday organization (supervisory, cost center, company, etc.)."
+        keyProperties: ["id", "organizationType", "organizationCode", "isActive", "manager", "superior"]
+    requestEnvelopes:
+      - name: "GetWorkersRequest"
+        description: "Request envelope for the Get_Workers WWS operation."
+        keyProperties: ["requestCriteria", "workerReferenceIDs", "organizationReference"]
+      - name: "GetOrganizationsRequest"
+        description: "Request envelope for the Get_Organizations WWS operation."
+        keyProperties: ["requestCriteria", "organizationType"]
+      - name: "GetJournalEntriesRequest"
+        description: "Request envelope for the Get_Journal_Entries WWS operation."
+        keyProperties: ["requestCriteria", "companyReference"]
+      - name: "GetPayrollResultsRequest"
+        description: "Request envelope for the Get_Payroll_Results WWS operation."
+        keyProperties: ["requestCriteria", "payGroupReference"]
+      - name: "GetBenefitPlansRequest"
+        description: "Request envelope for the Get_Benefit_Plans WWS operation."
+        keyProperties: ["requestCriteria", "benefitPlanType"]
+      - name: "GetAbsenceInputsRequest"
+        description: "Request envelope for the Get_Absence_Inputs WWS operation."
+        keyProperties: ["requestCriteria", "workerReference"]
+      - name: "GetJobPostingsRequest"
+        description: "Request envelope for the Get_Job_Postings WWS operation."
+        keyProperties: ["requestCriteria", "positionReference"]
+      - name: "GetCandidatesRequest"
+        description: "Request envelope for the Get_Candidates WWS operation."
+        keyProperties: ["requestCriteria", "jobPostingReference"]
+      - name: "GetCompensationPlansRequest"
+        description: "Request envelope for the Get_Compensation_Plans WWS operation."
+        keyProperties: ["requestCriteria", "compensationPlanType"]
+      - name: "GetTimeClockEventsRequest"
+        description: "Request envelope for the Get_Time_Clock_Events WWS operation."
+        keyProperties: ["requestCriteria", "workerReference"]
+    responseEnvelopes:
+      - name: "IntegrationSystemsResponse"
+        description: "Paged response of IntegrationSystem records."
+        keyProperties: ["total", "data"]
+      - name: "IntegrationEventsResponse"
+        description: "Paged response of IntegrationEvent records."
+        keyProperties: ["total", "data"]
+      - name: "IntegrationLogsResponse"
+        description: "Paged response of IntegrationLogEntry records."
+        keyProperties: ["total", "data"]
+      - name: "IntegrationAssembliesResponse"
+        description: "Paged response of IntegrationAssembly records."
+        keyProperties: ["total", "data"]
+      - name: "IntegrationTemplatesResponse"
+        description: "Paged response of IntegrationTemplate records."
+        keyProperties: ["total", "data"]
+      - name: "LaunchParametersResponse"
+        description: "Paged response of LaunchParameter records."
+        keyProperties: ["total", "data"]
+      - name: "WorkersResponse"
+        description: "Paged response of Worker records."
+        keyProperties: ["total", "data"]
+      - name: "OrganizationsResponse"
+        description: "Paged response of Organization records."
+        keyProperties: ["total", "data"]
+      - name: "JournalEntriesResponse"
+        description: "Paged response of journal entry records."
+        keyProperties: ["total", "data"]
+      - name: "PayrollResultsResponse"
+        description: "Paged response of payroll result records."
+        keyProperties: ["total", "data"]
+      - name: "BenefitPlansResponse"
+        description: "Paged response of benefit plan records."
+        keyProperties: ["total", "data"]
+      - name: "AbsenceInputsResponse"
+        description: "Paged response of absence input records."
+        keyProperties: ["total", "data"]
+      - name: "JobPostingsResponse"
+        description: "Paged response of job posting records."
+        keyProperties: ["total", "data"]
+      - name: "CandidatesResponse"
+        description: "Paged response of candidate records."
+        keyProperties: ["total", "data"]
+      - name: "CompensationPlansResponse"
+        description: "Paged response of compensation plan records."
+        keyProperties: ["total", "data"]
+      - name: "TimeClockEventsResponse"
+        description: "Paged response of time clock event records."
+        keyProperties: ["total", "data"]
+
+  parameters:
+    pagination:
+      - name: "limit"
+        in: "query"
+        description: "Maximum number of objects in a single response (Integration API). Default 20, max 100."
+        usedBy: ["Workday Studio Integration API"]
+      - name: "offset"
+        in: "query"
+        description: "Zero-based index of the first object in a collection (Integration API)."
+        usedBy: ["Workday Studio Integration API"]
+      - name: "pageSize"
+        in: "body.requestCriteria"
+        description: "Number of records per page (Web Services API). Default 100, max 999."
+        usedBy: ["Workday Web Services API"]
+      - name: "page"
+        in: "body.requestCriteria"
+        description: "Page number to return (Web Services API)."
+        usedBy: ["Workday Web Services API"]
+    identifiers:
+      - name: "ID"
+        in: "path"
+        description: "The Workday ID of the resource."
+        usedBy: ["Workday Studio Integration API"]
+      - name: "workerReferenceIDs"
+        in: "body"
+        description: "Specific worker IDs to retrieve."
+        usedBy: ["Workday Web Services API"]
+      - name: "workerReference"
+        in: "body"
+        description: "ResourceReference identifying a single worker."
+        usedBy: ["Workday Web Services API"]
+      - name: "organizationReference"
+        in: "body"
+        description: "ResourceReference identifying an organization."
+        usedBy: ["Workday Web Services API"]
+      - name: "companyReference"
+        in: "body"
+        description: "ResourceReference identifying a company."
+        usedBy: ["Workday Web Services API"]
+      - name: "payGroupReference"
+        in: "body"
+        description: "ResourceReference identifying a pay group."
+        usedBy: ["Workday Web Services API"]
+      - name: "positionReference"
+        in: "body"
+        description: "ResourceReference identifying a position."
+        usedBy: ["Workday Web Services API"]
+      - name: "jobPostingReference"
+        in: "body"
+        description: "ResourceReference identifying a job posting."
+        usedBy: ["Workday Web Services API"]
+    filters:
+      - name: "search"
+        in: "query"
+        description: "Search string used to filter results by name or descriptor."
+        usedBy: ["Workday Studio Integration API"]
+      - name: "status"
+        in: "query"
+        description: "Filter integration events by execution status."
+        usedBy: ["Workday Studio Integration API"]
+      - name: "fromDate"
+        in: "query|body"
+        description: "Start date for date-range filtering."
+        usedBy: ["Workday Studio Integration API", "Workday Web Services API"]
+      - name: "toDate"
+        in: "query|body"
+        description: "End date for date-range filtering."
+        usedBy: ["Workday Studio Integration API", "Workday Web Services API"]
+      - name: "effectiveDate"
+        in: "body.requestCriteria"
+        description: "Effective date for the request — controls as-of semantics in HCM/finance reads."
+        usedBy: ["Workday Web Services API"]
+      - name: "organizationType"
+        in: "body"
+        description: "Filter organizations by organization type."
+        usedBy: ["Workday Web Services API"]
+      - name: "benefitPlanType"
+        in: "body"
+        description: "Filter benefit plans by plan type."
+        usedBy: ["Workday Web Services API"]
+      - name: "compensationPlanType"
+        in: "body"
+        description: "Filter compensation plans by plan type."
+        usedBy: ["Workday Web Services API"]
+
+  enums:
+    states:
+      - name: "IntegrationEventStatus"
+        values: ["Completed", "Failed", "In_Progress", "Cancelled"]
+        usedBy: ["IntegrationEvent"]
+      - name: "LogSeverity"
+        values: ["INFO", "WARNING", "ERROR"]
+        usedBy: ["IntegrationLogEntry"]
+    types:
+      - name: "WorkerType"
+        values: ["Employee", "Contingent_Worker"]
+        usedBy: ["Worker"]
+      - name: "AssemblyComponentType"
+        values: ["Mediation", "Transformation", "Connector", "FlowControl", "ErrorHandler", "Script", "Variable"]
+        usedBy: ["AssemblyComponent"]
+      - name: "TemplateCategory"
+        values: ["Core_Connector", "Document_Transformation", "Studio", "Cloud_Connect"]
+        usedBy: ["IntegrationTemplate"]
+      - name: "LaunchParameterDataType"
+        values: ["Text", "Date", "DateTime", "Boolean", "Integer", "Decimal"]
+        usedBy: ["LaunchParameter"]
+
+  authentication:
+    schemes:
+      - name: "OAuth2"
+        type: "oauth2"
+        flow: "authorizationCode"
+        authorizationUrl: "https://{baseUrl}/authorize"
+        tokenUrl: "https://{baseUrl}/oauth2/{tenant}/token"
+        refreshUrl: "https://{baseUrl}/oauth2/{tenant}/token"
+        scopes:
+          - name: "r:integrations"
+            description: "Read integration data"
+            usedBy: ["Workday Studio Integration API"]
+          - name: "w:integrations"
+            description: "Write integration data"
+            usedBy: ["Workday Studio Integration API"]
+          - name: "r:wws"
+            description: "Read access to web services"
+            usedBy: ["Workday Web Services API"]
+          - name: "w:wws"
+            description: "Write access to web services"
+            usedBy: ["Workday Web Services API"]
+        usedBy:
+          - "Workday Studio Integration API"
+          - "Workday Web Services API"
+          - "Workday REST API"
+          - "Workday Custom Reports API"
+          - "Workday Orchestrate API"
+      - name: "WSSecurity"
+        type: "http"
+        scheme: "basic"
+        description: "WS-Security with X.509 certificates or username/password tokens for SOAP API authentication."
+        usedBy:
+          - "Workday Web Services API"
+
+# CAPABILITY DIMENSION (from Naftiko)
+# No capabilities/ directory present in this repository — capability dimension is empty.
+capability:
+  workflows: []
+  personas: []
+  domains: []
+  namespaces: []
+  binds: []
+
+# CROSS-REFERENCE
+# Resources mapped to their operations. Workflow and persona links are empty
+# because no Naftiko capabilities have been defined for this provider yet.
+crossReference:
+  - resource: "integrationSystems"
+    api: "Workday Studio Integration API"
+    domain: "Integration"
+    operations: ["listIntegrationSystems", "getIntegrationSystem", "launchIntegration"]
+    workflows: []
+    personas: []
+  - resource: "integrationEvents"
+    api: "Workday Studio Integration API"
+    domain: "Integration"
+    operations: ["listIntegrationEvents", "getIntegrationEvent", "getIntegrationEventLogs"]
+    workflows: []
+    personas: []
+  - resource: "integrationAssemblies"
+    api: "Workday Studio Integration API"
+    domain: "Integration"
+    operations: ["listIntegrationAssemblies", "getIntegrationAssembly"]
+    workflows: []
+    personas: []
+  - resource: "integrationTemplates"
+    api: "Workday Studio Integration API"
+    domain: "Integration"
+    operations: ["listIntegrationTemplates", "getIntegrationTemplate"]
+    workflows: []
+    personas: []
+  - resource: "launchParameters"
+    api: "Workday Studio Integration API"
+    domain: "Integration"
+    operations: ["listLaunchParameters"]
+    workflows: []
+    personas: []
+  - resource: "humanResourcesService"
+    api: "Workday Web Services API"
+    domain: "Service Directory"
+    operations: ["getHumanResourcesService"]
+    workflows: []
+    personas: []
+  - resource: "workers"
+    api: "Workday Web Services API"
+    domain: "Human Resources"
+    operations: ["getWorkers"]
+    workflows: []
+    personas: []
+  - resource: "organizations"
+    api: "Workday Web Services API"
+    domain: "Human Resources"
+    operations: ["getOrganizations"]
+    workflows: []
+    personas: []
+  - resource: "journalEntries"
+    api: "Workday Web Services API"
+    domain: "Financial Management"
+    operations: ["getJournalEntries"]
+    workflows: []
+    personas: []
+  - resource: "payrollResults"
+    api: "Workday Web Services API"
+    domain: "Payroll"
+    operations: ["getPayrollResults"]
+    workflows: []
+    personas: []
+  - resource: "benefitPlans"
+    api: "Workday Web Services API"
+    domain: "Benefits Administration"
+    operations: ["getBenefitPlans"]
+    workflows: []
+    personas: []
+  - resource: "absenceInputs"
+    api: "Workday Web Services API"
+    domain: "Absence Management"
+    operations: ["getAbsenceInputs"]
+    workflows: []
+    personas: []
+  - resource: "jobPostings"
+    api: "Workday Web Services API"
+    domain: "Staffing"
+    operations: ["getJobPostings"]
+    workflows: []
+    personas: []
+  - resource: "candidates"
+    api: "Workday Web Services API"
+    domain: "Recruiting"
+    operations: ["getCandidates"]
+    workflows: []
+    personas: []
+  - resource: "compensationPlans"
+    api: "Workday Web Services API"
+    domain: "Compensation"
+    operations: ["getCompensationPlans"]
+    workflows: []
+    personas: []
+  - resource: "timeClockEvents"
+    api: "Workday Web Services API"
+    domain: "Time Tracking"
+    operations: ["getTimeClockEvents"]
+    workflows: []
+    personas: []
