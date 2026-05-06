@@ -1,172 +1,66 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Workday Studio
+providerId: workday-studio
+created: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - FinOps
+  - FOCUS
+  - Integration
+  - Workday
+description: FinOps shape for Workday Studio is opaque. Studio is an IDE bundled with a Workday
+  tenant subscription; runtime API consumption is part of the same tenant contract with no
+  per-integration meter, FOCUS export, or public usage-billing API.
+sources:
+  - https://www.workday.com/en-us/why-workday/about-us/contact-us.html
+  - https://doc.workday.com/
+notes: Workday does not expose a FOCUS-aligned cost export for Studio integrations. Meters and
+  charge categories cannot be reconciled without authenticated access to the customer's Workday
+  Community documentation and contract.
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-provider: Workday Studio
-providerId: workday-studio
-publisherName: Workday Studio
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
-tags:
-  - Cloud
-  - Development
-  - Enterprise
-  - Finance
-  - HR
-  - IDE
-  - Integration
-  - FinOps
-  - Cost Management
-  - FOCUS
-description: FinOps framework definition for the Workday Studio API surface. Provides a FOCUS-aligned
-  mapping for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+publisherName: Workday, Inc.
+serviceCategory: HR / Finance SaaS
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Subscription
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
   ServiceName: Workday Studio
-  ServiceCategory: Developer Tools / API
-  ProviderName: Workday Studio
-  PublisherName: Workday Studio
-  InvoiceIssuerName: Workday Studio
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceCategory: HR / Finance SaaS
+  ProviderName: Workday
+  PublisherName: Workday, Inc.
+  InvoiceIssuerName: Workday, Inc.
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: tenant_subscription
+    unit: month
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Workday Studio Integration API
-    baseURL: ''
-    tags:
-      - Custom
-      - Development
-      - Integration
-    serviceName: Workday Studio Integration API
-    serviceCategory: API
-  - name: Workday Web Services API
-    baseURL: ''
-    tags:
-      - Enterprise
-      - REST
-      - SOAP
-      - Web Services
-    serviceName: Workday Web Services API
-    serviceCategory: API
-  - name: Workday REST API
-    baseURL: ''
-    tags:
-      - Data Access
-      - JSON
-      - OAuth
-      - REST
-    serviceName: Workday REST API
-    serviceCategory: API
-  - name: Workday Custom Reports API
-    baseURL: ''
-    tags:
-      - Analytics
-      - Custom
-      - Report as a Service
-      - Reports
-    serviceName: Workday Custom Reports API
-    serviceCategory: API
-  - name: Workday Orchestrate API
-    baseURL: ''
-    tags:
-      - Automation
-      - Event Driven
-      - Low Code
-      - Orchestration
-      - Workflows
-    serviceName: Workday Orchestrate API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - tenant
+principles:
+  - name: Visibility
+    description: No public usage API; customers track Studio integration runs through the Workday
+      Integration Cloud monitor inside the tenant.
+  - name: Allocation
+    description: Costs allocate by Workday tenant and integration entitlement; per-integration
+      attribution depends on Studio's internal run history rather than a billing export.
+  - name: Optimization
+    description: Levers are integration-design choices (batch sizing, schedule frequency, EIB use
+      where appropriate) rather than rate or commitment discounts.
+  - name: Accountability
+    description: Studio license is owned by Workday procurement; Studio integration design and
+      operation are owned by the integration engineering team.
 maintainers:
-  - name: Kin Lane
+  - FN: Kin Lane
     email: kin@apievangelist.com
     url: https://apievangelist.com
