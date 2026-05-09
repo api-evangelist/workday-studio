@@ -2,12 +2,13 @@
   "repo": "workday-studio",
   "feeds": [
     {
-      "source": "https://workday.github.io/",
-      "feed_url": "https://workday.github.io/atom.xml",
-      "saved": 10,
-      "title": "Workday Developer"
+      "source": "https://blog.workday.com/",
+      "feed_url": "",
+      "title": "",
+      "saved": 0,
+      "error": "no_feed"
     }
   ],
   "post_count": 10,
-  "fetched": "2026-05-03T23:38:24Z"
+  "fetched": "2026-05-09T20:17:51Z"
 }
