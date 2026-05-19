@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Workday Studio Integration API — Launch Parameters
+  description: 'Workday Studio Integration API — Launch Parameters. 1 operations. Lead operation: Workday Studio List Available
+    Launch Parameters. Self-contained Naftiko capability covering one Workday Studio business surface.'
+  tags:
+  - Workday Studio
+  - Launch Parameters
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WORKDAY_STUDIO_API_KEY: WORKDAY_STUDIO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: integration-launch-parameters
+    baseUri: https://{baseUrl}/ccx/service/{tenant}
+    description: Workday Studio Integration API — Launch Parameters business capability. Self-contained, no shared references.
+    resources:
+    - name: launchParameters
+      path: /launchParameters
+      operations:
+      - name: listlaunchparameters
+        method: GET
+        description: Workday Studio List Available Launch Parameters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.WORKDAY_STUDIO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: integration-launch-parameters-rest
+    port: 8080
+    description: REST adapter for Workday Studio Integration API — Launch Parameters. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/launchparameters
+      name: launchparameters
+      description: REST surface for launchParameters.
+      operations:
+      - method: GET
+        name: listlaunchparameters
+        description: Workday Studio List Available Launch Parameters
+        call: integration-launch-parameters.listlaunchparameters
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: integration-launch-parameters-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Workday Studio Integration API — Launch Parameters. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: workday-studio-list-available-launch
+      description: Workday Studio List Available Launch Parameters
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: integration-launch-parameters.listlaunchparameters
+      outputParameters:
+      - type: object
+        mapping: $.

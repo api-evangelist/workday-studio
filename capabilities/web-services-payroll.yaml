@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Workday Studio Workday Web Services API — Payroll
+  description: 'Workday Studio Workday Web Services API — Payroll. 1 operations. Lead operation: Workday Studio Retrieve Payroll
+    Results. Self-contained Naftiko capability covering one Workday Studio business surface.'
+  tags:
+  - Workday Studio
+  - Payroll
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WORKDAY_STUDIO_API_KEY: WORKDAY_STUDIO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: web-services-payroll
+    baseUri: https://{baseUrl}/ccx/service/{tenant}
+    description: Workday Studio Workday Web Services API — Payroll business capability. Self-contained, no shared references.
+    resources:
+    - name: Payroll-Get_Payroll_Results
+      path: /Payroll/Get_Payroll_Results
+      operations:
+      - name: getpayrollresults
+        method: POST
+        description: Workday Studio Retrieve Payroll Results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.WORKDAY_STUDIO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: web-services-payroll-rest
+    port: 8080
+    description: REST adapter for Workday Studio Workday Web Services API — Payroll. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/payroll/get-payroll-results
+      name: payroll-get-payroll-results
+      description: REST surface for Payroll-Get_Payroll_Results.
+      operations:
+      - method: POST
+        name: getpayrollresults
+        description: Workday Studio Retrieve Payroll Results
+        call: web-services-payroll.getpayrollresults
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: web-services-payroll-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Workday Studio Workday Web Services API — Payroll. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: workday-studio-retrieve-payroll-results
+      description: Workday Studio Retrieve Payroll Results
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: web-services-payroll.getpayrollresults
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
