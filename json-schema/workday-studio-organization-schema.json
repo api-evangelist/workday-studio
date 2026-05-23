@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Organization",
+  "title": "Organization",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The Workday ID of the organization"
+    },
+    "descriptor": {
+      "type": "string",
+      "description": "The display name of the organization"
+    },
+    "organizationType": {
+      "type": "string",
+      "description": "The type of organization"
+    },
+    "organizationCode": {
+      "type": "string",
+      "description": "The organization reference code"
+    },
+    "isActive": {
+      "type": "boolean",
+      "description": "Whether the organization is currently active"
+    },
+    "manager": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "superior": {
+      "$ref": "#/components/schemas/ResourceReference"
+    }
+  }
+}

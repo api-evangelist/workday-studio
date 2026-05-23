@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IntegrationLogEntry",
+  "title": "IntegrationLogEntry",
+  "type": "object",
+  "description": "A single log entry from an integration execution",
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the log entry was created"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "INFO",
+        "WARNING",
+        "ERROR"
+      ],
+      "description": "The severity level of the log entry"
+    },
+    "message": {
+      "type": "string",
+      "description": "The log message text"
+    },
+    "componentName": {
+      "type": "string",
+      "description": "The name of the assembly component that generated the log entry"
+    }
+  }
+}

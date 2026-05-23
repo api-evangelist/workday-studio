@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorResponse",
+  "title": "ErrorResponse",
+  "type": "object",
+  "properties": {
+    "error": {
+      "type": "string",
+      "description": "A high-level error message"
+    },
+    "errors": {
+      "type": "array",
+      "description": "Detailed list of validation or processing errors",
+      "items": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error code or type"
+          },
+          "field": {
+            "type": "string",
+            "description": "The field that caused the error"
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable error message"
+          }
+        }
+      }
+    }
+  }
+}

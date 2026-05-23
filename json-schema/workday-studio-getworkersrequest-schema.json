@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetWorkersRequest",
+  "title": "GetWorkersRequest",
+  "type": "object",
+  "properties": {
+    "requestCriteria": {
+      "$ref": "#/components/schemas/RequestCriteria"
+    },
+    "workerReferenceIDs": {
+      "type": "array",
+      "description": "Specific worker IDs to retrieve",
+      "items": {
+        "type": "string"
+      }
+    },
+    "organizationReference": {
+      "$ref": "#/components/schemas/ResourceReference"
+    }
+  }
+}

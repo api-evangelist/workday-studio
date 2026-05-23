@@ -1,0 +1,207 @@
+{
+  "provider": "Workday Studio",
+  "providerId": "workday-studio",
+  "kind": "json-structure",
+  "description": "Structural overview of the Workday Studio API surface; extracted from openapi/.",
+  "schemaCount": 16,
+  "operationCount": 11,
+  "schemas": [
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ResourceReference",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "IntegrationSystem",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "IntegrationSystemsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "IntegrationEvent",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "IntegrationEventsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "IntegrationLogEntry",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "IntegrationLogsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "IntegrationAssembly",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "IntegrationAssembliesResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AssemblyComponent",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "IntegrationTemplate",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "IntegrationTemplatesResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "IntegrationLaunchRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "LaunchParameter",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "LaunchParametersResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/integrationSystems",
+      "operationId": "listIntegrationSystems",
+      "summary": "Workday Studio List Integration Systems",
+      "tags": [
+        "Integration Systems"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/integrationSystems/{ID}",
+      "operationId": "getIntegrationSystem",
+      "summary": "Workday Studio Retrieve a Specific Integration System",
+      "tags": [
+        "Integration Systems"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/integrationSystems/{ID}/launch",
+      "operationId": "launchIntegration",
+      "summary": "Workday Studio Launch an Integration System",
+      "tags": [
+        "Integration Systems"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/integrationEvents",
+      "operationId": "listIntegrationEvents",
+      "summary": "Workday Studio List Integration Events",
+      "tags": [
+        "Integration Events"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/integrationEvents/{ID}",
+      "operationId": "getIntegrationEvent",
+      "summary": "Workday Studio Retrieve a Specific Integration Event",
+      "tags": [
+        "Integration Events"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/integrationEvents/{ID}/logs",
+      "operationId": "getIntegrationEventLogs",
+      "summary": "Workday Studio Retrieve Logs for an Integration Event",
+      "tags": [
+        "Integration Events"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/integrationAssemblies",
+      "operationId": "listIntegrationAssemblies",
+      "summary": "Workday Studio List Integration Assemblies",
+      "tags": [
+        "Integration Assemblies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/integrationAssemblies/{ID}",
+      "operationId": "getIntegrationAssembly",
+      "summary": "Workday Studio Retrieve a Specific Integration Assembly",
+      "tags": [
+        "Integration Assemblies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/integrationTemplates",
+      "operationId": "listIntegrationTemplates",
+      "summary": "Workday Studio List Integration Templates",
+      "tags": [
+        "Integration Templates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/integrationTemplates/{ID}",
+      "operationId": "getIntegrationTemplate",
+      "summary": "Workday Studio Retrieve a Specific Integration Template",
+      "tags": [
+        "Integration Templates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/launchParameters",
+      "operationId": "listLaunchParameters",
+      "summary": "Workday Studio List Available Launch Parameters",
+      "tags": [
+        "Launch Parameters"
+      ]
+    }
+  ]
+}

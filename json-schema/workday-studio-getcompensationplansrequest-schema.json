@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetCompensationPlansRequest",
+  "title": "GetCompensationPlansRequest",
+  "type": "object",
+  "properties": {
+    "requestCriteria": {
+      "$ref": "#/components/schemas/RequestCriteria"
+    },
+    "compensationPlanType": {
+      "type": "string"
+    }
+  }
+}

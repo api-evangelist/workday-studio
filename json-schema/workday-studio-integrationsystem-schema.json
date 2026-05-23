@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IntegrationSystem",
+  "title": "IntegrationSystem",
+  "type": "object",
+  "description": "An integration system configured in the Workday tenant, representing a deployed Studio integration or core connector configuration.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique Workday identifier for the integration system"
+    },
+    "descriptor": {
+      "type": "string",
+      "description": "The display name of the integration system"
+    },
+    "integrationSystemName": {
+      "type": "string",
+      "description": "The configured name of the integration system"
+    },
+    "template": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "integrationServiceProvider": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "isActive": {
+      "type": "boolean",
+      "description": "Whether the integration system is currently active"
+    },
+    "lastRunDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time of the last successful execution"
+    },
+    "scheduleFrequency": {
+      "type": "string",
+      "description": "The configured schedule frequency for automatic execution"
+    },
+    "notificationRecipients": {
+      "type": "array",
+      "description": "Users or groups who receive notifications about integration events",
+      "items": {
+        "$ref": "#/components/schemas/ResourceReference"
+      }
+    }
+  }
+}

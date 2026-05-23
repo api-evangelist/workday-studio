@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AbsenceInputsResponse",
+  "title": "AbsenceInputsResponse",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "descriptor": {
+            "type": "string"
+          },
+          "worker": {
+            "$ref": "#/components/schemas/ResourceReference"
+          },
+          "absenceType": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "unit": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

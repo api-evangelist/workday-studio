@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IntegrationLaunchRequest",
+  "title": "IntegrationLaunchRequest",
+  "type": "object",
+  "description": "Request body for launching an integration system",
+  "properties": {
+    "launchParameters": {
+      "type": "array",
+      "description": "Key-value pairs of launch parameters for the integration run",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the launch parameter"
+          },
+          "value": {
+            "type": "string",
+            "description": "The value to set for the launch parameter"
+          }
+        }
+      }
+    }
+  }
+}

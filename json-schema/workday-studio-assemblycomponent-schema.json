@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AssemblyComponent",
+  "title": "AssemblyComponent",
+  "type": "object",
+  "description": "A configurable component within a Studio assembly, such as a mediation step, XSLT transformation, connector, or flow control element.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the component within the assembly"
+    },
+    "componentType": {
+      "type": "string",
+      "description": "The type of assembly component",
+      "enum": [
+        "Mediation",
+        "Transformation",
+        "Connector",
+        "FlowControl",
+        "ErrorHandler",
+        "Script",
+        "Variable"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "description": "The configured name of the component"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the component purpose"
+    }
+  }
+}

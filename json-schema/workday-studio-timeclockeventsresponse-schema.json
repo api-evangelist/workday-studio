@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TimeClockEventsResponse",
+  "title": "TimeClockEventsResponse",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "descriptor": {
+            "type": "string"
+          },
+          "worker": {
+            "$ref": "#/components/schemas/ResourceReference"
+          },
+          "clockInTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "clockOutTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "totalHours": {
+            "type": "number"
+          },
+          "timeCode": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

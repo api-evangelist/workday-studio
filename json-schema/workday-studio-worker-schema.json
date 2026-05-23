@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Worker",
+  "title": "Worker",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The Workday ID of the worker"
+    },
+    "descriptor": {
+      "type": "string",
+      "description": "The display name of the worker"
+    },
+    "workerID": {
+      "type": "string",
+      "description": "The employee or contingent worker ID"
+    },
+    "workerType": {
+      "type": "string",
+      "description": "The type of worker",
+      "enum": [
+        "Employee",
+        "Contingent_Worker"
+      ]
+    },
+    "businessTitle": {
+      "type": "string",
+      "description": "The worker's current business title"
+    },
+    "primaryWorkEmail": {
+      "type": "string",
+      "format": "email",
+      "description": "The worker's primary work email address"
+    },
+    "hireDate": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the worker was hired"
+    },
+    "supervisoryOrganization": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "location": {
+      "$ref": "#/components/schemas/ResourceReference"
+    }
+  }
+}

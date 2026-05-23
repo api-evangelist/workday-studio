@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IntegrationAssembly",
+  "title": "IntegrationAssembly",
+  "type": "object",
+  "description": "A Studio integration assembly representing the graphical integration logic composed of configurable components, mediation chains, and transformation mappings.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique Workday identifier for the assembly"
+    },
+    "descriptor": {
+      "type": "string",
+      "description": "The display name of the assembly"
+    },
+    "assemblyName": {
+      "type": "string",
+      "description": "The configured name of the assembly"
+    },
+    "version": {
+      "type": "string",
+      "description": "The version of the assembly"
+    },
+    "integrationSystem": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "deployedDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the assembly was last deployed"
+    },
+    "components": {
+      "type": "array",
+      "description": "The list of components configured in the assembly",
+      "items": {
+        "$ref": "#/components/schemas/AssemblyComponent"
+      }
+    }
+  }
+}

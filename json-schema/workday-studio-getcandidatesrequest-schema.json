@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetCandidatesRequest",
+  "title": "GetCandidatesRequest",
+  "type": "object",
+  "properties": {
+    "requestCriteria": {
+      "$ref": "#/components/schemas/RequestCriteria"
+    },
+    "jobPostingReference": {
+      "$ref": "#/components/schemas/ResourceReference"
+    }
+  }
+}

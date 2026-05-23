@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IntegrationTemplate",
+  "title": "IntegrationTemplate",
+  "type": "object",
+  "description": "An integration template providing a starting point for building new integrations, including core connectors and document transformation templates.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique Workday identifier for the template"
+    },
+    "descriptor": {
+      "type": "string",
+      "description": "The display name of the template"
+    },
+    "templateName": {
+      "type": "string",
+      "description": "The configured name of the template"
+    },
+    "category": {
+      "type": "string",
+      "description": "The category of the template",
+      "enum": [
+        "Core_Connector",
+        "Document_Transformation",
+        "Studio",
+        "Cloud_Connect"
+      ]
+    },
+    "supportedServices": {
+      "type": "array",
+      "description": "The Workday services supported by this template",
+      "items": {
+        "$ref": "#/components/schemas/ResourceReference"
+      }
+    }
+  }
+}

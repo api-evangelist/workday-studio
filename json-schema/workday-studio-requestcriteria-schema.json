@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RequestCriteria",
+  "title": "RequestCriteria",
+  "type": "object",
+  "description": "Common request criteria for filtering web service results",
+  "properties": {
+    "effectiveDate": {
+      "type": "string",
+      "format": "date",
+      "description": "The effective date for the request"
+    },
+    "fromDate": {
+      "type": "string",
+      "format": "date",
+      "description": "The start date for date range filtering"
+    },
+    "toDate": {
+      "type": "string",
+      "format": "date",
+      "description": "The end date for date range filtering"
+    },
+    "pageSize": {
+      "type": "integer",
+      "description": "The number of records to return per page",
+      "default": 100,
+      "maximum": 999
+    },
+    "page": {
+      "type": "integer",
+      "description": "The page number to return",
+      "default": 1
+    }
+  }
+}

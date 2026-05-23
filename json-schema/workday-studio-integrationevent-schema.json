@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IntegrationEvent",
+  "title": "IntegrationEvent",
+  "type": "object",
+  "description": "A record of an integration execution, tracking the run status, timing, and processing statistics of an integration system run.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique Workday identifier for the integration event"
+    },
+    "descriptor": {
+      "type": "string",
+      "description": "The display name of the integration event"
+    },
+    "integrationSystem": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Completed",
+        "Failed",
+        "In_Progress",
+        "Cancelled"
+      ],
+      "description": "The execution status of the integration"
+    },
+    "startDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the integration started"
+    },
+    "endDateTime": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "The date and time the integration completed"
+    },
+    "recordsProcessed": {
+      "type": "integer",
+      "description": "The number of records successfully processed"
+    },
+    "recordsFailed": {
+      "type": "integer",
+      "description": "The number of records that failed processing"
+    },
+    "initiatedBy": {
+      "$ref": "#/components/schemas/ResourceReference"
+    },
+    "errorMessage": {
+      "type": "string",
+      "description": "Summary error message if the integration failed"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetOrganizationsRequest",
+  "title": "GetOrganizationsRequest",
+  "type": "object",
+  "properties": {
+    "requestCriteria": {
+      "$ref": "#/components/schemas/RequestCriteria"
+    },
+    "organizationType": {
+      "type": "string",
+      "description": "Filter by organization type"
+    }
+  }
+}

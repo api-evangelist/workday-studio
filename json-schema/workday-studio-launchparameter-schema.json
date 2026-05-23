@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LaunchParameter",
+  "title": "LaunchParameter",
+  "type": "object",
+  "description": "A launch parameter definition that controls integration runtime behavior",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique Workday identifier for the launch parameter"
+    },
+    "descriptor": {
+      "type": "string",
+      "description": "The display name of the launch parameter"
+    },
+    "parameterName": {
+      "type": "string",
+      "description": "The configured name of the parameter"
+    },
+    "dataType": {
+      "type": "string",
+      "description": "The data type of the parameter value",
+      "enum": [
+        "Text",
+        "Date",
+        "DateTime",
+        "Boolean",
+        "Integer",
+        "Decimal"
+      ]
+    },
+    "defaultValue": {
+      "type": "string",
+      "description": "The default value for the parameter"
+    },
+    "isRequired": {
+      "type": "boolean",
+      "description": "Whether the parameter is required at launch time"
+    }
+  }
+}

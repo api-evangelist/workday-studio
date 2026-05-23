@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetTimeClockEventsRequest",
+  "title": "GetTimeClockEventsRequest",
+  "type": "object",
+  "properties": {
+    "requestCriteria": {
+      "$ref": "#/components/schemas/RequestCriteria"
+    },
+    "workerReference": {
+      "$ref": "#/components/schemas/ResourceReference"
+    }
+  }
+}

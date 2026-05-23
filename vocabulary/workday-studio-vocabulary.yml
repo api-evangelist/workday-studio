@@ -1,0 +1,17 @@
+name: Workday Studio Domain Vocabulary
+provider: Workday Studio
+providerId: workday-studio
+description: Tag-derived vocabulary for the Workday Studio API surface; sourced from openapi/ tags.
+terms:
+- term: Integration Assemblies
+  description: Manage Studio integration assemblies, which are the graphical representations of integration logic composed
+    of configurable components.
+- term: Integration Events
+  description: Monitor and retrieve integration execution events including run status, processing statistics, and error details.
+- term: Integration Systems
+  description: Manage integration systems configured in the Workday tenant, including Studio-built integrations and core connector
+    configurations.
+- term: Integration Templates
+  description: Access available integration templates and core connectors that serve as starting points for building new integrations.
+- term: Launch Parameters
+  description: Configure and retrieve launch parameters used to control integration execution behavior at runtime.

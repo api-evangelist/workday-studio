@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetPayrollResultsRequest",
+  "title": "GetPayrollResultsRequest",
+  "type": "object",
+  "properties": {
+    "requestCriteria": {
+      "$ref": "#/components/schemas/RequestCriteria"
+    },
+    "payGroupReference": {
+      "$ref": "#/components/schemas/ResourceReference"
+    }
+  }
+}

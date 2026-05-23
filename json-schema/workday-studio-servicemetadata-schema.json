@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServiceMetadata",
+  "title": "ServiceMetadata",
+  "type": "object",
+  "description": "Metadata about a Workday web service including its operations and supported versions.",
+  "properties": {
+    "serviceName": {
+      "type": "string",
+      "description": "The name of the web service"
+    },
+    "version": {
+      "type": "string",
+      "description": "The current version of the web service"
+    },
+    "wsdlUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL to the WSDL definition for the service"
+    },
+    "operations": {
+      "type": "array",
+      "description": "The list of operations available in the service",
+      "items": {
+        "type": "object",
+        "properties": {
+          "operationName": {
+            "type": "string",
+            "description": "The name of the operation"
+          },
+          "description": {
+            "type": "string",
+            "description": "A description of the operation"
+          }
+        }
+      }
+    }
+  }
+}

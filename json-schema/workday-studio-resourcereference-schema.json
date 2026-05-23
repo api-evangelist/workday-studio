@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResourceReference",
+  "title": "ResourceReference",
+  "type": "object",
+  "description": "A reference to a Workday resource with its identifier and display name",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The Workday ID of the referenced resource"
+    },
+    "descriptor": {
+      "type": "string",
+      "description": "The display name of the referenced resource"
+    },
+    "href": {
+      "type": "string",
+      "format": "uri",
+      "description": "The API URL to retrieve the full resource"
+    }
+  }
+}

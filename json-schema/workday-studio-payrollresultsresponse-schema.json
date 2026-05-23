@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PayrollResultsResponse",
+  "title": "PayrollResultsResponse",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "descriptor": {
+            "type": "string"
+          },
+          "worker": {
+            "$ref": "#/components/schemas/ResourceReference"
+          },
+          "payPeriod": {
+            "type": "string"
+          },
+          "grossPay": {
+            "type": "number"
+          },
+          "netPay": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
