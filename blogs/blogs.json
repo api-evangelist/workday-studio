@@ -2,13 +2,13 @@
   "repo": "workday-studio",
   "feeds": [
     {
-      "source": "https://blog.workday.com/",
-      "feed_url": "",
+      "source": "https://status.workday.com/",
+      "feed_url": "https://status.workday.com/",
       "title": "",
       "saved": 0,
-      "error": "no_feed"
+      "method": "none"
     }
   ],
   "post_count": 10,
-  "fetched": "2026-05-17T20:48:52Z"
+  "fetched": "2026-06-01T23:35:02Z"
 }
