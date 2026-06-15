@@ -1,0 +1,255 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Workday Studio Workday Web Services API",
+    "version": "v45"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://{baseUrl}/authorize",
+      "accessTokenUrl": "https://{baseUrl}/oauth2/{tenant}/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Human Resources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Human Resources Service Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/Human_Resources"
+          },
+          "docs": "Returns metadata about the Human Resources web service including available operations, supported versions, and WSDL location."
+        },
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Workers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/Human_Resources/Get_Workers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a collection of worker records including employees and contingent workers. Supports filtering by worker type, organization, date ranges, and various worker attributes."
+        },
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/Human_Resources/Get_Organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a collection of organization records including supervisory organizations, cost centers, company structures, and custom organization types."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Financial Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Journal Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/Financial_Management/Get_Journal_Entries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a collection of journal entry records for financial accounting, including debit and credit line items, ledger accounts, and posting status information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Payroll",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Payroll Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/Payroll/Get_Payroll_Results",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a collection of payroll result records including pay calculations, deductions, tax withholdings, and net pay details for processed payroll periods."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Benefits Administration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Benefit Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/Benefits_Administration/Get_Benefit_Plans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a collection of benefit plan records including health insurance, retirement plans, life insurance, and other benefit offerings configured in the tenant."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Absence Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Absence Inputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/Absence_Management/Get_Absence_Inputs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a collection of absence input records for time-off requests, leave entries, and absence events within specified date ranges and organizational scope."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Staffing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Job Postings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/Staffing/Get_Job_Postings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a collection of job posting records for open positions including posting status, location, job profile, and application information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recruiting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Candidates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/Recruiting/Get_Candidates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a collection of candidate records for recruiting including application status, source, and stage within the hiring workflow."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Compensation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Compensation Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/Compensation/Get_Compensation_Plans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a collection of compensation plan records including salary plans, bonus plans, allowance plans, and their associated pay grade structures."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Time Tracking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Time Clock Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/Time_Tracking/Get_Time_Clock_Events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a collection of time clock event records including clock-in and clock-out timestamps, time entry types, and calculated hours for workers within the specified date range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

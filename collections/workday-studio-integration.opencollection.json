@@ -1,0 +1,353 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Workday Studio Integration API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://{baseUrl}/authorize",
+      "accessTokenUrl": "https://{baseUrl}/oauth2/{tenant}/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Integration Systems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio List Integration Systems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/integrationSystems",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of objects in a single response. Default is 20, maximum is 100."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The zero-based index of the first object in a response collection"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search string used to filter results by name or descriptor"
+              }
+            ]
+          },
+          "docs": "Returns a collection of integration systems configured in the tenant, including Studio-built integrations, core connectors, and document transformation integrations. Supports filtering by system name, type, and active status."
+        },
+        {
+          "info": {
+            "name": "Workday Studio Retrieve a Specific Integration System",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/integrationSystems/:ID",
+            "params": [
+              {
+                "name": "ID",
+                "value": "",
+                "type": "path",
+                "description": "The Workday ID of the resource"
+              }
+            ]
+          },
+          "docs": "Returns the specified integration system with its full configuration details including template reference, launch parameters, schedule settings, and notification configuration."
+        },
+        {
+          "info": {
+            "name": "Workday Studio Launch an Integration System",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/integrationSystems/:ID/launch",
+            "params": [
+              {
+                "name": "ID",
+                "value": "",
+                "type": "path",
+                "description": "The Workday ID of the resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Triggers execution of the specified integration system. Accepts optional launch parameters to control runtime behavior. Returns the newly created integration event representing the running integration instance."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Integration Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio List Integration Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/integrationEvents",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of objects in a single response. Default is 20, maximum is 100."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The zero-based index of the first object in a response collection"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter events by execution status"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter events starting from this date"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter events up to this date"
+              }
+            ]
+          },
+          "docs": "Returns a collection of integration event records showing the status and details of integration runs. Includes information about start time, end time, records processed, and any errors encountered during execution."
+        },
+        {
+          "info": {
+            "name": "Workday Studio Retrieve a Specific Integration Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/integrationEvents/:ID",
+            "params": [
+              {
+                "name": "ID",
+                "value": "",
+                "type": "path",
+                "description": "The Workday ID of the resource"
+              }
+            ]
+          },
+          "docs": "Returns the specified integration event including run status, start time, end time, records processed, records failed, and any error messages generated during integration execution."
+        },
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Logs for an Integration Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/integrationEvents/:ID/logs",
+            "params": [
+              {
+                "name": "ID",
+                "value": "",
+                "type": "path",
+                "description": "The Workday ID of the resource"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of objects in a single response. Default is 20, maximum is 100."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The zero-based index of the first object in a response collection"
+              }
+            ]
+          },
+          "docs": "Returns the execution logs for the specified integration event, including step-by-step processing details, warning messages, and error traces useful for debugging Studio integration assemblies."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Integration Assemblies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio List Integration Assemblies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/integrationAssemblies",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of objects in a single response. Default is 20, maximum is 100."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The zero-based index of the first object in a response collection"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search string used to filter results by name or descriptor"
+              }
+            ]
+          },
+          "docs": "Returns a collection of Studio integration assemblies deployed to the tenant. Assemblies are the graphical representations of integration logic composed of configurable components such as mediation steps, transformations, and connectors."
+        },
+        {
+          "info": {
+            "name": "Workday Studio Retrieve a Specific Integration Assembly",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/integrationAssemblies/:ID",
+            "params": [
+              {
+                "name": "ID",
+                "value": "",
+                "type": "path",
+                "description": "The Workday ID of the resource"
+              }
+            ]
+          },
+          "docs": "Returns the specified integration assembly with its component configuration, mediation chain details, and transformation mappings."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Integration Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio List Integration Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/integrationTemplates",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of objects in a single response. Default is 20, maximum is 100."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The zero-based index of the first object in a response collection"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search string used to filter results by name or descriptor"
+              }
+            ]
+          },
+          "docs": "Returns a collection of available integration templates including core connectors and document transformation templates that can be used as starting points for building new Studio integrations."
+        },
+        {
+          "info": {
+            "name": "Workday Studio Retrieve a Specific Integration Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/integrationTemplates/:ID",
+            "params": [
+              {
+                "name": "ID",
+                "value": "",
+                "type": "path",
+                "description": "The Workday ID of the resource"
+              }
+            ]
+          },
+          "docs": "Returns the specified integration template with its configuration schema, supported services, and parameter definitions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Launch Parameters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio List Available Launch Parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/launchParameters",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of objects in a single response. Default is 20, maximum is 100."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The zero-based index of the first object in a response collection"
+              }
+            ]
+          },
+          "docs": "Returns a collection of launch parameter definitions that can be configured for integration systems to control runtime behavior such as date ranges, file paths, and processing options."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

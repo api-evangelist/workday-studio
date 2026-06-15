@@ -2,13 +2,24 @@
   "repo": "workday-studio",
   "feeds": [
     {
-      "source": "https://status.workday.com/",
-      "feed_url": "https://status.workday.com/",
+      "source": "https://blog.workday.com/",
+      "feed_url": "https://blog.workday.com/",
       "title": "",
       "saved": 0,
       "method": "none"
+    },
+    {
+      "source": "https://workday.github.io/rss.xml",
+      "feed_url": "https://workday.github.io/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://status.workday.com/",
+      "error": "ConnectionResetError"
     }
   ],
-  "post_count": 10,
-  "fetched": "2026-06-01T23:35:02Z"
+  "post_count": 14,
+  "fetched": "2026-06-14T20:42:17Z"
 }
