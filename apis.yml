@@ -41,7 +41,7 @@ apis:
         url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
       - type: GettingStarted
         url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
-      - type: SDK
+      - type: SDKs
         url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
   - name: Workday Web Services API
     description: >-
@@ -131,7 +131,7 @@ common:
     url: https://developer.workday.com/about
   - type: Login
     url: https://www.myworkday.com/
-  - type: SignUp
+  - type: Signup
     url: https://community.workday.com/
   - type: Documentation
     url: https://doc.workday.com/en-us/guides.html
