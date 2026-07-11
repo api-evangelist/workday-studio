@@ -1,0 +1,27 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/workday-studio-integration-openapi.yml, openapi/workday-studio-web-services-openapi.yml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://{baseUrl}/authorize
+    tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+    scopes: 2
+  sources:
+  - openapi/workday-studio-integration-openapi.yml
+  - openapi/workday-studio-web-services-openapi.yml
+- name: WSSecurity
+  type: http
+  scheme: basic
+  description: WS-Security with X.509 certificates or username/password tokens for SOAP API
+    authentication.
+  sources:
+  - openapi/workday-studio-web-services-openapi.yml

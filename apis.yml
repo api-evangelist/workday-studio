@@ -123,6 +123,10 @@ apis:
       - type: Documentation
         url: https://www.workday.com/en-us/products/platform-product-extensions/integrations.html
 common:
+  - type: TrustCenter
+    url: security/workday-studio-trust-center.yml
+  - type: DomainSecurity
+    url: security/workday-studio-domain-security.yml
   - type: Authentication
     url: authentication/workday-studio-authentication.yml
   - type: OAuthScopes
