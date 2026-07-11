@@ -1,0 +1,41 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/workday-studio-integration-openapi.yml, openapi/workday-studio-web-services-openapi.yml
+schemes:
+- name: OAuth2
+  source: openapi/workday-studio-integration-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://{baseUrl}/authorize
+    tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+- name: OAuth2
+  source: openapi/workday-studio-web-services-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://{baseUrl}/authorize
+    tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+scopes:
+- scope: r:integrations
+  description: Read integration data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/workday-studio-integration-openapi.yml
+- scope: r:wws
+  description: Read access to web services
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/workday-studio-web-services-openapi.yml
+- scope: w:integrations
+  description: Write integration data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/workday-studio-integration-openapi.yml
+- scope: w:wws
+  description: Write access to web services
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/workday-studio-web-services-openapi.yml

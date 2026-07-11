@@ -123,6 +123,10 @@ apis:
       - type: Documentation
         url: https://www.workday.com/en-us/products/platform-product-extensions/integrations.html
 common:
+  - type: Authentication
+    url: authentication/workday-studio-authentication.yml
+  - type: OAuthScopes
+    url: scopes/workday-studio-scopes.yml
   - type: Website
     url: https://www.workday.com/
   - type: Portal
