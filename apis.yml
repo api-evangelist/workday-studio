@@ -123,6 +123,8 @@ apis:
       - type: Documentation
         url: https://www.workday.com/en-us/products/platform-product-extensions/integrations.html
 common:
+  - type: AgenticAccess
+    url: agentic-access/workday-studio-agentic-access.yml
   - type: TrustCenter
     url: security/workday-studio-trust-center.yml
   - type: DomainSecurity

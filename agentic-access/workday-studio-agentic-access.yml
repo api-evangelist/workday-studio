@@ -1,0 +1,368 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/workday-studio-integration-openapi.yml, openapi/workday-studio-web-services-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 22
+  by_action_class:
+    connected: 11
+    acting: 11
+  by_consequence:
+    read: 11
+    write: 11
+  human_in_the_loop_required: 0
+operations:
+- path: /integrationSystems
+  method: get
+  operationId: listIntegrationSystems
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - r:integrations
+    - w:integrations
+- path: /integrationSystems/{ID}
+  method: get
+  operationId: getIntegrationSystem
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - r:integrations
+    - w:integrations
+- path: /integrationSystems/{ID}/launch
+  method: post
+  operationId: launchIntegration
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - r:integrations
+    - w:integrations
+- path: /integrationEvents
+  method: get
+  operationId: listIntegrationEvents
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - r:integrations
+    - w:integrations
+- path: /integrationEvents/{ID}
+  method: get
+  operationId: getIntegrationEvent
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - r:integrations
+    - w:integrations
+- path: /integrationEvents/{ID}/logs
+  method: get
+  operationId: getIntegrationEventLogs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - r:integrations
+    - w:integrations
+- path: /integrationAssemblies
+  method: get
+  operationId: listIntegrationAssemblies
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - r:integrations
+    - w:integrations
+- path: /integrationAssemblies/{ID}
+  method: get
+  operationId: getIntegrationAssembly
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - r:integrations
+    - w:integrations
+- path: /integrationTemplates
+  method: get
+  operationId: listIntegrationTemplates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - r:integrations
+    - w:integrations
+- path: /integrationTemplates/{ID}
+  method: get
+  operationId: getIntegrationTemplate
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - r:integrations
+    - w:integrations
+- path: /launchParameters
+  method: get
+  operationId: listLaunchParameters
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - r:integrations
+    - w:integrations
+- path: /Human_Resources
+  method: get
+  operationId: getHumanResourcesService
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - r:wws
+    - w:wws
+- path: /Human_Resources/Get_Workers
+  method: post
+  operationId: getWorkers
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - r:wws
+    - w:wws
+- path: /Human_Resources/Get_Organizations
+  method: post
+  operationId: getOrganizations
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - r:wws
+    - w:wws
+- path: /Financial_Management/Get_Journal_Entries
+  method: post
+  operationId: getJournalEntries
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - r:wws
+    - w:wws
+- path: /Payroll/Get_Payroll_Results
+  method: post
+  operationId: getPayrollResults
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - r:wws
+    - w:wws
+- path: /Benefits_Administration/Get_Benefit_Plans
+  method: post
+  operationId: getBenefitPlans
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - r:wws
+    - w:wws
+- path: /Absence_Management/Get_Absence_Inputs
+  method: post
+  operationId: getAbsenceInputs
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - r:wws
+    - w:wws
+- path: /Staffing/Get_Job_Postings
+  method: post
+  operationId: getJobPostings
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - r:wws
+    - w:wws
+- path: /Recruiting/Get_Candidates
+  method: post
+  operationId: getCandidates
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - r:wws
+    - w:wws
+- path: /Compensation/Get_Compensation_Plans
+  method: post
+  operationId: getCompensationPlans
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - r:wws
+    - w:wws
+- path: /Time_Tracking/Get_Time_Clock_Events
+  method: post
+  operationId: getTimeClockEvents
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - r:wws
+    - w:wws
