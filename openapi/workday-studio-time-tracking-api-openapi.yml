@@ -1,0 +1,179 @@
+openapi: 3.1.0
+info:
+  title: Workday Studio Integration Absence Management Time Tracking API
+  description: API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting. Enables programmatic management of integration systems, events, assemblies, and launch parameters within the Workday platform.
+  version: v1
+  contact:
+    name: Workday API Support
+    email: api-support@workday.com
+    url: https://community.workday.com
+  license:
+    name: Proprietary
+    url: https://www.workday.com/en-us/legal/site-terms.html
+  termsOfService: https://www.workday.com/en-us/legal.html
+servers:
+- url: https://{baseUrl}/ccx/service/{tenant}
+  description: Workday Integration Services Server
+  variables:
+    baseUrl:
+      default: wd2-impl-services1.workday.com
+      description: The Workday data center hostname
+    tenant:
+      default: tenant
+      description: The Workday tenant name
+security:
+- OAuth2:
+  - r:integrations
+  - w:integrations
+tags:
+- name: Time Tracking
+  description: Web service operations for time entry, timesheet management, time calculations, and clock-in/clock-out records.
+paths:
+  /Time_Tracking/Get_Time_Clock_Events:
+    post:
+      operationId: getTimeClockEvents
+      summary: Workday Studio Retrieve Time Clock Events
+      description: Returns a collection of time clock event records including clock-in and clock-out timestamps, time entry types, and calculated hours for workers within the specified date range.
+      tags:
+      - Time Tracking
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetTimeClockEventsRequest'
+      responses:
+        '200':
+          description: Successful response with time clock events
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimeClockEventsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  schemas:
+    TimeClockEventsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              descriptor:
+                type: string
+              worker:
+                $ref: '#/components/schemas/ResourceReference'
+              clockInTime:
+                type: string
+                format: date-time
+              clockOutTime:
+                type: string
+                format: date-time
+              totalHours:
+                type: number
+              timeCode:
+                type: string
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API URL to retrieve the full resource
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A high-level error message
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+              field:
+                type: string
+              message:
+                type: string
+    GetTimeClockEventsRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        workerReference:
+          $ref: '#/components/schemas/ResourceReference'
+    RequestCriteria:
+      type: object
+      description: Common request criteria for filtering web service results
+      properties:
+        effectiveDate:
+          type: string
+          format: date
+          description: The effective date for the request
+        fromDate:
+          type: string
+          format: date
+          description: The start date for date range filtering
+        toDate:
+          type: string
+          format: date
+          description: The end date for date range filtering
+        pageSize:
+          type: integer
+          description: The number of records to return per page
+          default: 100
+          maximum: 999
+        page:
+          type: integer
+          description: The page number to return
+          default: 1
+  responses:
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{baseUrl}/authorize
+          tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+          refreshUrl: https://{baseUrl}/oauth2/{tenant}/token
+          scopes:
+            r:integrations: Read integration data
+            w:integrations: Write integration data
+externalDocs:
+  description: Workday Studio Integration Documentation
+  url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ

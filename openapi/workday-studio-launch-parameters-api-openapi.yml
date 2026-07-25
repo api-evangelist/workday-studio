@@ -1,0 +1,157 @@
+openapi: 3.1.0
+info:
+  title: Workday Studio Integration Absence Management Launch Parameters API
+  description: API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting. Enables programmatic management of integration systems, events, assemblies, and launch parameters within the Workday platform.
+  version: v1
+  contact:
+    name: Workday API Support
+    email: api-support@workday.com
+    url: https://community.workday.com
+  license:
+    name: Proprietary
+    url: https://www.workday.com/en-us/legal/site-terms.html
+  termsOfService: https://www.workday.com/en-us/legal.html
+servers:
+- url: https://{baseUrl}/ccx/service/{tenant}
+  description: Workday Integration Services Server
+  variables:
+    baseUrl:
+      default: wd2-impl-services1.workday.com
+      description: The Workday data center hostname
+    tenant:
+      default: tenant
+      description: The Workday tenant name
+security:
+- OAuth2:
+  - r:integrations
+  - w:integrations
+tags:
+- name: Launch Parameters
+  description: Configure and retrieve launch parameters used to control integration execution behavior at runtime.
+paths:
+  /launchParameters:
+    get:
+      operationId: listLaunchParameters
+      summary: Workday Studio List Available Launch Parameters
+      description: Returns a collection of launch parameter definitions that can be configured for integration systems to control runtime behavior such as date ranges, file paths, and processing options.
+      tags:
+      - Launch Parameters
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: Successful response with launch parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LaunchParametersResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A high-level error message
+        errors:
+          type: array
+          description: Detailed list of validation or processing errors
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+                description: Error code or type
+              field:
+                type: string
+                description: The field that caused the error
+              message:
+                type: string
+                description: Human-readable error message
+    LaunchParameter:
+      type: object
+      description: A launch parameter definition that controls integration runtime behavior
+      properties:
+        id:
+          type: string
+          description: The unique Workday identifier for the launch parameter
+        descriptor:
+          type: string
+          description: The display name of the launch parameter
+        parameterName:
+          type: string
+          description: The configured name of the parameter
+        dataType:
+          type: string
+          description: The data type of the parameter value
+          enum:
+          - Text
+          - Date
+          - DateTime
+          - Boolean
+          - Integer
+          - Decimal
+        defaultValue:
+          type: string
+          description: The default value for the parameter
+        isRequired:
+          type: boolean
+          description: Whether the parameter is required at launch time
+    LaunchParametersResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of launch parameters matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LaunchParameter'
+  responses:
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    offset:
+      name: offset
+      in: query
+      description: The zero-based index of the first object in a response collection
+      schema:
+        type: integer
+        default: 0
+    limit:
+      name: limit
+      in: query
+      description: The maximum number of objects in a single response. Default is 20, maximum is 100.
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{baseUrl}/authorize
+          tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+          refreshUrl: https://{baseUrl}/oauth2/{tenant}/token
+          scopes:
+            r:integrations: Read integration data
+            w:integrations: Write integration data
+externalDocs:
+  description: Workday Studio Integration Documentation
+  url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ

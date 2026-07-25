@@ -1,0 +1,210 @@
+openapi: 3.1.0
+info:
+  title: Workday Studio Integration Absence Management Integration Templates API
+  description: API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting. Enables programmatic management of integration systems, events, assemblies, and launch parameters within the Workday platform.
+  version: v1
+  contact:
+    name: Workday API Support
+    email: api-support@workday.com
+    url: https://community.workday.com
+  license:
+    name: Proprietary
+    url: https://www.workday.com/en-us/legal/site-terms.html
+  termsOfService: https://www.workday.com/en-us/legal.html
+servers:
+- url: https://{baseUrl}/ccx/service/{tenant}
+  description: Workday Integration Services Server
+  variables:
+    baseUrl:
+      default: wd2-impl-services1.workday.com
+      description: The Workday data center hostname
+    tenant:
+      default: tenant
+      description: The Workday tenant name
+security:
+- OAuth2:
+  - r:integrations
+  - w:integrations
+tags:
+- name: Integration Templates
+  description: Access available integration templates and core connectors that serve as starting points for building new integrations.
+paths:
+  /integrationTemplates:
+    get:
+      operationId: listIntegrationTemplates
+      summary: Workday Studio List Integration Templates
+      description: Returns a collection of available integration templates including core connectors and document transformation templates that can be used as starting points for building new Studio integrations.
+      tags:
+      - Integration Templates
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/search'
+      responses:
+        '200':
+          description: Successful response with integration templates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationTemplatesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /integrationTemplates/{ID}:
+    get:
+      operationId: getIntegrationTemplate
+      summary: Workday Studio Retrieve a Specific Integration Template
+      description: Returns the specified integration template with its configuration schema, supported services, and parameter definitions.
+      tags:
+      - Integration Templates
+      parameters:
+      - $ref: '#/components/parameters/ID'
+      responses:
+        '200':
+          description: Successful response with the integration template
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationTemplate'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    ID:
+      name: ID
+      in: path
+      required: true
+      description: The Workday ID of the resource
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      description: The zero-based index of the first object in a response collection
+      schema:
+        type: integer
+        default: 0
+    search:
+      name: search
+      in: query
+      description: Search string used to filter results by name or descriptor
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: The maximum number of objects in a single response. Default is 20, maximum is 100.
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+  schemas:
+    IntegrationTemplatesResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of templates matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationTemplate'
+    ResourceReference:
+      type: object
+      description: A reference to a Workday resource with its identifier and display name
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API URL to retrieve the full resource
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A high-level error message
+        errors:
+          type: array
+          description: Detailed list of validation or processing errors
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+                description: Error code or type
+              field:
+                type: string
+                description: The field that caused the error
+              message:
+                type: string
+                description: Human-readable error message
+    IntegrationTemplate:
+      type: object
+      description: An integration template providing a starting point for building new integrations, including core connectors and document transformation templates.
+      properties:
+        id:
+          type: string
+          description: The unique Workday identifier for the template
+        descriptor:
+          type: string
+          description: The display name of the template
+        templateName:
+          type: string
+          description: The configured name of the template
+        category:
+          type: string
+          description: The category of the template
+          enum:
+          - Core_Connector
+          - Document_Transformation
+          - Studio
+          - Cloud_Connect
+        supportedServices:
+          type: array
+          description: The Workday services supported by this template
+          items:
+            $ref: '#/components/schemas/ResourceReference'
+  responses:
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{baseUrl}/authorize
+          tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+          refreshUrl: https://{baseUrl}/oauth2/{tenant}/token
+          scopes:
+            r:integrations: Read integration data
+            w:integrations: Write integration data
+externalDocs:
+  description: Workday Studio Integration Documentation
+  url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ

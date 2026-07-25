@@ -1,0 +1,235 @@
+openapi: 3.1.0
+info:
+  title: Workday Studio Integration Absence Management Integration Assemblies API
+  description: API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting. Enables programmatic management of integration systems, events, assemblies, and launch parameters within the Workday platform.
+  version: v1
+  contact:
+    name: Workday API Support
+    email: api-support@workday.com
+    url: https://community.workday.com
+  license:
+    name: Proprietary
+    url: https://www.workday.com/en-us/legal/site-terms.html
+  termsOfService: https://www.workday.com/en-us/legal.html
+servers:
+- url: https://{baseUrl}/ccx/service/{tenant}
+  description: Workday Integration Services Server
+  variables:
+    baseUrl:
+      default: wd2-impl-services1.workday.com
+      description: The Workday data center hostname
+    tenant:
+      default: tenant
+      description: The Workday tenant name
+security:
+- OAuth2:
+  - r:integrations
+  - w:integrations
+tags:
+- name: Integration Assemblies
+  description: Manage Studio integration assemblies, which are the graphical representations of integration logic composed of configurable components.
+paths:
+  /integrationAssemblies:
+    get:
+      operationId: listIntegrationAssemblies
+      summary: Workday Studio List Integration Assemblies
+      description: Returns a collection of Studio integration assemblies deployed to the tenant. Assemblies are the graphical representations of integration logic composed of configurable components such as mediation steps, transformations, and connectors.
+      tags:
+      - Integration Assemblies
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/search'
+      responses:
+        '200':
+          description: Successful response with integration assemblies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationAssembliesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /integrationAssemblies/{ID}:
+    get:
+      operationId: getIntegrationAssembly
+      summary: Workday Studio Retrieve a Specific Integration Assembly
+      description: Returns the specified integration assembly with its component configuration, mediation chain details, and transformation mappings.
+      tags:
+      - Integration Assemblies
+      parameters:
+      - $ref: '#/components/parameters/ID'
+      responses:
+        '200':
+          description: Successful response with the integration assembly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationAssembly'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    ID:
+      name: ID
+      in: path
+      required: true
+      description: The Workday ID of the resource
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      description: The zero-based index of the first object in a response collection
+      schema:
+        type: integer
+        default: 0
+    search:
+      name: search
+      in: query
+      description: Search string used to filter results by name or descriptor
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      description: The maximum number of objects in a single response. Default is 20, maximum is 100.
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+  schemas:
+    IntegrationAssembliesResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of assemblies matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationAssembly'
+    AssemblyComponent:
+      type: object
+      description: A configurable component within a Studio assembly, such as a mediation step, XSLT transformation, connector, or flow control element.
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the component within the assembly
+        componentType:
+          type: string
+          description: The type of assembly component
+          enum:
+          - Mediation
+          - Transformation
+          - Connector
+          - FlowControl
+          - ErrorHandler
+          - Script
+          - Variable
+        name:
+          type: string
+          description: The configured name of the component
+        description:
+          type: string
+          description: A description of the component purpose
+    ResourceReference:
+      type: object
+      description: A reference to a Workday resource with its identifier and display name
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API URL to retrieve the full resource
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A high-level error message
+        errors:
+          type: array
+          description: Detailed list of validation or processing errors
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+                description: Error code or type
+              field:
+                type: string
+                description: The field that caused the error
+              message:
+                type: string
+                description: Human-readable error message
+    IntegrationAssembly:
+      type: object
+      description: A Studio integration assembly representing the graphical integration logic composed of configurable components, mediation chains, and transformation mappings.
+      properties:
+        id:
+          type: string
+          description: The unique Workday identifier for the assembly
+        descriptor:
+          type: string
+          description: The display name of the assembly
+        assemblyName:
+          type: string
+          description: The configured name of the assembly
+        version:
+          type: string
+          description: The version of the assembly
+        integrationSystem:
+          $ref: '#/components/schemas/ResourceReference'
+        deployedDateTime:
+          type: string
+          format: date-time
+          description: The date and time the assembly was last deployed
+        components:
+          type: array
+          description: The list of components configured in the assembly
+          items:
+            $ref: '#/components/schemas/AssemblyComponent'
+  responses:
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{baseUrl}/authorize
+          tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
+          refreshUrl: https://{baseUrl}/oauth2/{tenant}/token
+          scopes:
+            r:integrations: Read integration data
+            w:integrations: Write integration data
+externalDocs:
+  description: Workday Studio Integration Documentation
+  url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
