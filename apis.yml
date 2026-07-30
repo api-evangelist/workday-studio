@@ -3,7 +3,20 @@ name: Workday Studio
 description: >-
   Workday Studio is an integrated development environment (IDE) for building custom integrations and applications on the
   Workday platform. It provides tools for creating web services, custom reports, and integration solutions.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/workday-studio.png
 url: https://raw.githubusercontent.com/api-evangelist/workday-studio/refs/heads/main/apis.yml
 created: '2024-01-01'
 modified: '2026-05-19'
@@ -17,112 +30,495 @@ tags:
   - IDE
   - Integration
 apis:
-  - name: Workday Studio Integration API
-    description: >-
-      API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a
-      graphical development environment with drag-and-drop reusable components for creating sophisticated integrations
-      with flow control, data transformation, error handling, and scripting.
-    image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
-    humanUrl: https://doc.workday.com/
-    baseUrl: https://{tenant}.workday.com/ccx/service
-    tags:
-      - Custom
-      - Development
-      - Integration
-    properties:
-      - type: Documentation
-        url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
-      - type: OpenAPI
-        url: openapi/workday-studio-integration-openapi.yml
-      - type: APIReference
-        url: >-
-          https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
-      - type: Authentication
-        url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
-      - type: GettingStarted
-        url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
-      - type: SDKs
-        url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
-  - name: Workday Web Services API
-    description: >-
-      SOAP and REST web services for integrating with Workday applications, providing programmatic access to business
-      management services with WSDL and XML Schema definitions across 55 service areas including Human Resources,
-      Payroll, Benefits, and Financial Management.
-    image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
-    humanUrl: https://doc.workday.com/
-    baseUrl: https://{tenant}.workday.com/ccx/service/{tenant}
-    tags:
-      - Enterprise
-      - REST
-      - SOAP
-      - Web Services
-    properties:
-      - type: Documentation
-        url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
-      - type: OpenAPI
-        url: openapi/workday-studio-web-services-openapi.yml
-      - type: WSDL
-        url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
-      - type: APIReference
-        url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
-      - type: RateLimits
-        url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
-  - name: Workday REST API
-    description: >-
-      RESTful API providing modern JSON-based access to Workday data and services. Uses OAuth 2.0 authentication and
-      standard HTTP methods for operations across HCM, financial management, recruiting, payroll, and other Workday
-      domains.
-    image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
-    humanUrl: https://community.workday.com/sites/default/files/file-hosting/restapi/index.html
-    baseUrl: https://{tenant}.workday.com/ccx/api
-    tags:
-      - Data Access
-      - JSON
-      - OAuth
-      - REST
-    properties:
-      - type: Documentation
-        url: https://community.workday.com/sites/default/files/file-hosting/restapi/index.html
-      - type: APIReference
-        url: https://community.workday.com/sites/default/files/file-hosting/restapi/index.html
-      - type: Authentication
-        url: https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#authentication
-  - name: Workday Custom Reports API
-    description: >-
-      API for creating and executing custom reports built in Workday Studio. Exposes custom reports as RESTful web
-      services through Report-as-a-Service (RaaS), enabling programmatic access to report data with support for query
-      parameters and multiple output formats.
-    image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
-    humanUrl: https://doc.workday.com/
-    baseUrl: https://{tenant}.workday.com/ccx/service/customreport2/{tenant}
-    tags:
-      - Analytics
-      - Custom
-      - Report as a Service
-      - Reports
-    properties:
-      - type: Documentation
-        url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/ziYjYJxh2YKGvz8I5V46bQ
-      - type: Tutorial
-        url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/kPBEj3_Lz04YDSUvAEKl4w
-  - name: Workday Orchestrate API
-    description: >-
-      Low-code integration and automation platform for building event-driven and batch integrations using a visual
-      drag-and-drop builder. Enables developers to create workflows that connect Workday with external systems, automate
-      business processes, and handle real-time data synchronization.
-    image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
-    humanUrl: https://www.workday.com/en-us/products/platform-product-extensions/integrations.html
-    baseUrl: https://{tenant}.workday.com/ccx/api
-    tags:
-      - Automation
-      - Event Driven
-      - Low Code
-      - Orchestration
-      - Workflows
-    properties:
-      - type: Documentation
-        url: https://www.workday.com/en-us/products/platform-product-extensions/integrations.html
+- name: Workday REST API
+  description: >-
+    RESTful API providing modern JSON-based access to Workday data and services. Uses OAuth 2.0 authentication
+    and standard HTTP methods for operations across HCM, financial management, recruiting, payroll, and
+    other Workday domains.
+  image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
+  humanUrl: https://community.workday.com/sites/default/files/file-hosting/restapi/index.html
+  baseUrl: https://{tenant}.workday.com/ccx/api
+  tags:
+  - Data Access
+  - JSON
+  - OAuth
+  - REST
+  properties:
+  - type: Documentation
+    url: https://community.workday.com/sites/default/files/file-hosting/restapi/index.html
+  - type: APIReference
+    url: https://community.workday.com/sites/default/files/file-hosting/restapi/index.html
+  - type: Authentication
+    url: >-
+      https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#authentication
+- name: Workday Custom Reports API
+  description: >-
+    API for creating and executing custom reports built in Workday Studio. Exposes custom reports as RESTful
+    web services through Report-as-a-Service (RaaS), enabling programmatic access to report data with
+    support for query parameters and multiple output formats.
+  image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
+  humanUrl: https://doc.workday.com/
+  baseUrl: https://{tenant}.workday.com/ccx/service/customreport2/{tenant}
+  tags:
+  - Analytics
+  - Custom
+  - Report as a Service
+  - Reports
+  properties:
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/ziYjYJxh2YKGvz8I5V46bQ
+  - type: Tutorial
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/kPBEj3_Lz04YDSUvAEKl4w
+- name: Workday Orchestrate API
+  description: >-
+    Low-code integration and automation platform for building event-driven and batch integrations using
+    a visual drag-and-drop builder. Enables developers to create workflows that connect Workday with external
+    systems, automate business processes, and handle real-time data synchronization.
+  image: https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg
+  humanUrl: https://www.workday.com/en-us/products/platform-product-extensions/integrations.html
+  baseUrl: https://{tenant}.workday.com/ccx/api
+  tags:
+  - Automation
+  - Event Driven
+  - Low Code
+  - Orchestration
+  - Workflows
+  properties:
+  - type: Documentation
+    url: https://www.workday.com/en-us/products/platform-product-extensions/integrations.html
+- aid: workday-studio:workday-studio-absence-management-api
+  name: Workday Studio Absence Management API
+  description: >-
+    Web service operations for managing time-off requests, leave balances, absence plans, and return-to-work
+    processes.
+  tags:
+  - Absence Management
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-studio-absence-management-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: APIReference
+    url: >-
+      https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
+  - type: Authentication
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
+  - type: GettingStarted
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
+  - type: SDKs
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
+  - type: APIReference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+  - type: RateLimits
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
+- aid: workday-studio:workday-studio-benefits-administration-api
+  name: Workday Studio Benefits Administration API
+  description: >-
+    Web service operations for benefits enrollment, plan management, coverage administration, and life
+    events processing.
+  tags:
+  - Benefits Administration
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-studio-benefits-administration-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: APIReference
+    url: >-
+      https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
+  - type: Authentication
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
+  - type: GettingStarted
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
+  - type: SDKs
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
+  - type: APIReference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+  - type: RateLimits
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
+- aid: workday-studio:workday-studio-compensation-api
+  name: Workday Studio Compensation API
+  description: >-
+    Web service operations for compensation plans, pay grades, salary structures, and bonus configurations.
+  tags:
+  - Compensation
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-studio-compensation-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: APIReference
+    url: >-
+      https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
+  - type: Authentication
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
+  - type: GettingStarted
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
+  - type: SDKs
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
+  - type: APIReference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+  - type: RateLimits
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
+- aid: workday-studio:workday-studio-financial-management-api
+  name: Workday Studio Financial Management API
+  description: >-
+    Web service operations for financial accounting, expense management, revenue management, and financial
+    reporting.
+  tags:
+  - Financial Management
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-studio-financial-management-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: APIReference
+    url: >-
+      https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
+  - type: Authentication
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
+  - type: GettingStarted
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
+  - type: SDKs
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
+  - type: APIReference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+  - type: RateLimits
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
+- aid: workday-studio:workday-studio-human-resources-api
+  name: Workday Studio Human Resources API
+  description: >-
+    Web service operations for managing employee data, worker records, organizational structures, and
+    HR transactions.
+  tags:
+  - Human Resources
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-studio-human-resources-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: APIReference
+    url: >-
+      https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
+  - type: Authentication
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
+  - type: GettingStarted
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
+  - type: SDKs
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
+  - type: APIReference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+  - type: RateLimits
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
+- aid: workday-studio:workday-studio-integration-assemblies-api
+  name: Workday Studio Integration Assemblies API
+  description: >-
+    Manage Studio integration assemblies, which are the graphical representations of integration logic
+    composed of configurable components.
+  tags:
+  - Integration Assemblies
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-studio-integration-assemblies-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: APIReference
+    url: >-
+      https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
+  - type: Authentication
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
+  - type: GettingStarted
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
+  - type: SDKs
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
+  - type: APIReference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+  - type: RateLimits
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
+- aid: workday-studio:workday-studio-integration-events-api
+  name: Workday Studio Integration Events API
+  description: >-
+    Monitor and retrieve integration execution events including run status, processing statistics, and
+    error details.
+  tags:
+  - Integration Events
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-studio-integration-events-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: APIReference
+    url: >-
+      https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
+  - type: Authentication
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
+  - type: GettingStarted
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
+  - type: SDKs
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
+  - type: APIReference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+  - type: RateLimits
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
+- aid: workday-studio:workday-studio-integration-systems-api
+  name: Workday Studio Integration Systems API
+  description: >-
+    Manage integration systems configured in the Workday tenant, including Studio-built integrations and
+    core connector configurations.
+  tags:
+  - Integration Systems
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-studio-integration-systems-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: APIReference
+    url: >-
+      https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
+  - type: Authentication
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
+  - type: GettingStarted
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
+  - type: SDKs
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
+  - type: APIReference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+  - type: RateLimits
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
+- aid: workday-studio:workday-studio-integration-templates-api
+  name: Workday Studio Integration Templates API
+  description: >-
+    Access available integration templates and core connectors that serve as starting points for building
+    new integrations.
+  tags:
+  - Integration Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-studio-integration-templates-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: APIReference
+    url: >-
+      https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
+  - type: Authentication
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
+  - type: GettingStarted
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
+  - type: SDKs
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
+  - type: APIReference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+  - type: RateLimits
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
+- aid: workday-studio:workday-studio-launch-parameters-api
+  name: Workday Studio Launch Parameters API
+  description: >-
+    Configure and retrieve launch parameters used to control integration execution behavior at runtime.
+  tags:
+  - Launch Parameters
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-studio-launch-parameters-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: APIReference
+    url: >-
+      https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
+  - type: Authentication
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
+  - type: GettingStarted
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
+  - type: SDKs
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
+  - type: APIReference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+  - type: RateLimits
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
+- aid: workday-studio:workday-studio-payroll-api
+  name: Workday Studio Payroll API
+  description: >-
+    Web service operations for payroll processing, tax management, compensation calculations, and pay
+    component configurations.
+  tags:
+  - Payroll
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-studio-payroll-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: APIReference
+    url: >-
+      https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
+  - type: Authentication
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
+  - type: GettingStarted
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
+  - type: SDKs
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
+  - type: APIReference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+  - type: RateLimits
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
+- aid: workday-studio:workday-studio-recruiting-api
+  name: Workday Studio Recruiting API
+  description: >-
+    Web service operations for job postings, candidate management, application tracking, and offer management.
+  tags:
+  - Recruiting
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-studio-recruiting-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: APIReference
+    url: >-
+      https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
+  - type: Authentication
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
+  - type: GettingStarted
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
+  - type: SDKs
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
+  - type: APIReference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+  - type: RateLimits
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
+- aid: workday-studio:workday-studio-service-directory-api
+  name: Workday Studio Service Directory API
+  description: Operations for discovering available web services, their versions, and WSDL definitions.
+  tags:
+  - Service Directory
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-studio-service-directory-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: APIReference
+    url: >-
+      https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
+  - type: Authentication
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
+  - type: GettingStarted
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
+  - type: SDKs
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
+  - type: APIReference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+  - type: RateLimits
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
+- aid: workday-studio:workday-studio-staffing-api
+  name: Workday Studio Staffing API
+  description: >-
+    Web service operations for position management, job requisitions, hiring actions, and organizational
+    staffing.
+  tags:
+  - Staffing
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-studio-staffing-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: APIReference
+    url: >-
+      https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
+  - type: Authentication
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
+  - type: GettingStarted
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
+  - type: SDKs
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
+  - type: APIReference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+  - type: RateLimits
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
+- aid: workday-studio:workday-studio-time-tracking-api
+  name: Workday Studio Time Tracking API
+  description: >-
+    Web service operations for time entry, timesheet management, time calculations, and clock-in/clock-out
+    records.
+  tags:
+  - Time Tracking
+  properties:
+  - type: OpenAPI
+    url: openapi/workday-studio-time-tracking-api-openapi.yml
+  - type: Documentation
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: APIReference
+    url: >-
+      https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html
+  - type: Authentication
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw
+  - type: GettingStarted
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA
+  - type: SDKs
+    url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  - type: Documentation
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root
+  - type: WSDL
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/
+  - type: APIReference
+    url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html
+  - type: RateLimits
+    url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/workday-studio/overview
   - type: AgenticAccess
     url: agentic-access/workday-studio-agentic-access.yml
   - type: TrustCenter
