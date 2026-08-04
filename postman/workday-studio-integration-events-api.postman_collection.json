@@ -1,0 +1,875 @@
+{
+  "info": {
+    "_postman_id": "76958b3a-8f98-451d-a5b9-4893d5bc649b",
+    "name": "Workday Studio Integration Absence Management Integration Events API",
+    "description": "API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting. Enables programmatic management of integration systems, events, assemblies, and launch parameters within the Workday platform.\n\nContact Support:\n Name: Workday API Support\n Email: api-support@workday.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:32:56.000Z",
+    "updatedAt": "2026-07-28T03:32:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-76958b3a-8f98-451d-a5b9-4893d5bc649b"
+  },
+  "item": [
+    {
+      "name": "integrationEvents",
+      "item": [
+        {
+          "name": "{ID}",
+          "item": [
+            {
+              "name": "logs",
+              "item": [
+                {
+                  "name": "Workday Studio Retrieve Logs for an Integration Event",
+                  "id": "db6a1ed4-dbb4-4032-a56b-f4574b2b328b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integrationEvents/:ID/logs?limit=20&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrationEvents",
+                        ":ID",
+                        "logs"
+                      ],
+                      "query": [
+                        {
+                          "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "The zero-based index of the first object in a response collection",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "20df04c1-1174-49d2-8cb5-764d031bc9bc",
+                          "key": "ID",
+                          "value": "<string>",
+                          "description": "(Required) The Workday ID of the resource"
+                        }
+                      ]
+                    },
+                    "description": "Returns the execution logs for the specified integration event, including step-by-step processing details, warning messages, and error traces useful for debugging Studio integration assemblies."
+                  },
+                  "response": [
+                    {
+                      "id": "3ef03c48-982d-48c2-85f7-58a1c2a0dc1e",
+                      "name": "Successful response with integration event logs",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrationEvents/:ID/logs?limit=20&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrationEvents",
+                            ":ID",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "The zero-based index of the first object in a response collection",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "ID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"timestamp\": \"<dateTime>\",\n      \"severity\": \"ERROR\",\n      \"message\": \"<string>\",\n      \"componentName\": \"<string>\"\n    },\n    {\n      \"timestamp\": \"<dateTime>\",\n      \"severity\": \"WARNING\",\n      \"message\": \"<string>\",\n      \"componentName\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:32:56.000Z",
+                      "updatedAt": "2026-07-28T03:32:56.000Z",
+                      "uid": "35240-3ef03c48-982d-48c2-85f7-58a1c2a0dc1e"
+                    },
+                    {
+                      "id": "19606a4e-59f7-484b-a597-7793a15c9914",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrationEvents/:ID/logs?limit=20&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrationEvents",
+                            ":ID",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "The zero-based index of the first object in a response collection",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "ID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:32:56.000Z",
+                      "updatedAt": "2026-07-28T03:32:56.000Z",
+                      "uid": "35240-19606a4e-59f7-484b-a597-7793a15c9914"
+                    },
+                    {
+                      "id": "e32170b8-9e81-45ec-81d3-93068787dbd6",
+                      "name": "Insufficient permissions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrationEvents/:ID/logs?limit=20&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrationEvents",
+                            ":ID",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "The zero-based index of the first object in a response collection",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "ID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:32:56.000Z",
+                      "updatedAt": "2026-07-28T03:32:56.000Z",
+                      "uid": "35240-e32170b8-9e81-45ec-81d3-93068787dbd6"
+                    },
+                    {
+                      "id": "0d3b157f-0cb2-4f0a-a332-ab743d1d28c5",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/integrationEvents/:ID/logs?limit=20&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "integrationEvents",
+                            ":ID",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "The zero-based index of the first object in a response collection",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "ID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:32:56.000Z",
+                      "updatedAt": "2026-07-28T03:32:56.000Z",
+                      "uid": "35240-0d3b157f-0cb2-4f0a-a332-ab743d1d28c5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:32:56.000Z",
+                  "updatedAt": "2026-07-28T03:32:56.000Z",
+                  "uid": "35240-db6a1ed4-dbb4-4032-a56b-f4574b2b328b"
+                }
+              ],
+              "id": "f3c6c895-b8ff-4c0b-95a3-234babd6ff8c",
+              "createdAt": "2026-07-28T03:32:56.000Z",
+              "updatedAt": "2026-07-28T03:32:56.000Z",
+              "uid": "35240-f3c6c895-b8ff-4c0b-95a3-234babd6ff8c"
+            },
+            {
+              "name": "Workday Studio Retrieve a Specific Integration Event",
+              "id": "711ee298-5604-4bab-9a65-5fca121c9d2c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrationEvents/:ID",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrationEvents",
+                    ":ID"
+                  ],
+                  "variable": [
+                    {
+                      "id": "6427f37e-5b57-4113-93b5-398d8d06f604",
+                      "key": "ID",
+                      "value": "<string>",
+                      "description": "(Required) The Workday ID of the resource"
+                    }
+                  ]
+                },
+                "description": "Returns the specified integration event including run status, start time, end time, records processed, records failed, and any error messages generated during integration execution."
+              },
+              "response": [
+                {
+                  "id": "b4404d77-b121-4a31-8d1b-0c85403e0a98",
+                  "name": "Successful response with the integration event",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integrationEvents/:ID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrationEvents",
+                        ":ID"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"integrationSystem\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"status\": \"Cancelled\",\n  \"startDateTime\": \"<dateTime>\",\n  \"endDateTime\": \"<string,null-date-time>\",\n  \"recordsProcessed\": \"<integer>\",\n  \"recordsFailed\": \"<integer>\",\n  \"initiatedBy\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"errorMessage\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:32:56.000Z",
+                  "updatedAt": "2026-07-28T03:32:56.000Z",
+                  "uid": "35240-b4404d77-b121-4a31-8d1b-0c85403e0a98"
+                },
+                {
+                  "id": "58a680aa-c258-4bf4-9b88-c9fe10820abe",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integrationEvents/:ID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrationEvents",
+                        ":ID"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:56.000Z",
+                  "updatedAt": "2026-07-28T03:32:56.000Z",
+                  "uid": "35240-58a680aa-c258-4bf4-9b88-c9fe10820abe"
+                },
+                {
+                  "id": "e4934b1d-7935-4eb9-b719-e4c7b9b54c5f",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integrationEvents/:ID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrationEvents",
+                        ":ID"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:56.000Z",
+                  "updatedAt": "2026-07-28T03:32:56.000Z",
+                  "uid": "35240-e4934b1d-7935-4eb9-b719-e4c7b9b54c5f"
+                },
+                {
+                  "id": "ea710d2b-5572-462a-bc50-dc6b7b3f0376",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integrationEvents/:ID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrationEvents",
+                        ":ID"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:56.000Z",
+                  "updatedAt": "2026-07-28T03:32:56.000Z",
+                  "uid": "35240-ea710d2b-5572-462a-bc50-dc6b7b3f0376"
+                }
+              ],
+              "createdAt": "2026-07-28T03:32:56.000Z",
+              "updatedAt": "2026-07-28T03:32:56.000Z",
+              "uid": "35240-711ee298-5604-4bab-9a65-5fca121c9d2c"
+            }
+          ],
+          "id": "89e0b9f1-049d-441b-b00a-96a75cba895f",
+          "createdAt": "2026-07-28T03:32:56.000Z",
+          "updatedAt": "2026-07-28T03:32:56.000Z",
+          "uid": "35240-89e0b9f1-049d-441b-b00a-96a75cba895f"
+        },
+        {
+          "name": "Workday Studio List Integration Events",
+          "id": "0168cf0e-000d-4fcf-a7cd-699a3527a464",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/integrationEvents?limit=20&offset=0&status=Failed&fromDate=<dateTime>&toDate=<dateTime>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "integrationEvents"
+              ],
+              "query": [
+                {
+                  "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "The zero-based index of the first object in a response collection",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Filter events by execution status",
+                  "key": "status",
+                  "value": "Failed"
+                },
+                {
+                  "description": "Filter events starting from this date",
+                  "key": "fromDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "Filter events up to this date",
+                  "key": "toDate",
+                  "value": "<dateTime>"
+                }
+              ]
+            },
+            "description": "Returns a collection of integration event records showing the status and details of integration runs. Includes information about start time, end time, records processed, and any errors encountered during execution."
+          },
+          "response": [
+            {
+              "id": "cdcc9632-fa16-4290-a5e9-d53461b7fb60",
+              "name": "Successful response with integration events",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrationEvents?limit=20&offset=0&status=Failed&fromDate=<dateTime>&toDate=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrationEvents"
+                  ],
+                  "query": [
+                    {
+                      "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "The zero-based index of the first object in a response collection",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter events by execution status",
+                      "key": "status",
+                      "value": "Failed"
+                    },
+                    {
+                      "description": "Filter events starting from this date",
+                      "key": "fromDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter events up to this date",
+                      "key": "toDate",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"integrationSystem\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"status\": \"In_Progress\",\n      \"startDateTime\": \"<dateTime>\",\n      \"endDateTime\": \"<string,null-date-time>\",\n      \"recordsProcessed\": \"<integer>\",\n      \"recordsFailed\": \"<integer>\",\n      \"initiatedBy\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"errorMessage\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"integrationSystem\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"status\": \"In_Progress\",\n      \"startDateTime\": \"<dateTime>\",\n      \"endDateTime\": \"<string,null-date-time>\",\n      \"recordsProcessed\": \"<integer>\",\n      \"recordsFailed\": \"<integer>\",\n      \"initiatedBy\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"errorMessage\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:32:56.000Z",
+              "updatedAt": "2026-07-28T03:32:56.000Z",
+              "uid": "35240-cdcc9632-fa16-4290-a5e9-d53461b7fb60"
+            },
+            {
+              "id": "ab05b568-487d-46c1-a0c6-adbfc4e24c20",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrationEvents?limit=20&offset=0&status=Failed&fromDate=<dateTime>&toDate=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrationEvents"
+                  ],
+                  "query": [
+                    {
+                      "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "The zero-based index of the first object in a response collection",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter events by execution status",
+                      "key": "status",
+                      "value": "Failed"
+                    },
+                    {
+                      "description": "Filter events starting from this date",
+                      "key": "fromDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter events up to this date",
+                      "key": "toDate",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:32:56.000Z",
+              "updatedAt": "2026-07-28T03:32:56.000Z",
+              "uid": "35240-ab05b568-487d-46c1-a0c6-adbfc4e24c20"
+            },
+            {
+              "id": "97f74af1-5f81-482a-8632-a41f8ae9a982",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrationEvents?limit=20&offset=0&status=Failed&fromDate=<dateTime>&toDate=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrationEvents"
+                  ],
+                  "query": [
+                    {
+                      "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "The zero-based index of the first object in a response collection",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter events by execution status",
+                      "key": "status",
+                      "value": "Failed"
+                    },
+                    {
+                      "description": "Filter events starting from this date",
+                      "key": "fromDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter events up to this date",
+                      "key": "toDate",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:32:56.000Z",
+              "updatedAt": "2026-07-28T03:32:56.000Z",
+              "uid": "35240-97f74af1-5f81-482a-8632-a41f8ae9a982"
+            }
+          ],
+          "createdAt": "2026-07-28T03:32:56.000Z",
+          "updatedAt": "2026-07-28T03:32:56.000Z",
+          "uid": "35240-0168cf0e-000d-4fcf-a7cd-699a3527a464"
+        }
+      ],
+      "id": "f93535f3-b516-4e58-aef9-e6e08d84da58",
+      "createdAt": "2026-07-28T03:32:56.000Z",
+      "updatedAt": "2026-07-28T03:32:56.000Z",
+      "uid": "35240-f93535f3-b516-4e58-aef9-e6e08d84da58"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "r:integrations w:integrations",
+        "type": "string"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://{baseUrl}/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "wd2-impl-services1.workday.com"
+    },
+    {
+      "key": "tenant",
+      "value": "tenant"
+    }
+  ]
+}

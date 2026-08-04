@@ -1,0 +1,529 @@
+{
+  "info": {
+    "_postman_id": "7f9bcb4e-981e-476d-8c6b-b1743a245703",
+    "name": "Workday Studio Integration Absence Management Integration Assemblies API",
+    "description": "API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting. Enables programmatic management of integration systems, events, assemblies, and launch parameters within the Workday platform.\n\nContact Support:\n Name: Workday API Support\n Email: api-support@workday.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:32:55.000Z",
+    "updatedAt": "2026-07-28T03:32:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7f9bcb4e-981e-476d-8c6b-b1743a245703"
+  },
+  "item": [
+    {
+      "name": "integrationAssemblies",
+      "item": [
+        {
+          "name": "{ID}",
+          "item": [
+            {
+              "name": "Workday Studio Retrieve a Specific Integration Assembly",
+              "id": "5eed445d-5a4a-4ac6-93d2-2b006dee135d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrationAssemblies/:ID",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrationAssemblies",
+                    ":ID"
+                  ],
+                  "variable": [
+                    {
+                      "id": "badbe3f8-2782-4aa3-a37f-7d91fcd31020",
+                      "key": "ID",
+                      "value": "<string>",
+                      "description": "(Required) The Workday ID of the resource"
+                    }
+                  ]
+                },
+                "description": "Returns the specified integration assembly with its component configuration, mediation chain details, and transformation mappings."
+              },
+              "response": [
+                {
+                  "id": "deca4df7-5a18-4a27-991e-50bd9f5f2c8f",
+                  "name": "Successful response with the integration assembly",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integrationAssemblies/:ID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrationAssemblies",
+                        ":ID"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"assemblyName\": \"<string>\",\n  \"version\": \"<string>\",\n  \"integrationSystem\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  },\n  \"deployedDateTime\": \"<dateTime>\",\n  \"components\": [\n    {\n      \"id\": \"<string>\",\n      \"componentType\": \"Mediation\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"componentType\": \"Mediation\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:55.000Z",
+                  "updatedAt": "2026-07-28T03:32:55.000Z",
+                  "uid": "35240-deca4df7-5a18-4a27-991e-50bd9f5f2c8f"
+                },
+                {
+                  "id": "6862ae9f-fd21-41f0-b7c1-252fd00ad7c1",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integrationAssemblies/:ID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrationAssemblies",
+                        ":ID"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:55.000Z",
+                  "updatedAt": "2026-07-28T03:32:55.000Z",
+                  "uid": "35240-6862ae9f-fd21-41f0-b7c1-252fd00ad7c1"
+                },
+                {
+                  "id": "4dbdd64f-1afc-4eab-b573-1c654e0be104",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integrationAssemblies/:ID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrationAssemblies",
+                        ":ID"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:55.000Z",
+                  "updatedAt": "2026-07-28T03:32:55.000Z",
+                  "uid": "35240-4dbdd64f-1afc-4eab-b573-1c654e0be104"
+                },
+                {
+                  "id": "090ab8a8-71cb-4874-ab14-1ea1751b04b4",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integrationAssemblies/:ID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrationAssemblies",
+                        ":ID"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:55.000Z",
+                  "updatedAt": "2026-07-28T03:32:55.000Z",
+                  "uid": "35240-090ab8a8-71cb-4874-ab14-1ea1751b04b4"
+                }
+              ],
+              "createdAt": "2026-07-28T03:32:55.000Z",
+              "updatedAt": "2026-07-28T03:32:55.000Z",
+              "uid": "35240-5eed445d-5a4a-4ac6-93d2-2b006dee135d"
+            }
+          ],
+          "id": "3618961f-7376-47c5-97d1-5d3aa322e8c2",
+          "createdAt": "2026-07-28T03:32:55.000Z",
+          "updatedAt": "2026-07-28T03:32:55.000Z",
+          "uid": "35240-3618961f-7376-47c5-97d1-5d3aa322e8c2"
+        },
+        {
+          "name": "Workday Studio List Integration Assemblies",
+          "id": "bfc302e0-55f1-42fd-bbaf-67b0f706b93f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/integrationAssemblies?limit=20&offset=0&search=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "integrationAssemblies"
+              ],
+              "query": [
+                {
+                  "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "The zero-based index of the first object in a response collection",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Search string used to filter results by name or descriptor",
+                  "key": "search",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a collection of Studio integration assemblies deployed to the tenant. Assemblies are the graphical representations of integration logic composed of configurable components such as mediation steps, transformations, and connectors."
+          },
+          "response": [
+            {
+              "id": "217965fa-3887-4db1-b273-024bb0068fd6",
+              "name": "Successful response with integration assemblies",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrationAssemblies?limit=20&offset=0&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrationAssemblies"
+                  ],
+                  "query": [
+                    {
+                      "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "The zero-based index of the first object in a response collection",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Search string used to filter results by name or descriptor",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"assemblyName\": \"<string>\",\n      \"version\": \"<string>\",\n      \"integrationSystem\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"deployedDateTime\": \"<dateTime>\",\n      \"components\": [\n        {\n          \"id\": \"<string>\",\n          \"componentType\": \"ErrorHandler\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"componentType\": \"Connector\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"assemblyName\": \"<string>\",\n      \"version\": \"<string>\",\n      \"integrationSystem\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"deployedDateTime\": \"<dateTime>\",\n      \"components\": [\n        {\n          \"id\": \"<string>\",\n          \"componentType\": \"ErrorHandler\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"componentType\": \"ErrorHandler\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:32:55.000Z",
+              "updatedAt": "2026-07-28T03:32:55.000Z",
+              "uid": "35240-217965fa-3887-4db1-b273-024bb0068fd6"
+            },
+            {
+              "id": "9166fc61-81d8-4d1c-979e-0dca3de67a03",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrationAssemblies?limit=20&offset=0&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrationAssemblies"
+                  ],
+                  "query": [
+                    {
+                      "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "The zero-based index of the first object in a response collection",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Search string used to filter results by name or descriptor",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:32:55.000Z",
+              "updatedAt": "2026-07-28T03:32:55.000Z",
+              "uid": "35240-9166fc61-81d8-4d1c-979e-0dca3de67a03"
+            },
+            {
+              "id": "6d27853d-48cd-40a3-99f6-21a46c10e617",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrationAssemblies?limit=20&offset=0&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrationAssemblies"
+                  ],
+                  "query": [
+                    {
+                      "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "The zero-based index of the first object in a response collection",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Search string used to filter results by name or descriptor",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:32:55.000Z",
+              "updatedAt": "2026-07-28T03:32:55.000Z",
+              "uid": "35240-6d27853d-48cd-40a3-99f6-21a46c10e617"
+            }
+          ],
+          "createdAt": "2026-07-28T03:32:55.000Z",
+          "updatedAt": "2026-07-28T03:32:55.000Z",
+          "uid": "35240-bfc302e0-55f1-42fd-bbaf-67b0f706b93f"
+        }
+      ],
+      "id": "4a2a63f0-d0ba-441c-b7db-03b3420b3559",
+      "createdAt": "2026-07-28T03:32:55.000Z",
+      "updatedAt": "2026-07-28T03:32:55.000Z",
+      "uid": "35240-4a2a63f0-d0ba-441c-b7db-03b3420b3559"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "r:integrations w:integrations",
+        "type": "string"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://{baseUrl}/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "wd2-impl-services1.workday.com"
+    },
+    {
+      "key": "tenant",
+      "value": "tenant"
+    }
+  ]
+}

@@ -1,0 +1,744 @@
+{
+  "info": {
+    "_postman_id": "2b2ac8d2-67b1-4970-b757-3c6f5a3bbf99",
+    "name": "Workday Studio Integration Absence Management Human Resources API",
+    "description": "API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting. Enables programmatic management of integration systems, events, assemblies, and launch parameters within the Workday platform.\n\nContact Support:\n Name: Workday API Support\n Email: api-support@workday.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:32:54.000Z",
+    "updatedAt": "2026-07-28T03:32:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2b2ac8d2-67b1-4970-b757-3c6f5a3bbf99"
+  },
+  "item": [
+    {
+      "name": "Human_Resources",
+      "item": [
+        {
+          "name": "Get_Workers",
+          "item": [
+            {
+              "name": "Workday Studio Retrieve Workers",
+              "id": "17beb0e0-c37d-46ba-ab35-854397f6ba2a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"<date>\",\n    \"fromDate\": \"<date>\",\n    \"toDate\": \"<date>\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"workerReferenceIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"organizationReference\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/Human_Resources/Get_Workers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Human_Resources",
+                    "Get_Workers"
+                  ]
+                },
+                "description": "Returns a collection of worker records including employees and contingent workers. Supports filtering by worker type, organization, date ranges, and various worker attributes."
+              },
+              "response": [
+                {
+                  "id": "2823ea92-66a3-406a-869d-c7c02a29a18e",
+                  "name": "Successful response with worker data",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"<date>\",\n    \"fromDate\": \"<date>\",\n    \"toDate\": \"<date>\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"workerReferenceIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"organizationReference\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Human_Resources/Get_Workers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Human_Resources",
+                        "Get_Workers"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"workerID\": \"<string>\",\n      \"workerType\": \"Employee\",\n      \"businessTitle\": \"<string>\",\n      \"primaryWorkEmail\": \"<email>\",\n      \"hireDate\": \"<date>\",\n      \"supervisoryOrganization\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"location\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"workerID\": \"<string>\",\n      \"workerType\": \"Employee\",\n      \"businessTitle\": \"<string>\",\n      \"primaryWorkEmail\": \"<email>\",\n      \"hireDate\": \"<date>\",\n      \"supervisoryOrganization\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"location\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:54.000Z",
+                  "updatedAt": "2026-07-28T03:32:54.000Z",
+                  "uid": "35240-2823ea92-66a3-406a-869d-c7c02a29a18e"
+                },
+                {
+                  "id": "928a424a-c559-499a-aa40-a8859e6ec5eb",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"<date>\",\n    \"fromDate\": \"<date>\",\n    \"toDate\": \"<date>\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"workerReferenceIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"organizationReference\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Human_Resources/Get_Workers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Human_Resources",
+                        "Get_Workers"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:54.000Z",
+                  "updatedAt": "2026-07-28T03:32:54.000Z",
+                  "uid": "35240-928a424a-c559-499a-aa40-a8859e6ec5eb"
+                },
+                {
+                  "id": "c6f24912-2661-49ff-9977-97ad1bae9d47",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"<date>\",\n    \"fromDate\": \"<date>\",\n    \"toDate\": \"<date>\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"workerReferenceIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"organizationReference\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Human_Resources/Get_Workers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Human_Resources",
+                        "Get_Workers"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:54.000Z",
+                  "updatedAt": "2026-07-28T03:32:54.000Z",
+                  "uid": "35240-c6f24912-2661-49ff-9977-97ad1bae9d47"
+                },
+                {
+                  "id": "9df1984a-1c6c-43cb-8de8-e515e1fe8070",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"<date>\",\n    \"fromDate\": \"<date>\",\n    \"toDate\": \"<date>\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"workerReferenceIDs\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"organizationReference\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Human_Resources/Get_Workers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Human_Resources",
+                        "Get_Workers"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:54.000Z",
+                  "updatedAt": "2026-07-28T03:32:54.000Z",
+                  "uid": "35240-9df1984a-1c6c-43cb-8de8-e515e1fe8070"
+                }
+              ],
+              "createdAt": "2026-07-28T03:32:54.000Z",
+              "updatedAt": "2026-07-28T03:32:54.000Z",
+              "uid": "35240-17beb0e0-c37d-46ba-ab35-854397f6ba2a"
+            }
+          ],
+          "id": "5aa24d8a-86f2-4f2b-91e4-3c52989dd6d5",
+          "createdAt": "2026-07-28T03:32:54.000Z",
+          "updatedAt": "2026-07-28T03:32:54.000Z",
+          "uid": "35240-5aa24d8a-86f2-4f2b-91e4-3c52989dd6d5"
+        },
+        {
+          "name": "Get_Organizations",
+          "item": [
+            {
+              "name": "Workday Studio Retrieve Organizations",
+              "id": "4bf72800-3a14-4122-a4bc-10e35afe8c6f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"<date>\",\n    \"fromDate\": \"<date>\",\n    \"toDate\": \"<date>\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"organizationType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/Human_Resources/Get_Organizations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Human_Resources",
+                    "Get_Organizations"
+                  ]
+                },
+                "description": "Returns a collection of organization records including supervisory organizations, cost centers, company structures, and custom organization types."
+              },
+              "response": [
+                {
+                  "id": "c9a4c4de-1c5f-4e84-87e9-163a714c87a4",
+                  "name": "Successful response with organization data",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"<date>\",\n    \"fromDate\": \"<date>\",\n    \"toDate\": \"<date>\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"organizationType\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Human_Resources/Get_Organizations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Human_Resources",
+                        "Get_Organizations"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"organizationType\": \"<string>\",\n      \"organizationCode\": \"<string>\",\n      \"isActive\": \"<boolean>\",\n      \"manager\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"superior\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"organizationType\": \"<string>\",\n      \"organizationCode\": \"<string>\",\n      \"isActive\": \"<boolean>\",\n      \"manager\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      },\n      \"superior\": {\n        \"id\": \"<string>\",\n        \"descriptor\": \"<string>\",\n        \"href\": \"<uri>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:54.000Z",
+                  "updatedAt": "2026-07-28T03:32:54.000Z",
+                  "uid": "35240-c9a4c4de-1c5f-4e84-87e9-163a714c87a4"
+                },
+                {
+                  "id": "9c57d9a3-f3e2-4151-ae05-f9e9ef4df220",
+                  "name": "Invalid request parameters",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"<date>\",\n    \"fromDate\": \"<date>\",\n    \"toDate\": \"<date>\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"organizationType\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Human_Resources/Get_Organizations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Human_Resources",
+                        "Get_Organizations"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:54.000Z",
+                  "updatedAt": "2026-07-28T03:32:54.000Z",
+                  "uid": "35240-9c57d9a3-f3e2-4151-ae05-f9e9ef4df220"
+                },
+                {
+                  "id": "6e5f6bdc-f770-4feb-87bb-c09986a37efd",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"<date>\",\n    \"fromDate\": \"<date>\",\n    \"toDate\": \"<date>\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"organizationType\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Human_Resources/Get_Organizations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Human_Resources",
+                        "Get_Organizations"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:54.000Z",
+                  "updatedAt": "2026-07-28T03:32:54.000Z",
+                  "uid": "35240-6e5f6bdc-f770-4feb-87bb-c09986a37efd"
+                },
+                {
+                  "id": "ee66588e-e6d0-44b4-b05b-bb5fab456af3",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"<date>\",\n    \"fromDate\": \"<date>\",\n    \"toDate\": \"<date>\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"organizationType\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Human_Resources/Get_Organizations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Human_Resources",
+                        "Get_Organizations"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:54.000Z",
+                  "updatedAt": "2026-07-28T03:32:54.000Z",
+                  "uid": "35240-ee66588e-e6d0-44b4-b05b-bb5fab456af3"
+                }
+              ],
+              "createdAt": "2026-07-28T03:32:54.000Z",
+              "updatedAt": "2026-07-28T03:32:54.000Z",
+              "uid": "35240-4bf72800-3a14-4122-a4bc-10e35afe8c6f"
+            }
+          ],
+          "id": "8574de81-7fe0-4bf5-94b3-f2d1d6c9b2fb",
+          "createdAt": "2026-07-28T03:32:54.000Z",
+          "updatedAt": "2026-07-28T03:32:54.000Z",
+          "uid": "35240-8574de81-7fe0-4bf5-94b3-f2d1d6c9b2fb"
+        },
+        {
+          "name": "Workday Studio Retrieve Human Resources Service Metadata",
+          "id": "75feabe8-c7af-4ca7-8a84-0e8382e396b7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/Human_Resources",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Human_Resources"
+              ]
+            },
+            "description": "Returns metadata about the Human Resources web service including available operations, supported versions, and WSDL location."
+          },
+          "response": [
+            {
+              "id": "1b29eb1e-89cd-43d3-bc5e-7b98682625e6",
+              "name": "Service metadata for Human Resources",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Human_Resources",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Human_Resources"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"serviceName\": \"<string>\",\n  \"version\": \"<string>\",\n  \"wsdlUrl\": \"<uri>\",\n  \"operations\": [\n    {\n      \"operationName\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"operationName\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:32:54.000Z",
+              "updatedAt": "2026-07-28T03:32:54.000Z",
+              "uid": "35240-1b29eb1e-89cd-43d3-bc5e-7b98682625e6"
+            },
+            {
+              "id": "624f0156-566d-488d-959c-cf5857a1e1fe",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Human_Resources",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Human_Resources"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:32:54.000Z",
+              "updatedAt": "2026-07-28T03:32:54.000Z",
+              "uid": "35240-624f0156-566d-488d-959c-cf5857a1e1fe"
+            }
+          ],
+          "createdAt": "2026-07-28T03:32:54.000Z",
+          "updatedAt": "2026-07-28T03:32:54.000Z",
+          "uid": "35240-75feabe8-c7af-4ca7-8a84-0e8382e396b7"
+        }
+      ],
+      "id": "d410ddfe-5474-41db-a5f3-ccccbc2fcf98",
+      "createdAt": "2026-07-28T03:32:54.000Z",
+      "updatedAt": "2026-07-28T03:32:54.000Z",
+      "uid": "35240-d410ddfe-5474-41db-a5f3-ccccbc2fcf98"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "r:integrations w:integrations",
+        "type": "string"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://{baseUrl}/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "wd2-impl-services1.workday.com"
+    },
+    {
+      "key": "tenant",
+      "value": "tenant"
+    }
+  ]
+}

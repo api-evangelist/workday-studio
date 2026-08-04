@@ -1,0 +1,529 @@
+{
+  "info": {
+    "_postman_id": "7ae151b1-23ba-46ce-9048-136fefb7b9be",
+    "name": "Workday Studio Integration Absence Management Integration Templates API",
+    "description": "API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting. Enables programmatic management of integration systems, events, assemblies, and launch parameters within the Workday platform.\n\nContact Support:\n Name: Workday API Support\n Email: api-support@workday.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:32:58.000Z",
+    "updatedAt": "2026-07-28T03:32:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7ae151b1-23ba-46ce-9048-136fefb7b9be"
+  },
+  "item": [
+    {
+      "name": "integrationTemplates",
+      "item": [
+        {
+          "name": "{ID}",
+          "item": [
+            {
+              "name": "Workday Studio Retrieve a Specific Integration Template",
+              "id": "d3234ebd-2b55-4bc4-9b8a-11abf8135f82",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrationTemplates/:ID",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrationTemplates",
+                    ":ID"
+                  ],
+                  "variable": [
+                    {
+                      "id": "1130e349-bec5-4b88-9c89-c00cc53e3104",
+                      "key": "ID",
+                      "value": "<string>",
+                      "description": "(Required) The Workday ID of the resource"
+                    }
+                  ]
+                },
+                "description": "Returns the specified integration template with its configuration schema, supported services, and parameter definitions."
+              },
+              "response": [
+                {
+                  "id": "6ef45297-f0c9-4b5e-b5a9-a572e4bb1126",
+                  "name": "Successful response with the integration template",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integrationTemplates/:ID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrationTemplates",
+                        ":ID"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"descriptor\": \"<string>\",\n  \"templateName\": \"<string>\",\n  \"category\": \"Studio\",\n  \"supportedServices\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:58.000Z",
+                  "updatedAt": "2026-07-28T03:32:58.000Z",
+                  "uid": "35240-6ef45297-f0c9-4b5e-b5a9-a572e4bb1126"
+                },
+                {
+                  "id": "d5fbe2f4-9158-4908-9341-170bc4bafab1",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integrationTemplates/:ID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrationTemplates",
+                        ":ID"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:58.000Z",
+                  "updatedAt": "2026-07-28T03:32:58.000Z",
+                  "uid": "35240-d5fbe2f4-9158-4908-9341-170bc4bafab1"
+                },
+                {
+                  "id": "5dc7d2e1-f4f4-4ae1-9ae9-4fd7df9facb5",
+                  "name": "Insufficient permissions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integrationTemplates/:ID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrationTemplates",
+                        ":ID"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:58.000Z",
+                  "updatedAt": "2026-07-28T03:32:58.000Z",
+                  "uid": "35240-5dc7d2e1-f4f4-4ae1-9ae9-4fd7df9facb5"
+                },
+                {
+                  "id": "6612a82f-e9d8-4b5c-bc3a-171e242ef7da",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/integrationTemplates/:ID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "integrationTemplates",
+                        ":ID"
+                      ],
+                      "variable": [
+                        {
+                          "key": "ID"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:32:58.000Z",
+                  "updatedAt": "2026-07-28T03:32:58.000Z",
+                  "uid": "35240-6612a82f-e9d8-4b5c-bc3a-171e242ef7da"
+                }
+              ],
+              "createdAt": "2026-07-28T03:32:58.000Z",
+              "updatedAt": "2026-07-28T03:32:58.000Z",
+              "uid": "35240-d3234ebd-2b55-4bc4-9b8a-11abf8135f82"
+            }
+          ],
+          "id": "46fc25b1-4daa-4983-b3f5-4c822b7fb9d6",
+          "createdAt": "2026-07-28T03:32:58.000Z",
+          "updatedAt": "2026-07-28T03:32:58.000Z",
+          "uid": "35240-46fc25b1-4daa-4983-b3f5-4c822b7fb9d6"
+        },
+        {
+          "name": "Workday Studio List Integration Templates",
+          "id": "b8f9d939-d40b-4eda-8408-38b18cf5dcd5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/integrationTemplates?limit=20&offset=0&search=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "integrationTemplates"
+              ],
+              "query": [
+                {
+                  "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "The zero-based index of the first object in a response collection",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Search string used to filter results by name or descriptor",
+                  "key": "search",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a collection of available integration templates including core connectors and document transformation templates that can be used as starting points for building new Studio integrations."
+          },
+          "response": [
+            {
+              "id": "50d7f8ea-a9f3-44fe-8555-5d1ea76e95e1",
+              "name": "Successful response with integration templates",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrationTemplates?limit=20&offset=0&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrationTemplates"
+                  ],
+                  "query": [
+                    {
+                      "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "The zero-based index of the first object in a response collection",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Search string used to filter results by name or descriptor",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"templateName\": \"<string>\",\n      \"category\": \"Core_Connector\",\n      \"supportedServices\": [\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"templateName\": \"<string>\",\n      \"category\": \"Document_Transformation\",\n      \"supportedServices\": [\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"descriptor\": \"<string>\",\n          \"href\": \"<uri>\"\n        }\n      ]\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:32:58.000Z",
+              "updatedAt": "2026-07-28T03:32:58.000Z",
+              "uid": "35240-50d7f8ea-a9f3-44fe-8555-5d1ea76e95e1"
+            },
+            {
+              "id": "1a6e2c43-aaca-4a78-8fc2-84d5b0a780cf",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrationTemplates?limit=20&offset=0&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrationTemplates"
+                  ],
+                  "query": [
+                    {
+                      "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "The zero-based index of the first object in a response collection",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Search string used to filter results by name or descriptor",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:32:58.000Z",
+              "updatedAt": "2026-07-28T03:32:58.000Z",
+              "uid": "35240-1a6e2c43-aaca-4a78-8fc2-84d5b0a780cf"
+            },
+            {
+              "id": "57acbb2e-dd83-4130-a343-e14b1a135286",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/integrationTemplates?limit=20&offset=0&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "integrationTemplates"
+                  ],
+                  "query": [
+                    {
+                      "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "The zero-based index of the first object in a response collection",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Search string used to filter results by name or descriptor",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:32:58.000Z",
+              "updatedAt": "2026-07-28T03:32:58.000Z",
+              "uid": "35240-57acbb2e-dd83-4130-a343-e14b1a135286"
+            }
+          ],
+          "createdAt": "2026-07-28T03:32:58.000Z",
+          "updatedAt": "2026-07-28T03:32:58.000Z",
+          "uid": "35240-b8f9d939-d40b-4eda-8408-38b18cf5dcd5"
+        }
+      ],
+      "id": "89bae4fa-3748-426c-aeb7-d85e66d762ef",
+      "createdAt": "2026-07-28T03:32:58.000Z",
+      "updatedAt": "2026-07-28T03:32:58.000Z",
+      "uid": "35240-89bae4fa-3748-426c-aeb7-d85e66d762ef"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "r:integrations w:integrations",
+        "type": "string"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://{baseUrl}/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "wd2-impl-services1.workday.com"
+    },
+    {
+      "key": "tenant",
+      "value": "tenant"
+    }
+  ]
+}

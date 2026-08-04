@@ -1,0 +1,178 @@
+{
+  "info": {
+    "_postman_id": "c4a2d768-c0b8-4b6b-bfd2-58a66ec0dde6",
+    "name": "Workday Studio Integration Absence Management Service Directory API",
+    "description": "API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting. Enables programmatic management of integration systems, events, assemblies, and launch parameters within the Workday platform.\n\nContact Support:\n Name: Workday API Support\n Email: api-support@workday.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:33:01.000Z",
+    "updatedAt": "2026-07-28T03:33:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c4a2d768-c0b8-4b6b-bfd2-58a66ec0dde6"
+  },
+  "item": [
+    {
+      "name": "Human_Resources",
+      "item": [
+        {
+          "name": "Workday Studio Retrieve Human Resources Service Metadata",
+          "id": "1f20821e-3aa1-4f7c-9fd2-9d63b92fc4a5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/Human_Resources",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Human_Resources"
+              ]
+            },
+            "description": "Returns metadata about the Human Resources web service including available operations, supported versions, and WSDL location."
+          },
+          "response": [
+            {
+              "id": "5c5734b1-b7a7-4429-9143-7dc22b0f94a8",
+              "name": "Service metadata for Human Resources",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Human_Resources",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Human_Resources"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"serviceName\": \"<string>\",\n  \"version\": \"<string>\",\n  \"wsdlUrl\": \"<uri>\",\n  \"operations\": [\n    {\n      \"operationName\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"operationName\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:33:02.000Z",
+              "updatedAt": "2026-07-28T03:33:02.000Z",
+              "uid": "35240-5c5734b1-b7a7-4429-9143-7dc22b0f94a8"
+            },
+            {
+              "id": "a6f0d509-acc7-42f2-b063-b03d6dbfb454",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Human_Resources",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Human_Resources"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:33:02.000Z",
+              "updatedAt": "2026-07-28T03:33:02.000Z",
+              "uid": "35240-a6f0d509-acc7-42f2-b063-b03d6dbfb454"
+            }
+          ],
+          "createdAt": "2026-07-28T03:33:02.000Z",
+          "updatedAt": "2026-07-28T03:33:02.000Z",
+          "uid": "35240-1f20821e-3aa1-4f7c-9fd2-9d63b92fc4a5"
+        }
+      ],
+      "id": "09e2966e-d1eb-4c6f-87b4-6a8bd3282bdb",
+      "createdAt": "2026-07-28T03:33:02.000Z",
+      "updatedAt": "2026-07-28T03:33:02.000Z",
+      "uid": "35240-09e2966e-d1eb-4c6f-87b4-6a8bd3282bdb"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "r:integrations w:integrations",
+        "type": "string"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://{baseUrl}/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "wd2-impl-services1.workday.com"
+    },
+    {
+      "key": "tenant",
+      "value": "tenant"
+    }
+  ]
+}

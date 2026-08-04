@@ -1,0 +1,268 @@
+{
+  "info": {
+    "_postman_id": "ab1b9ead-8768-4cce-aa11-5ef2ffcdc3a6",
+    "name": "Workday Studio Integration Absence Management Launch Parameters API",
+    "description": "API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting. Enables programmatic management of integration systems, events, assemblies, and launch parameters within the Workday platform.\n\nContact Support:\n Name: Workday API Support\n Email: api-support@workday.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:32:59.000Z",
+    "updatedAt": "2026-07-28T03:32:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ab1b9ead-8768-4cce-aa11-5ef2ffcdc3a6"
+  },
+  "item": [
+    {
+      "name": "launchParameters",
+      "item": [
+        {
+          "name": "Workday Studio List Available Launch Parameters",
+          "id": "361a3df7-cb08-4bad-839f-a62de63c28fd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/launchParameters?limit=20&offset=0",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "launchParameters"
+              ],
+              "query": [
+                {
+                  "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "The zero-based index of the first object in a response collection",
+                  "key": "offset",
+                  "value": "0"
+                }
+              ]
+            },
+            "description": "Returns a collection of launch parameter definitions that can be configured for integration systems to control runtime behavior such as date ranges, file paths, and processing options."
+          },
+          "response": [
+            {
+              "id": "44cab812-4aa8-48d5-9064-54ce1c6fcca8",
+              "name": "Successful response with launch parameters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/launchParameters?limit=20&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "launchParameters"
+                  ],
+                  "query": [
+                    {
+                      "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "The zero-based index of the first object in a response collection",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total\": \"<integer>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"parameterName\": \"<string>\",\n      \"dataType\": \"Boolean\",\n      \"defaultValue\": \"<string>\",\n      \"isRequired\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"descriptor\": \"<string>\",\n      \"parameterName\": \"<string>\",\n      \"dataType\": \"Text\",\n      \"defaultValue\": \"<string>\",\n      \"isRequired\": \"<boolean>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:32:59.000Z",
+              "updatedAt": "2026-07-28T03:32:59.000Z",
+              "uid": "35240-44cab812-4aa8-48d5-9064-54ce1c6fcca8"
+            },
+            {
+              "id": "085ebaa4-51e2-4d98-a72a-e681ad94261f",
+              "name": "Authentication required",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/launchParameters?limit=20&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "launchParameters"
+                  ],
+                  "query": [
+                    {
+                      "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "The zero-based index of the first object in a response collection",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:32:59.000Z",
+              "updatedAt": "2026-07-28T03:32:59.000Z",
+              "uid": "35240-085ebaa4-51e2-4d98-a72a-e681ad94261f"
+            },
+            {
+              "id": "c0f7a941-912c-4336-bc57-15b791703aa5",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/launchParameters?limit=20&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "launchParameters"
+                  ],
+                  "query": [
+                    {
+                      "description": "The maximum number of objects in a single response. Default is 20, maximum is 100.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "The zero-based index of the first object in a response collection",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"errors\": [\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"error\": \"<string>\",\n      \"field\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:32:59.000Z",
+              "updatedAt": "2026-07-28T03:32:59.000Z",
+              "uid": "35240-c0f7a941-912c-4336-bc57-15b791703aa5"
+            }
+          ],
+          "createdAt": "2026-07-28T03:32:59.000Z",
+          "updatedAt": "2026-07-28T03:32:59.000Z",
+          "uid": "35240-361a3df7-cb08-4bad-839f-a62de63c28fd"
+        }
+      ],
+      "id": "6e1a3b61-72ce-4461-b43b-c6cb72db53fe",
+      "createdAt": "2026-07-28T03:32:59.000Z",
+      "updatedAt": "2026-07-28T03:32:59.000Z",
+      "uid": "35240-6e1a3b61-72ce-4461-b43b-c6cb72db53fe"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "r:integrations w:integrations",
+        "type": "string"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://{baseUrl}/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "wd2-impl-services1.workday.com"
+    },
+    {
+      "key": "tenant",
+      "value": "tenant"
+    }
+  ]
+}

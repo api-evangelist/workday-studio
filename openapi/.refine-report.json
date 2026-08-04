@@ -1,0 +1,42 @@
+{
+  "provider": "workday-studio",
+  "sources": [
+    "workday-studio-absence-management-api-openapi.yml",
+    "workday-studio-benefits-administration-api-openapi.yml",
+    "workday-studio-compensation-api-openapi.yml",
+    "workday-studio-financial-management-api-openapi.yml",
+    "workday-studio-human-resources-api-openapi.yml",
+    "workday-studio-integration-assemblies-api-openapi.yml",
+    "workday-studio-integration-events-api-openapi.yml",
+    "workday-studio-integration-systems-api-openapi.yml",
+    "workday-studio-integration-templates-api-openapi.yml",
+    "workday-studio-launch-parameters-api-openapi.yml",
+    "workday-studio-payroll-api-openapi.yml",
+    "workday-studio-recruiting-api-openapi.yml",
+    "workday-studio-service-directory-api-openapi.yml",
+    "workday-studio-staffing-api-openapi.yml",
+    "workday-studio-time-tracking-api-openapi.yml"
+  ],
+  "outputs": [
+    "workday-studio-absence-management-api-openapi.yml",
+    "workday-studio-benefits-administration-api-openapi.yml",
+    "workday-studio-compensation-api-openapi.yml",
+    "workday-studio-financial-management-api-openapi.yml",
+    "workday-studio-human-resources-api-openapi.yml",
+    "workday-studio-integration-assemblies-api-openapi.yml",
+    "workday-studio-integration-events-api-openapi.yml",
+    "workday-studio-integration-systems-api-openapi.yml",
+    "workday-studio-integration-templates-api-openapi.yml",
+    "workday-studio-launch-parameters-api-openapi.yml",
+    "workday-studio-payroll-api-openapi.yml",
+    "workday-studio-recruiting-api-openapi.yml",
+    "workday-studio-service-directory-api-openapi.yml",
+    "workday-studio-staffing-api-openapi.yml",
+    "workday-studio-time-tracking-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
