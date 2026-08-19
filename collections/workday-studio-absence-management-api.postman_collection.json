@@ -1,0 +1,397 @@
+{
+  "item": [
+    {
+      "id": "994cfe72-13f9-4887-99e7-fd25bc293723",
+      "name": "Absence Management",
+      "description": {
+        "content": "Web service operations for managing time-off requests, leave balances, absence plans, and return-to-work processes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b1902d33-89a9-47e3-b4fe-0ffd1c8c00e7",
+          "name": "Workday Studio Retrieve Absence Inputs",
+          "request": {
+            "name": "Workday Studio Retrieve Absence Inputs",
+            "description": {
+              "content": "Returns a collection of absence input records for time-off requests, leave entries, and absence events within specified date ranges and organizational scope.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Absence_Management",
+                "Get_Absence_Inputs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Workday data center hostname",
+                  "type": "any",
+                  "value": "{{baseUrl}}",
+                  "key": "baseUrl"
+                },
+                {
+                  "description": "The Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"<date>\",\n    \"fromDate\": \"<date>\",\n    \"toDate\": \"<date>\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"workerReference\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7b552f18-0734-480f-8f8a-58b41426172b",
+              "name": "Successful response with absence data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Absence_Management",
+                    "Get_Absence_Inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Workday data center hostname",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    },
+                    {
+                      "description": "The Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"1958-07-24\",\n    \"fromDate\": \"1966-01-12\",\n    \"toDate\": \"2010-08-22\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"workerReference\": {\n    \"id\": \"string\",\n    \"descriptor\": \"string\",\n    \"href\": \"https://dvpddwNCYNVeMLSqRDGtKBTRHTtXtVYtI.sdzUMtR3VZwrL8sl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 4286,\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"worker\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"https://EDyXrBsK.tgbejDVW1aNuPAUQrnZzanGmkieIGLFrArBRbF2k\"\n      },\n      \"absenceType\": \"string\",\n      \"startDate\": \"1957-03-29\",\n      \"endDate\": \"1968-12-11\",\n      \"quantity\": 5871.776247874658,\n      \"unit\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"worker\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"http://OszVPprhKvzBaIevVvgiRAdHt.xfgsAhkysF3HZL7IpE-ZZhfV--szu+cR3DxeR.oEI2yM3mcp0.XyWIFrSx8W71dRQn\"\n      },\n      \"absenceType\": \"string\",\n      \"startDate\": \"2025-10-22\",\n      \"endDate\": \"2016-08-04\",\n      \"quantity\": 5091.941562172363,\n      \"unit\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd2421c7-20f5-4c82-92ad-6fb83a3dbaa8",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Absence_Management",
+                    "Get_Absence_Inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Workday data center hostname",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    },
+                    {
+                      "description": "The Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"1958-07-24\",\n    \"fromDate\": \"1966-01-12\",\n    \"toDate\": \"2010-08-22\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"workerReference\": {\n    \"id\": \"string\",\n    \"descriptor\": \"string\",\n    \"href\": \"https://dvpddwNCYNVeMLSqRDGtKBTRHTtXtVYtI.sdzUMtR3VZwrL8sl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": [\n    {\n      \"error\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"error\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c6dc161-dc1d-4f75-a1dd-54acac5c14db",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Absence_Management",
+                    "Get_Absence_Inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Workday data center hostname",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    },
+                    {
+                      "description": "The Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"1958-07-24\",\n    \"fromDate\": \"1966-01-12\",\n    \"toDate\": \"2010-08-22\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"workerReference\": {\n    \"id\": \"string\",\n    \"descriptor\": \"string\",\n    \"href\": \"https://dvpddwNCYNVeMLSqRDGtKBTRHTtXtVYtI.sdzUMtR3VZwrL8sl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": [\n    {\n      \"error\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"error\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "952a5923-bf75-4ae6-bc4f-48e6af92a8ac",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Absence_Management",
+                    "Get_Absence_Inputs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Workday data center hostname",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    },
+                    {
+                      "description": "The Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"1958-07-24\",\n    \"fromDate\": \"1966-01-12\",\n    \"toDate\": \"2010-08-22\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"workerReference\": {\n    \"id\": \"string\",\n    \"descriptor\": \"string\",\n    \"href\": \"https://dvpddwNCYNVeMLSqRDGtKBTRHTtXtVYtI.sdzUMtR3VZwrL8sl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": [\n    {\n      \"error\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"error\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Workday data center hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "wd2-impl-services1.workday.com",
+      "key": "baseUrl"
+    },
+    {
+      "description": {
+        "content": "The Workday tenant name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "tenant",
+      "key": "tenant"
+    },
+    {
+      "type": "string",
+      "value": "https://{{baseUrl}}/ccx/service/{{tenant}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "r:integrations w:integrations"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://{baseUrl}/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1b33f71e-bbbc-447b-87ee-91aa391b33ca",
+    "name": "Workday Studio Integration Absence Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting. Enables programmatic management of integration systems, events, assemblies, and launch parameters within the Workday platform.\n\nContact Support:\n Name: Workday API Support\n Email: api-support@workday.com",
+      "type": "text/plain"
+    }
+  }
+}

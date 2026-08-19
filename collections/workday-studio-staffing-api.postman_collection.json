@@ -1,0 +1,397 @@
+{
+  "item": [
+    {
+      "id": "462b8ce9-1323-4a2a-a886-372a7372fc61",
+      "name": "Staffing",
+      "description": {
+        "content": "Web service operations for position management, job requisitions, hiring actions, and organizational staffing.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b08a8a4c-aa99-455f-9bed-069fa8f29b70",
+          "name": "Workday Studio Retrieve Job Postings",
+          "request": {
+            "name": "Workday Studio Retrieve Job Postings",
+            "description": {
+              "content": "Returns a collection of job posting records for open positions including posting status, location, job profile, and application information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Staffing",
+                "Get_Job_Postings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Workday data center hostname",
+                  "type": "any",
+                  "value": "{{baseUrl}}",
+                  "key": "baseUrl"
+                },
+                {
+                  "description": "The Workday tenant name",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"<date>\",\n    \"fromDate\": \"<date>\",\n    \"toDate\": \"<date>\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"positionReference\": {\n    \"id\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"href\": \"<uri>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "370829d1-7159-4855-aaf4-b228ed797411",
+              "name": "Successful response with job postings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Staffing",
+                    "Get_Job_Postings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Workday data center hostname",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    },
+                    {
+                      "description": "The Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"1991-11-22\",\n    \"fromDate\": \"1951-07-14\",\n    \"toDate\": \"2006-01-01\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"positionReference\": {\n    \"id\": \"string\",\n    \"descriptor\": \"string\",\n    \"href\": \"https://GLmaxnkiXioEPsJzPDVaVNIs.sejgR,OpZwY9cXTOtRVoRVbfYDvX8mPyBG.D+,Rze-.XfRhvVeOWCADqpxIN,irJeFqs+nYeB8\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 7797,\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"postingDate\": \"1998-01-29\",\n      \"location\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"https://kZtTY.woejOjfr6jhuctaVMb36e7xfCjVxtUStrlGnWEdfu9QkQ6cuH\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"descriptor\": \"string\",\n      \"title\": \"string\",\n      \"status\": \"string\",\n      \"postingDate\": \"2008-10-02\",\n      \"location\": {\n        \"id\": \"string\",\n        \"descriptor\": \"string\",\n        \"href\": \"https://HyFDiRpmKnzjSiSXdjplGbb.swiczd,SvI-QzrAy7v,CzYiD0xrJXrUumKtdD9wzqoA-SLulRnV\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc335b49-e95e-4834-9883-6c458697e3c5",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Staffing",
+                    "Get_Job_Postings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Workday data center hostname",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    },
+                    {
+                      "description": "The Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"1991-11-22\",\n    \"fromDate\": \"1951-07-14\",\n    \"toDate\": \"2006-01-01\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"positionReference\": {\n    \"id\": \"string\",\n    \"descriptor\": \"string\",\n    \"href\": \"https://GLmaxnkiXioEPsJzPDVaVNIs.sejgR,OpZwY9cXTOtRVoRVbfYDvX8mPyBG.D+,Rze-.XfRhvVeOWCADqpxIN,irJeFqs+nYeB8\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": [\n    {\n      \"error\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"error\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5941a812-90ff-4bbb-a7fd-074397d47217",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Staffing",
+                    "Get_Job_Postings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Workday data center hostname",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    },
+                    {
+                      "description": "The Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"1991-11-22\",\n    \"fromDate\": \"1951-07-14\",\n    \"toDate\": \"2006-01-01\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"positionReference\": {\n    \"id\": \"string\",\n    \"descriptor\": \"string\",\n    \"href\": \"https://GLmaxnkiXioEPsJzPDVaVNIs.sejgR,OpZwY9cXTOtRVoRVbfYDvX8mPyBG.D+,Rze-.XfRhvVeOWCADqpxIN,irJeFqs+nYeB8\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": [\n    {\n      \"error\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"error\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8789f266-e7cc-4319-8bad-4b9c6e078b6e",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Staffing",
+                    "Get_Job_Postings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Workday data center hostname",
+                      "type": "any",
+                      "value": "{{baseUrl}}",
+                      "key": "baseUrl"
+                    },
+                    {
+                      "description": "The Workday tenant name",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestCriteria\": {\n    \"effectiveDate\": \"1991-11-22\",\n    \"fromDate\": \"1951-07-14\",\n    \"toDate\": \"2006-01-01\",\n    \"pageSize\": 100,\n    \"page\": 1\n  },\n  \"positionReference\": {\n    \"id\": \"string\",\n    \"descriptor\": \"string\",\n    \"href\": \"https://GLmaxnkiXioEPsJzPDVaVNIs.sejgR,OpZwY9cXTOtRVoRVbfYDvX8mPyBG.D+,Rze-.XfRhvVeOWCADqpxIN,irJeFqs+nYeB8\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"errors\": [\n    {\n      \"error\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"error\": \"string\",\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Workday data center hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "wd2-impl-services1.workday.com",
+      "key": "baseUrl"
+    },
+    {
+      "description": {
+        "content": "The Workday tenant name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "tenant",
+      "key": "tenant"
+    },
+    {
+      "type": "string",
+      "value": "https://{{baseUrl}}/ccx/service/{{tenant}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "r:integrations w:integrations"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{baseUrl}/oauth2/{tenant}/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://{baseUrl}/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "33aa9f8a-ffc8-4ebe-a4c3-6c93010556d7",
+    "name": "Workday Studio Integration Absence Management Staffing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting. Enables programmatic management of integration systems, events, assemblies, and launch parameters within the Workday platform.\n\nContact Support:\n Name: Workday API Support\n Email: api-support@workday.com",
+      "type": "text/plain"
+    }
+  }
+}

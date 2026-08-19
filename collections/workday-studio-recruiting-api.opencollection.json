@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Workday Studio Integration Absence Management Recruiting API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://{baseUrl}/authorize",
+      "accessTokenUrl": "https://{baseUrl}/oauth2/{tenant}/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recruiting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Candidates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/Recruiting/Get_Candidates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a collection of candidate records for recruiting including application status, source, and stage within the hiring workflow."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

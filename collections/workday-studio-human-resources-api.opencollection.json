@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Workday Studio Integration Absence Management Human Resources API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://{baseUrl}/authorize",
+      "accessTokenUrl": "https://{baseUrl}/oauth2/{tenant}/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Human Resources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Human Resources Service Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/Human_Resources"
+          },
+          "docs": "Returns metadata about the Human Resources web service including available operations, supported versions, and WSDL location."
+        },
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Workers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/Human_Resources/Get_Workers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a collection of worker records including employees and contingent workers. Supports filtering by worker type, organization, date ranges, and various worker attributes."
+        },
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/Human_Resources/Get_Organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a collection of organization records including supervisory organizations, cost centers, company structures, and custom organization types."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

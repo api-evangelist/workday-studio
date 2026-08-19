@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Workday Studio Integration Absence Management Integration Templates API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://{baseUrl}/authorize",
+      "accessTokenUrl": "https://{baseUrl}/oauth2/{tenant}/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Integration Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio List Integration Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/integrationTemplates",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of objects in a single response. Default is 20, maximum is 100."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The zero-based index of the first object in a response collection"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search string used to filter results by name or descriptor"
+              }
+            ]
+          },
+          "docs": "Returns a collection of available integration templates including core connectors and document transformation templates that can be used as starting points for building new Studio integrations."
+        },
+        {
+          "info": {
+            "name": "Workday Studio Retrieve a Specific Integration Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/integrationTemplates/:ID",
+            "params": [
+              {
+                "name": "ID",
+                "value": "",
+                "type": "path",
+                "description": "The Workday ID of the resource"
+              }
+            ]
+          },
+          "docs": "Returns the specified integration template with its configuration schema, supported services, and parameter definitions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

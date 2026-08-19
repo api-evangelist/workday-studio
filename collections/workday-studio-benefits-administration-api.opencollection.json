@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Workday Studio Integration Absence Management Benefits Administration API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://{baseUrl}/authorize",
+      "accessTokenUrl": "https://{baseUrl}/oauth2/{tenant}/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Benefits Administration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workday Studio Retrieve Benefit Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{baseUrl}/ccx/service/{tenant}/Benefits_Administration/Get_Benefit_Plans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a collection of benefit plan records including health insurance, retirement plans, life insurance, and other benefit offerings configured in the tenant."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
