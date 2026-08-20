@@ -41,6 +41,11 @@ apis:
   tags:
   - Data Access
   - JSON
+  - Authentication
+  - REST
+  tags_raw:
+  - Data Access
+  - JSON
   - OAuth
   - REST
   properties:
@@ -78,6 +83,12 @@ apis:
   humanUrl: https://www.workday.com/en-us/products/platform-product-extensions/integrations.html
   baseUrl: https://{tenant}.workday.com/ccx/api
   tags:
+  - Automation
+  - Event-Driven
+  - Low-Code
+  - Orchestration
+  - Workflows
+  tags_raw:
   - Automation
   - Event Driven
   - Low Code
