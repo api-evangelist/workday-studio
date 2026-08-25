@@ -6,8 +6,7 @@
       "feed_url": "https://blog.workday.com/",
       "title": "",
       "saved": 0,
-      "method": "none",
-      "error": "parse_failed"
+      "method": "none"
     },
     {
       "source": "https://workday.github.io/rss.xml",
@@ -21,10 +20,9 @@
       "feed_url": "https://status.workday.com/",
       "title": "",
       "saved": 0,
-      "method": "none",
-      "error": "parse_failed"
+      "method": "none"
     }
   ],
   "post_count": 39,
-  "fetched": "2026-08-15T12:11:08Z"
+  "fetched": "2026-08-22T20:20:02Z"
 }
