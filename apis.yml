@@ -3,6 +3,18 @@ name: Workday Studio
 description: >-
   Workday Studio is an integrated development environment (IDE) for building custom integrations and applications on the
   Workday platform. It provides tools for creating web services, custom reports, and integration solutions.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
