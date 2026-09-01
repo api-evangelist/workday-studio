@@ -96,8 +96,8 @@ apis:
   baseUrl: https://{tenant}.workday.com/ccx/api
   tags:
   - Automation
-  - Event Driven
-  - Low Code
+  - Event-Driven
+  - Low-Code
   - Orchestration
   - Workflows
   tags_raw:
