@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Workday Studio Integration Absence Management Human Resources API
-  description: API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting. Enables programmatic management of integration systems, events, assemblies, and launch parameters within the Workday platform.
-  version: v1
+  title: Workday Studio Workday Web Services Human Resources API
+  description: REST and SOAP web services for integrating with Workday applications, providing programmatic access to business management services across 55 service areas including Human Resources, Payroll, Benefits, and Financial Management. This specification covers the REST-accessible portions of the Workday Web Services (WWS) directory, enabling discovery and invocation of web service operations with WSDL and XML Schema definitions.
+  version: v45
   contact:
     name: Workday API Support
     email: api-support@workday.com
@@ -13,7 +13,7 @@ info:
   termsOfService: https://www.workday.com/en-us/legal.html
 servers:
 - url: https://{baseUrl}/ccx/service/{tenant}
-  description: Workday Integration Services Server
+  description: Workday Web Services Server
   variables:
     baseUrl:
       default: wd2-impl-services1.workday.com
@@ -23,8 +23,9 @@ servers:
       description: The Workday tenant name
 security:
 - OAuth2:
-  - r:integrations
-  - w:integrations
+  - r:wws
+  - w:wws
+- WSSecurity: []
 tags:
 - name: Human Resources
   description: Web service operations for managing employee data, worker records, organizational structures, and HR transactions.
@@ -97,123 +98,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    GetOrganizationsRequest:
-      type: object
-      properties:
-        requestCriteria:
-          $ref: '#/components/schemas/RequestCriteria'
-        organizationType:
-          type: string
-          description: Filter by organization type
-    ResourceReference:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Workday ID of the referenced resource
-        descriptor:
-          type: string
-          description: The display name of the referenced resource
-        href:
-          type: string
-          format: uri
-          description: The API URL to retrieve the full resource
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A high-level error message
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              error:
-                type: string
-              field:
-                type: string
-              message:
-                type: string
-    OrganizationsResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Organization'
-    GetWorkersRequest:
-      type: object
-      properties:
-        requestCriteria:
-          $ref: '#/components/schemas/RequestCriteria'
-        workerReferenceIDs:
-          type: array
-          description: Specific worker IDs to retrieve
-          items:
-            type: string
-        organizationReference:
-          $ref: '#/components/schemas/ResourceReference'
-    Organization:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Workday ID of the organization
-        descriptor:
-          type: string
-          description: The display name of the organization
-        organizationType:
-          type: string
-          description: The type of organization
-        organizationCode:
-          type: string
-          description: The organization reference code
-        isActive:
-          type: boolean
-          description: Whether the organization is currently active
-        manager:
-          $ref: '#/components/schemas/ResourceReference'
-        superior:
-          $ref: '#/components/schemas/ResourceReference'
-    WorkersResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of workers matching the criteria
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Worker'
-    ServiceMetadata:
-      type: object
-      description: Metadata about a Workday web service including its operations and supported versions.
-      properties:
-        serviceName:
-          type: string
-          description: The name of the web service
-        version:
-          type: string
-          description: The current version of the web service
-        wsdlUrl:
-          type: string
-          format: uri
-          description: The URL to the WSDL definition for the service
-        operations:
-          type: array
-          description: The list of operations available in the service
-          items:
-            type: object
-            properties:
-              operationName:
-                type: string
-                description: The name of the operation
-              description:
-                type: string
-                description: A description of the operation
     RequestCriteria:
       type: object
       description: Common request criteria for filtering web service results
@@ -272,6 +156,123 @@ components:
           $ref: '#/components/schemas/ResourceReference'
         location:
           $ref: '#/components/schemas/ResourceReference'
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API URL to retrieve the full resource
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A high-level error message
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+              field:
+                type: string
+              message:
+                type: string
+    Organization:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the organization
+        descriptor:
+          type: string
+          description: The display name of the organization
+        organizationType:
+          type: string
+          description: The type of organization
+        organizationCode:
+          type: string
+          description: The organization reference code
+        isActive:
+          type: boolean
+          description: Whether the organization is currently active
+        manager:
+          $ref: '#/components/schemas/ResourceReference'
+        superior:
+          $ref: '#/components/schemas/ResourceReference'
+    WorkersResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of workers matching the criteria
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Worker'
+    GetOrganizationsRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        organizationType:
+          type: string
+          description: Filter by organization type
+    GetWorkersRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        workerReferenceIDs:
+          type: array
+          description: Specific worker IDs to retrieve
+          items:
+            type: string
+        organizationReference:
+          $ref: '#/components/schemas/ResourceReference'
+    ServiceMetadata:
+      type: object
+      description: Metadata about a Workday web service including its operations and supported versions.
+      properties:
+        serviceName:
+          type: string
+          description: The name of the web service
+        version:
+          type: string
+          description: The current version of the web service
+        wsdlUrl:
+          type: string
+          format: uri
+          description: The URL to the WSDL definition for the service
+        operations:
+          type: array
+          description: The list of operations available in the service
+          items:
+            type: object
+            properties:
+              operationName:
+                type: string
+                description: The name of the operation
+              description:
+                type: string
+                description: A description of the operation
+    OrganizationsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
   responses:
     Forbidden:
       description: Insufficient permissions
@@ -279,14 +280,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request parameters
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:
@@ -300,8 +301,12 @@ components:
           tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
           refreshUrl: https://{baseUrl}/oauth2/{tenant}/token
           scopes:
-            r:integrations: Read integration data
-            w:integrations: Write integration data
+            r:wws: Read access to web services
+            w:wws: Write access to web services
+    WSSecurity:
+      type: http
+      scheme: basic
+      description: WS-Security with X.509 certificates or username/password tokens for SOAP API authentication.
 externalDocs:
-  description: Workday Studio Integration Documentation
-  url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  description: Workday Web Services Directory
+  url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html

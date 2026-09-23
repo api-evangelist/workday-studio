@@ -1,33 +1,20 @@
 {
   "provider": "workday-studio",
   "sources": [
-    "workday-studio-absence-management-api-openapi.yml",
-    "workday-studio-benefits-administration-api-openapi.yml",
-    "workday-studio-compensation-api-openapi.yml",
-    "workday-studio-financial-management-api-openapi.yml",
-    "workday-studio-human-resources-api-openapi.yml",
-    "workday-studio-integration-assemblies-api-openapi.yml",
-    "workday-studio-integration-events-api-openapi.yml",
-    "workday-studio-integration-systems-api-openapi.yml",
-    "workday-studio-integration-templates-api-openapi.yml",
-    "workday-studio-launch-parameters-api-openapi.yml",
-    "workday-studio-payroll-api-openapi.yml",
-    "workday-studio-recruiting-api-openapi.yml",
-    "workday-studio-service-directory-api-openapi.yml",
-    "workday-studio-staffing-api-openapi.yml",
-    "workday-studio-time-tracking-api-openapi.yml"
+    "_original/workday-studio-integration-openapi.yml",
+    "_original/workday-studio-web-services-openapi.yml"
   ],
   "outputs": [
-    "workday-studio-absence-management-api-openapi.yml",
-    "workday-studio-benefits-administration-api-openapi.yml",
-    "workday-studio-compensation-api-openapi.yml",
-    "workday-studio-financial-management-api-openapi.yml",
-    "workday-studio-human-resources-api-openapi.yml",
     "workday-studio-integration-assemblies-api-openapi.yml",
     "workday-studio-integration-events-api-openapi.yml",
     "workday-studio-integration-systems-api-openapi.yml",
     "workday-studio-integration-templates-api-openapi.yml",
     "workday-studio-launch-parameters-api-openapi.yml",
+    "workday-studio-absence-management-api-openapi.yml",
+    "workday-studio-benefits-administration-api-openapi.yml",
+    "workday-studio-compensation-api-openapi.yml",
+    "workday-studio-financial-management-api-openapi.yml",
+    "workday-studio-human-resources-api-openapi.yml",
     "workday-studio-payroll-api-openapi.yml",
     "workday-studio-recruiting-api-openapi.yml",
     "workday-studio-service-directory-api-openapi.yml",
@@ -37,6 +24,27 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "workday-studio-integration-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "workday-studio-web-services-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "workday-studio-absence-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-studio-benefits-administration-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-studio-compensation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-studio-financial-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-studio-human-resources-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-studio-integration-assemblies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-studio-integration-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-studio-integration-systems-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-studio-integration-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-studio-launch-parameters-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-studio-payroll-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-studio-recruiting-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-studio-service-directory-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-studio-staffing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "workday-studio-time-tracking-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Workday Studio Integration Absence Management Staffing API
-  description: API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting. Enables programmatic management of integration systems, events, assemblies, and launch parameters within the Workday platform.
-  version: v1
+  title: Workday Studio Workday Web Services Staffing API
+  description: REST and SOAP web services for integrating with Workday applications, providing programmatic access to business management services across 55 service areas including Human Resources, Payroll, Benefits, and Financial Management. This specification covers the REST-accessible portions of the Workday Web Services (WWS) directory, enabling discovery and invocation of web service operations with WSDL and XML Schema definitions.
+  version: v45
   contact:
     name: Workday API Support
     email: api-support@workday.com
@@ -13,7 +13,7 @@ info:
   termsOfService: https://www.workday.com/en-us/legal.html
 servers:
 - url: https://{baseUrl}/ccx/service/{tenant}
-  description: Workday Integration Services Server
+  description: Workday Web Services Server
   variables:
     baseUrl:
       default: wd2-impl-services1.workday.com
@@ -23,8 +23,9 @@ servers:
       description: The Workday tenant name
 security:
 - OAuth2:
-  - r:integrations
-  - w:integrations
+  - r:wws
+  - w:wws
+- WSSecurity: []
 tags:
 - name: Staffing
   description: Web service operations for position management, job requisitions, hiring actions, and organizational staffing.
@@ -56,66 +57,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    GetJobPostingsRequest:
-      type: object
-      properties:
-        requestCriteria:
-          $ref: '#/components/schemas/RequestCriteria'
-        positionReference:
-          $ref: '#/components/schemas/ResourceReference'
-    ResourceReference:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Workday ID of the referenced resource
-        descriptor:
-          type: string
-          description: The display name of the referenced resource
-        href:
-          type: string
-          format: uri
-          description: The API URL to retrieve the full resource
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A high-level error message
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              error:
-                type: string
-              field:
-                type: string
-              message:
-                type: string
-    JobPostingsResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              descriptor:
-                type: string
-              title:
-                type: string
-              status:
-                type: string
-              postingDate:
-                type: string
-                format: date
-              location:
-                $ref: '#/components/schemas/ResourceReference'
     RequestCriteria:
       type: object
       description: Common request criteria for filtering web service results
@@ -141,6 +82,66 @@ components:
           type: integer
           description: The page number to return
           default: 1
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A high-level error message
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+              field:
+                type: string
+              message:
+                type: string
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API URL to retrieve the full resource
+    GetJobPostingsRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        positionReference:
+          $ref: '#/components/schemas/ResourceReference'
+    JobPostingsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              descriptor:
+                type: string
+              title:
+                type: string
+              status:
+                type: string
+              postingDate:
+                type: string
+                format: date
+              location:
+                $ref: '#/components/schemas/ResourceReference'
   responses:
     Forbidden:
       description: Insufficient permissions
@@ -148,14 +149,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request parameters
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:
@@ -169,8 +170,12 @@ components:
           tokenUrl: https://{baseUrl}/oauth2/{tenant}/token
           refreshUrl: https://{baseUrl}/oauth2/{tenant}/token
           scopes:
-            r:integrations: Read integration data
-            w:integrations: Write integration data
+            r:wws: Read access to web services
+            w:wws: Write access to web services
+    WSSecurity:
+      type: http
+      scheme: basic
+      description: WS-Security with X.509 certificates or username/password tokens for SOAP API authentication.
 externalDocs:
-  description: Workday Studio Integration Documentation
-  url: https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ
+  description: Workday Web Services Directory
+  url: https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html

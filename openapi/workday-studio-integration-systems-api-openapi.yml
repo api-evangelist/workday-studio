@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Workday Studio Integration Absence Management Integration Systems API
+  title: Workday Studio Integration Integration Systems API
   description: API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting. Enables programmatic management of integration systems, events, assemblies, and launch parameters within the Workday platform.
   version: v1
   contact:
@@ -104,9 +104,38 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: The maximum number of objects in a single response. Default is 20, maximum is 100.
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+    ID:
+      name: ID
+      in: path
+      required: true
+      description: The Workday ID of the resource
+      schema:
+        type: string
+    search:
+      name: search
+      in: query
+      description: Search string used to filter results by name or descriptor
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      description: The zero-based index of the first object in a response collection
+      schema:
+        type: integer
+        default: 0
   responses:
-    BadRequest:
-      description: Invalid request parameters
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
@@ -117,62 +146,29 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication required
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    ID:
-      name: ID
-      in: path
-      required: true
-      description: The Workday ID of the resource
-      schema:
-        type: string
-    offset:
-      name: offset
-      in: query
-      description: The zero-based index of the first object in a response collection
-      schema:
-        type: integer
-        default: 0
-    search:
-      name: search
-      in: query
-      description: Search string used to filter results by name or descriptor
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      description: The maximum number of objects in a single response. Default is 20, maximum is 100.
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
   schemas:
-    ResourceReference:
+    IntegrationSystemsResponse:
       type: object
-      description: A reference to a Workday resource with its identifier and display name
       properties:
-        id:
-          type: string
-          description: The Workday ID of the referenced resource
-        descriptor:
-          type: string
-          description: The display name of the referenced resource
-        href:
-          type: string
-          format: uri
-          description: The API URL to retrieve the full resource
+        total:
+          type: integer
+          description: Total number of integration systems matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationSystem'
     ErrorResponse:
       type: object
       properties:
@@ -194,6 +190,52 @@ components:
               message:
                 type: string
                 description: Human-readable error message
+    ResourceReference:
+      type: object
+      description: A reference to a Workday resource with its identifier and display name
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API URL to retrieve the full resource
+    IntegrationSystem:
+      type: object
+      description: An integration system configured in the Workday tenant, representing a deployed Studio integration or core connector configuration.
+      properties:
+        id:
+          type: string
+          description: The unique Workday identifier for the integration system
+        descriptor:
+          type: string
+          description: The display name of the integration system
+        integrationSystemName:
+          type: string
+          description: The configured name of the integration system
+        template:
+          $ref: '#/components/schemas/ResourceReference'
+        integrationServiceProvider:
+          $ref: '#/components/schemas/ResourceReference'
+        isActive:
+          type: boolean
+          description: Whether the integration system is currently active
+        lastRunDateTime:
+          type: string
+          format: date-time
+          description: The date and time of the last successful execution
+        scheduleFrequency:
+          type: string
+          description: The configured schedule frequency for automatic execution
+        notificationRecipients:
+          type: array
+          description: Users or groups who receive notifications about integration events
+          items:
+            $ref: '#/components/schemas/ResourceReference'
     IntegrationEvent:
       type: object
       description: A record of an integration execution, tracking the run status, timing, and processing statistics of an integration system run.
@@ -251,48 +293,6 @@ components:
               value:
                 type: string
                 description: The value to set for the launch parameter
-    IntegrationSystemsResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of integration systems matching the query
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/IntegrationSystem'
-    IntegrationSystem:
-      type: object
-      description: An integration system configured in the Workday tenant, representing a deployed Studio integration or core connector configuration.
-      properties:
-        id:
-          type: string
-          description: The unique Workday identifier for the integration system
-        descriptor:
-          type: string
-          description: The display name of the integration system
-        integrationSystemName:
-          type: string
-          description: The configured name of the integration system
-        template:
-          $ref: '#/components/schemas/ResourceReference'
-        integrationServiceProvider:
-          $ref: '#/components/schemas/ResourceReference'
-        isActive:
-          type: boolean
-          description: Whether the integration system is currently active
-        lastRunDateTime:
-          type: string
-          format: date-time
-          description: The date and time of the last successful execution
-        scheduleFrequency:
-          type: string
-          description: The configured schedule frequency for automatic execution
-        notificationRecipients:
-          type: array
-          description: Users or groups who receive notifications about integration events
-          items:
-            $ref: '#/components/schemas/ResourceReference'
   securitySchemes:
     OAuth2:
       type: oauth2

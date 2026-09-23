@@ -1,0 +1,47 @@
+# Front Door AI Index — workday-studio — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: workday-studio
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.workday.com
+  final_host: www.workday.com
+  ownership: shared
+  owner: workday
+  shares_host_with:
+  - scoutrfp
+  - workday
+  - workday-advanced-compensation
+  - workday-benefits
+  - workday-business-processes
+  - workday-extend
+  - workday-finance
+  - workday-financials
+  - workday-integration
+  - workday-integrations
+  - workday-payroll
+  - workday-recruiting
+  - workday-report-writer
+  - workday-reporting
+  - workday-security
+  inherited_from: null
+  verdict: scored
+  score: null
+  host_score: 36
+  density: null
+  words: 1240
+  tiers:
+    agentic: 8
+    core: 28
+    model: 0
+  ambiguous: 17
+  top_terms:
+    AI: 25
+    agent: 11
+    AI agent: 5
+    intelligence: 5
+    artificial intelligence: 3
+    agentic: 2
+    automation: 1
+    conversational AI: 1
