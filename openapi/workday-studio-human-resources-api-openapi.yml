@@ -98,31 +98,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    RequestCriteria:
-      type: object
-      description: Common request criteria for filtering web service results
-      properties:
-        effectiveDate:
-          type: string
-          format: date
-          description: The effective date for the request
-        fromDate:
-          type: string
-          format: date
-          description: The start date for date range filtering
-        toDate:
-          type: string
-          format: date
-          description: The end date for date range filtering
-        pageSize:
-          type: integer
-          description: The number of records to return per page
-          default: 100
-          maximum: 999
-        page:
-          type: integer
-          description: The page number to return
-          default: 1
     Worker:
       type: object
       properties:
@@ -156,19 +131,15 @@ components:
           $ref: '#/components/schemas/ResourceReference'
         location:
           $ref: '#/components/schemas/ResourceReference'
-    ResourceReference:
+    OrganizationsResponse:
       type: object
       properties:
-        id:
-          type: string
-          description: The Workday ID of the referenced resource
-        descriptor:
-          type: string
-          description: The display name of the referenced resource
-        href:
-          type: string
-          format: uri
-          description: The API URL to retrieve the full resource
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
     ErrorResponse:
       type: object
       properties:
@@ -186,6 +157,14 @@ components:
                 type: string
               message:
                 type: string
+    GetOrganizationsRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        organizationType:
+          type: string
+          description: Filter by organization type
     Organization:
       type: object
       properties:
@@ -218,14 +197,31 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Worker'
-    GetOrganizationsRequest:
+    RequestCriteria:
       type: object
+      description: Common request criteria for filtering web service results
       properties:
-        requestCriteria:
-          $ref: '#/components/schemas/RequestCriteria'
-        organizationType:
+        effectiveDate:
           type: string
-          description: Filter by organization type
+          format: date
+          description: The effective date for the request
+        fromDate:
+          type: string
+          format: date
+          description: The start date for date range filtering
+        toDate:
+          type: string
+          format: date
+          description: The end date for date range filtering
+        pageSize:
+          type: integer
+          description: The number of records to return per page
+          default: 100
+          maximum: 999
+        page:
+          type: integer
+          description: The page number to return
+          default: 1
     GetWorkersRequest:
       type: object
       properties:
@@ -238,6 +234,19 @@ components:
             type: string
         organizationReference:
           $ref: '#/components/schemas/ResourceReference'
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API URL to retrieve the full resource
     ServiceMetadata:
       type: object
       description: Metadata about a Workday web service including its operations and supported versions.
@@ -264,15 +273,6 @@ components:
               description:
                 type: string
                 description: A description of the operation
-    OrganizationsResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Organization'
   responses:
     Forbidden:
       description: Insufficient permissions

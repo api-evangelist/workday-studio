@@ -74,36 +74,34 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    limit:
-      name: limit
-      in: query
-      description: The maximum number of objects in a single response. Default is 20, maximum is 100.
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-    ID:
-      name: ID
-      in: path
-      required: true
-      description: The Workday ID of the resource
-      schema:
-        type: string
-    offset:
-      name: offset
-      in: query
-      description: The zero-based index of the first object in a response collection
-      schema:
-        type: integer
-        default: 0
-    search:
-      name: search
-      in: query
-      description: Search string used to filter results by name or descriptor
-      schema:
-        type: string
   schemas:
+    IntegrationAssembly:
+      type: object
+      description: A Studio integration assembly representing the graphical integration logic composed of configurable components, mediation chains, and transformation mappings.
+      properties:
+        id:
+          type: string
+          description: The unique Workday identifier for the assembly
+        descriptor:
+          type: string
+          description: The display name of the assembly
+        assemblyName:
+          type: string
+          description: The configured name of the assembly
+        version:
+          type: string
+          description: The version of the assembly
+        integrationSystem:
+          $ref: '#/components/schemas/ResourceReference'
+        deployedDateTime:
+          type: string
+          format: date-time
+          description: The date and time the assembly was last deployed
+        components:
+          type: array
+          description: The list of components configured in the assembly
+          items:
+            $ref: '#/components/schemas/AssemblyComponent'
     AssemblyComponent:
       type: object
       description: A configurable component within a Studio assembly, such as a mediation step, XSLT transformation, connector, or flow control element.
@@ -173,40 +171,36 @@ components:
           type: string
           format: uri
           description: The API URL to retrieve the full resource
-    IntegrationAssembly:
-      type: object
-      description: A Studio integration assembly representing the graphical integration logic composed of configurable components, mediation chains, and transformation mappings.
-      properties:
-        id:
-          type: string
-          description: The unique Workday identifier for the assembly
-        descriptor:
-          type: string
-          description: The display name of the assembly
-        assemblyName:
-          type: string
-          description: The configured name of the assembly
-        version:
-          type: string
-          description: The version of the assembly
-        integrationSystem:
-          $ref: '#/components/schemas/ResourceReference'
-        deployedDateTime:
-          type: string
-          format: date-time
-          description: The date and time the assembly was last deployed
-        components:
-          type: array
-          description: The list of components configured in the assembly
-          items:
-            $ref: '#/components/schemas/AssemblyComponent'
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: The maximum number of objects in a single response. Default is 20, maximum is 100.
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+    search:
+      name: search
+      in: query
+      description: Search string used to filter results by name or descriptor
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      description: The zero-based index of the first object in a response collection
+      schema:
+        type: integer
+        default: 0
+    ID:
+      name: ID
+      in: path
+      required: true
+      description: The Workday ID of the resource
+      schema:
+        type: string
   responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Insufficient permissions
       content:
@@ -215,6 +209,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:

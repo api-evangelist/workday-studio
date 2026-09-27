@@ -57,6 +57,67 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
+    GetPayrollResultsRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        payGroupReference:
+          $ref: '#/components/schemas/ResourceReference'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A high-level error message
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+              field:
+                type: string
+              message:
+                type: string
+    PayrollResultsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              descriptor:
+                type: string
+              worker:
+                $ref: '#/components/schemas/ResourceReference'
+              payPeriod:
+                type: string
+              grossPay:
+                type: number
+              netPay:
+                type: number
+              currency:
+                type: string
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API URL to retrieve the full resource
     RequestCriteria:
       type: object
       description: Common request criteria for filtering web service results
@@ -82,67 +143,6 @@ components:
           type: integer
           description: The page number to return
           default: 1
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A high-level error message
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              error:
-                type: string
-              field:
-                type: string
-              message:
-                type: string
-    ResourceReference:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Workday ID of the referenced resource
-        descriptor:
-          type: string
-          description: The display name of the referenced resource
-        href:
-          type: string
-          format: uri
-          description: The API URL to retrieve the full resource
-    GetPayrollResultsRequest:
-      type: object
-      properties:
-        requestCriteria:
-          $ref: '#/components/schemas/RequestCriteria'
-        payGroupReference:
-          $ref: '#/components/schemas/ResourceReference'
-    PayrollResultsResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              descriptor:
-                type: string
-              worker:
-                $ref: '#/components/schemas/ResourceReference'
-              payPeriod:
-                type: string
-              grossPay:
-                type: number
-              netPay:
-                type: number
-              currency:
-                type: string
   responses:
     Forbidden:
       description: Insufficient permissions

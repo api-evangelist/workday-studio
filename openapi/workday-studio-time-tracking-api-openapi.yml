@@ -57,31 +57,30 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    RequestCriteria:
+    GetTimeClockEventsRequest:
       type: object
-      description: Common request criteria for filtering web service results
       properties:
-        effectiveDate:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        workerReference:
+          $ref: '#/components/schemas/ResourceReference'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
           type: string
-          format: date
-          description: The effective date for the request
-        fromDate:
-          type: string
-          format: date
-          description: The start date for date range filtering
-        toDate:
-          type: string
-          format: date
-          description: The end date for date range filtering
-        pageSize:
-          type: integer
-          description: The number of records to return per page
-          default: 100
-          maximum: 999
-        page:
-          type: integer
-          description: The page number to return
-          default: 1
+          description: A high-level error message
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+              field:
+                type: string
+              message:
+                type: string
     TimeClockEventsResponse:
       type: object
       properties:
@@ -121,30 +120,31 @@ components:
           type: string
           format: uri
           description: The API URL to retrieve the full resource
-    ErrorResponse:
+    RequestCriteria:
       type: object
+      description: Common request criteria for filtering web service results
       properties:
-        error:
+        effectiveDate:
           type: string
-          description: A high-level error message
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              error:
-                type: string
-              field:
-                type: string
-              message:
-                type: string
-    GetTimeClockEventsRequest:
-      type: object
-      properties:
-        requestCriteria:
-          $ref: '#/components/schemas/RequestCriteria'
-        workerReference:
-          $ref: '#/components/schemas/ResourceReference'
+          format: date
+          description: The effective date for the request
+        fromDate:
+          type: string
+          format: date
+          description: The start date for date range filtering
+        toDate:
+          type: string
+          format: date
+          description: The end date for date range filtering
+        pageSize:
+          type: integer
+          description: The number of records to return per page
+          default: 100
+          maximum: 999
+        page:
+          type: integer
+          description: The page number to return
+          default: 1
   responses:
     Forbidden:
       description: Insufficient permissions
@@ -152,14 +152,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request parameters
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/json:
           schema:
