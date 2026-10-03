@@ -57,64 +57,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    JournalEntriesResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              descriptor:
-                type: string
-              journalNumber:
-                type: string
-              accountingDate:
-                type: string
-                format: date
-              status:
-                type: string
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A high-level error message
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              error:
-                type: string
-              field:
-                type: string
-              message:
-                type: string
-    GetJournalEntriesRequest:
-      type: object
-      properties:
-        requestCriteria:
-          $ref: '#/components/schemas/RequestCriteria'
-        companyReference:
-          $ref: '#/components/schemas/ResourceReference'
-    ResourceReference:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Workday ID of the referenced resource
-        descriptor:
-          type: string
-          description: The display name of the referenced resource
-        href:
-          type: string
-          format: uri
-          description: The API URL to retrieve the full resource
     RequestCriteria:
       type: object
       description: Common request criteria for filtering web service results
@@ -140,6 +82,64 @@ components:
           type: integer
           description: The page number to return
           default: 1
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A high-level error message
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+              field:
+                type: string
+              message:
+                type: string
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API URL to retrieve the full resource
+    JournalEntriesResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              descriptor:
+                type: string
+              journalNumber:
+                type: string
+              accountingDate:
+                type: string
+                format: date
+              status:
+                type: string
+    GetJournalEntriesRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        companyReference:
+          $ref: '#/components/schemas/ResourceReference'
   responses:
     Forbidden:
       description: Insufficient permissions

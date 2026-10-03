@@ -83,12 +83,6 @@ components:
         type: integer
         default: 20
         maximum: 100
-    search:
-      name: search
-      in: query
-      description: Search string used to filter results by name or descriptor
-      schema:
-        type: string
     offset:
       name: offset
       in: query
@@ -101,6 +95,12 @@ components:
       in: path
       required: true
       description: The Workday ID of the resource
+      schema:
+        type: string
+    search:
+      name: search
+      in: query
+      description: Search string used to filter results by name or descriptor
       schema:
         type: string
   schemas:
@@ -125,6 +125,30 @@ components:
               message:
                 type: string
                 description: Human-readable error message
+    ResourceReference:
+      type: object
+      description: A reference to a Workday resource with its identifier and display name
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API URL to retrieve the full resource
+    IntegrationTemplatesResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of templates matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationTemplate'
     IntegrationTemplate:
       type: object
       description: An integration template providing a starting point for building new integrations, including core connectors and document transformation templates.
@@ -151,33 +175,9 @@ components:
           description: The Workday services supported by this template
           items:
             $ref: '#/components/schemas/ResourceReference'
-    IntegrationTemplatesResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of templates matching the query
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/IntegrationTemplate'
-    ResourceReference:
-      type: object
-      description: A reference to a Workday resource with its identifier and display name
-      properties:
-        id:
-          type: string
-          description: The Workday ID of the referenced resource
-        descriptor:
-          type: string
-          description: The display name of the referenced resource
-        href:
-          type: string
-          format: uri
-          description: The API URL to retrieve the full resource
   responses:
-    Forbidden:
-      description: Insufficient permissions
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
@@ -188,8 +188,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:

@@ -128,13 +128,6 @@ components:
         type: integer
         default: 20
         maximum: 100
-    offset:
-      name: offset
-      in: query
-      description: The zero-based index of the first object in a response collection
-      schema:
-        type: integer
-        default: 0
     ID:
       name: ID
       in: path
@@ -142,38 +135,14 @@ components:
       description: The Workday ID of the resource
       schema:
         type: string
+    offset:
+      name: offset
+      in: query
+      description: The zero-based index of the first object in a response collection
+      schema:
+        type: integer
+        default: 0
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A high-level error message
-        errors:
-          type: array
-          description: Detailed list of validation or processing errors
-          items:
-            type: object
-            properties:
-              error:
-                type: string
-                description: Error code or type
-              field:
-                type: string
-                description: The field that caused the error
-              message:
-                type: string
-                description: Human-readable error message
-    IntegrationEventsResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of integration events matching the query
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/IntegrationEvent'
     IntegrationLogsResponse:
       type: object
       properties:
@@ -184,27 +153,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IntegrationLogEntry'
-    IntegrationLogEntry:
-      type: object
-      description: A single log entry from an integration execution
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-          description: The time the log entry was created
-        severity:
-          type: string
-          enum:
-          - INFO
-          - WARNING
-          - ERROR
-          description: The severity level of the log entry
-        message:
-          type: string
-          description: The log message text
-        componentName:
-          type: string
-          description: The name of the assembly component that generated the log entry
     IntegrationEvent:
       type: object
       description: A record of an integration execution, tracking the run status, timing, and processing statistics of an integration system run.
@@ -246,6 +194,27 @@ components:
         errorMessage:
           type: string
           description: Summary error message if the integration failed
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A high-level error message
+        errors:
+          type: array
+          description: Detailed list of validation or processing errors
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+                description: Error code or type
+              field:
+                type: string
+                description: The field that caused the error
+              message:
+                type: string
+                description: Human-readable error message
     ResourceReference:
       type: object
       description: A reference to a Workday resource with its identifier and display name
@@ -260,9 +229,40 @@ components:
           type: string
           format: uri
           description: The API URL to retrieve the full resource
+    IntegrationLogEntry:
+      type: object
+      description: A single log entry from an integration execution
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: The time the log entry was created
+        severity:
+          type: string
+          enum:
+          - INFO
+          - WARNING
+          - ERROR
+          description: The severity level of the log entry
+        message:
+          type: string
+          description: The log message text
+        componentName:
+          type: string
+          description: The name of the assembly component that generated the log entry
+    IntegrationEventsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of integration events matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationEvent'
   responses:
-    Forbidden:
-      description: Insufficient permissions
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
@@ -273,8 +273,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:

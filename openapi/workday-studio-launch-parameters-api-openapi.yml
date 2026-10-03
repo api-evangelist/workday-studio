@@ -51,6 +51,22 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: The maximum number of objects in a single response. Default is 20, maximum is 100.
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+    offset:
+      name: offset
+      in: query
+      description: The zero-based index of the first object in a response collection
+      schema:
+        type: integer
+        default: 0
   schemas:
     LaunchParameter:
       type: object
@@ -112,31 +128,15 @@ components:
               message:
                 type: string
                 description: Human-readable error message
-  parameters:
-    limit:
-      name: limit
-      in: query
-      description: The maximum number of objects in a single response. Default is 20, maximum is 100.
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-    offset:
-      name: offset
-      in: query
-      description: The zero-based index of the first object in a response collection
-      schema:
-        type: integer
-        default: 0
   responses:
-    Forbidden:
-      description: Insufficient permissions
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:

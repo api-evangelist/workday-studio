@@ -57,23 +57,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A high-level error message
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              error:
-                type: string
-              field:
-                type: string
-              message:
-                type: string
     CompensationPlansResponse:
       type: object
       properties:
@@ -95,13 +78,6 @@ components:
                 format: date
               currency:
                 type: string
-    GetCompensationPlansRequest:
-      type: object
-      properties:
-        requestCriteria:
-          $ref: '#/components/schemas/RequestCriteria'
-        compensationPlanType:
-          type: string
     RequestCriteria:
       type: object
       description: Common request criteria for filtering web service results
@@ -127,13 +103,31 @@ components:
           type: integer
           description: The page number to return
           default: 1
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A high-level error message
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+              field:
+                type: string
+              message:
+                type: string
+    GetCompensationPlansRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        compensationPlanType:
+          type: string
   responses:
-    Forbidden:
-      description: Insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: Invalid request parameters
       content:
@@ -142,6 +136,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:

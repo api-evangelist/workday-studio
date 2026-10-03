@@ -57,6 +57,31 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
+    RequestCriteria:
+      type: object
+      description: Common request criteria for filtering web service results
+      properties:
+        effectiveDate:
+          type: string
+          format: date
+          description: The effective date for the request
+        fromDate:
+          type: string
+          format: date
+          description: The start date for date range filtering
+        toDate:
+          type: string
+          format: date
+          description: The end date for date range filtering
+        pageSize:
+          type: integer
+          description: The number of records to return per page
+          default: 100
+          maximum: 999
+        page:
+          type: integer
+          description: The page number to return
+          default: 1
     ErrorResponse:
       type: object
       properties:
@@ -74,13 +99,19 @@ components:
                 type: string
               message:
                 type: string
-    GetAbsenceInputsRequest:
+    ResourceReference:
       type: object
       properties:
-        requestCriteria:
-          $ref: '#/components/schemas/RequestCriteria'
-        workerReference:
-          $ref: '#/components/schemas/ResourceReference'
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API URL to retrieve the full resource
     AbsenceInputsResponse:
       type: object
       properties:
@@ -109,47 +140,16 @@ components:
                 type: number
               unit:
                 type: string
-    ResourceReference:
+    GetAbsenceInputsRequest:
       type: object
       properties:
-        id:
-          type: string
-          description: The Workday ID of the referenced resource
-        descriptor:
-          type: string
-          description: The display name of the referenced resource
-        href:
-          type: string
-          format: uri
-          description: The API URL to retrieve the full resource
-    RequestCriteria:
-      type: object
-      description: Common request criteria for filtering web service results
-      properties:
-        effectiveDate:
-          type: string
-          format: date
-          description: The effective date for the request
-        fromDate:
-          type: string
-          format: date
-          description: The start date for date range filtering
-        toDate:
-          type: string
-          format: date
-          description: The end date for date range filtering
-        pageSize:
-          type: integer
-          description: The number of records to return per page
-          default: 100
-          maximum: 999
-        page:
-          type: integer
-          description: The page number to return
-          default: 1
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        workerReference:
+          $ref: '#/components/schemas/ResourceReference'
   responses:
-    Forbidden:
-      description: Insufficient permissions
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/json:
           schema:
@@ -160,8 +160,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request parameters
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:

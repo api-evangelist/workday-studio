@@ -98,6 +98,114 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
+    OrganizationsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
+    RequestCriteria:
+      type: object
+      description: Common request criteria for filtering web service results
+      properties:
+        effectiveDate:
+          type: string
+          format: date
+          description: The effective date for the request
+        fromDate:
+          type: string
+          format: date
+          description: The start date for date range filtering
+        toDate:
+          type: string
+          format: date
+          description: The end date for date range filtering
+        pageSize:
+          type: integer
+          description: The number of records to return per page
+          default: 100
+          maximum: 999
+        page:
+          type: integer
+          description: The page number to return
+          default: 1
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A high-level error message
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+              field:
+                type: string
+              message:
+                type: string
+    GetWorkersRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        workerReferenceIDs:
+          type: array
+          description: Specific worker IDs to retrieve
+          items:
+            type: string
+        organizationReference:
+          $ref: '#/components/schemas/ResourceReference'
+    ResourceReference:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API URL to retrieve the full resource
+    Organization:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the organization
+        descriptor:
+          type: string
+          description: The display name of the organization
+        organizationType:
+          type: string
+          description: The type of organization
+        organizationCode:
+          type: string
+          description: The organization reference code
+        isActive:
+          type: boolean
+          description: Whether the organization is currently active
+        manager:
+          $ref: '#/components/schemas/ResourceReference'
+        superior:
+          $ref: '#/components/schemas/ResourceReference'
+    WorkersResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of workers matching the criteria
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Worker'
     Worker:
       type: object
       properties:
@@ -131,32 +239,6 @@ components:
           $ref: '#/components/schemas/ResourceReference'
         location:
           $ref: '#/components/schemas/ResourceReference'
-    OrganizationsResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Organization'
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A high-level error message
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              error:
-                type: string
-              field:
-                type: string
-              message:
-                type: string
     GetOrganizationsRequest:
       type: object
       properties:
@@ -165,88 +247,6 @@ components:
         organizationType:
           type: string
           description: Filter by organization type
-    Organization:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Workday ID of the organization
-        descriptor:
-          type: string
-          description: The display name of the organization
-        organizationType:
-          type: string
-          description: The type of organization
-        organizationCode:
-          type: string
-          description: The organization reference code
-        isActive:
-          type: boolean
-          description: Whether the organization is currently active
-        manager:
-          $ref: '#/components/schemas/ResourceReference'
-        superior:
-          $ref: '#/components/schemas/ResourceReference'
-    WorkersResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of workers matching the criteria
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Worker'
-    RequestCriteria:
-      type: object
-      description: Common request criteria for filtering web service results
-      properties:
-        effectiveDate:
-          type: string
-          format: date
-          description: The effective date for the request
-        fromDate:
-          type: string
-          format: date
-          description: The start date for date range filtering
-        toDate:
-          type: string
-          format: date
-          description: The end date for date range filtering
-        pageSize:
-          type: integer
-          description: The number of records to return per page
-          default: 100
-          maximum: 999
-        page:
-          type: integer
-          description: The page number to return
-          default: 1
-    GetWorkersRequest:
-      type: object
-      properties:
-        requestCriteria:
-          $ref: '#/components/schemas/RequestCriteria'
-        workerReferenceIDs:
-          type: array
-          description: Specific worker IDs to retrieve
-          items:
-            type: string
-        organizationReference:
-          $ref: '#/components/schemas/ResourceReference'
-    ResourceReference:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Workday ID of the referenced resource
-        descriptor:
-          type: string
-          description: The display name of the referenced resource
-        href:
-          type: string
-          format: uri
-          description: The API URL to retrieve the full resource
     ServiceMetadata:
       type: object
       description: Metadata about a Workday web service including its operations and supported versions.
