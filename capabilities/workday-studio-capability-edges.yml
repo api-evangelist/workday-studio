@@ -1,0 +1,96 @@
+slug: workday-studio
+provider: Workday Studio
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 9
+edges:
+- tag: Benefits Administration
+  spec_file: workday-studio-benefits-administration-api-openapi.yml
+  capability_id: BC-300.30
+  capability_id_l1: BC-300
+  capability_name: Compensation & Benefits Management
+  confidence: 0.9
+  evidence: POST /Benefits_Administration/Get_Benefit_Plans 'Retrieve Benefit Plans'; schema BenefitPlansResponse
+  reason: Retrieval of employee benefit plans is squarely benefits administration within Human Capital
+    Management.
+- tag: Compensation
+  spec_file: workday-studio-compensation-api-openapi.yml
+  capability_id: BC-300.30
+  capability_id_l1: BC-300
+  capability_name: Compensation & Benefits Management
+  confidence: 0.9
+  evidence: POST /Compensation/Get_Compensation_Plans 'Retrieve Compensation Plans'; schema CompensationPlansResponse
+  reason: Compensation plan data for workers is pay-structure management, the compensation half of Compensation
+    & Benefits Management.
+- tag: Recruiting
+  spec_file: workday-studio-recruiting-api-openapi.yml
+  capability_id: BC-300.10
+  capability_id_l1: BC-300
+  capability_name: Talent Acquisition Management
+  confidence: 0.9
+  evidence: POST /Recruiting/Get_Candidates  getCandidates  Retrieve Candidates
+  reason: Candidate retrieval in a recruiting service area is talent acquisition.
+- tag: Financial Management
+  spec_file: workday-studio-financial-management-api-openapi.yml
+  capability_id: BC-200.10
+  capability_id_l1: BC-200
+  capability_name: General Ledger Management
+  confidence: 0.88
+  evidence: POST /Financial_Management/Get_Journal_Entries 'Retrieve Journal Entries'; schema JournalEntriesResponse
+  reason: Journal entry retrieval is core general ledger accounting; the operation names the narrower
+    artefact explicitly.
+- tag: Payroll
+  spec_file: workday-studio-payroll-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.85
+  evidence: POST /Payroll/Get_Payroll_Results  getPayrollResults  Retrieve Payroll Results
+  reason: Operation retrieves payroll results from Workday HCM; payroll administration sits under HR Operations
+    Management.
+- tag: Staffing
+  spec_file: workday-studio-staffing-api-openapi.yml
+  capability_id: BC-300.10
+  capability_id_l1: BC-300
+  capability_name: Talent Acquisition Management
+  confidence: 0.8
+  evidence: POST /Staffing/Get_Job_Postings  getJobPostings  Retrieve Job Postings
+  reason: Job postings retrieval supports sourcing and recruiting within the employee lifecycle.
+- tag: Human Resources
+  spec_file: workday-studio-human-resources-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.75
+  evidence: POST /Human_Resources/Get_Workers 'Retrieve Workers' and POST /Human_Resources/Get_Organizations
+    'Retrieve Organizations'; schemas Worker, Organization
+  reason: Reading worker records and organisational structures is employee-record / HR service delivery
+    data; L1 Human Capital Management is certain, the HR Operations sub-capability is the best fit for
+    master worker data.
+- tag: Absence Management
+  spec_file: workday-studio-absence-management-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.7
+  evidence: POST /Absence_Management/Get_Absence_Inputs 'Retrieve Absence Inputs'; schema AbsenceInputsResponse
+  reason: Absence/leave inputs for workers are part of the employee lifecycle administration handled by
+    HR operations; the single read operation gives limited detail, hence moderate confidence on the sub-capability.
+- tag: Time Tracking
+  spec_file: workday-studio-time-tracking-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.7
+  evidence: POST /Time_Tracking/Get_Time_Clock_Events  getTimeClockEvents
+  reason: Time clock event retrieval is workforce time administration, closest to HR Operations Management;
+    no dedicated time-and-attendance capability in the list.

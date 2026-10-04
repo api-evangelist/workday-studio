@@ -550,6 +550,9 @@ apis:
   - type: RateLimits
     url: https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ
 common:
+  - type: CapabilityMap
+    url: capabilities/workday-studio-capability-edges.yml
+    name: Workday Studio Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/workday-studio/overview
   - type: AgenticAccess
