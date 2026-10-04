@@ -75,33 +75,16 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    IntegrationAssembly:
+    IntegrationAssembliesResponse:
       type: object
-      description: A Studio integration assembly representing the graphical integration logic composed of configurable components, mediation chains, and transformation mappings.
       properties:
-        id:
-          type: string
-          description: The unique Workday identifier for the assembly
-        descriptor:
-          type: string
-          description: The display name of the assembly
-        assemblyName:
-          type: string
-          description: The configured name of the assembly
-        version:
-          type: string
-          description: The version of the assembly
-        integrationSystem:
-          $ref: '#/components/schemas/ResourceReference'
-        deployedDateTime:
-          type: string
-          format: date-time
-          description: The date and time the assembly was last deployed
-        components:
+        total:
+          type: integer
+          description: Total number of assemblies matching the query
+        data:
           type: array
-          description: The list of components configured in the assembly
           items:
-            $ref: '#/components/schemas/AssemblyComponent'
+            $ref: '#/components/schemas/IntegrationAssembly'
     ErrorResponse:
       type: object
       properties:
@@ -137,16 +120,6 @@ components:
           type: string
           format: uri
           description: The API URL to retrieve the full resource
-    IntegrationAssembliesResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of assemblies matching the query
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/IntegrationAssembly'
     AssemblyComponent:
       type: object
       description: A configurable component within a Studio assembly, such as a mediation step, XSLT transformation, connector, or flow control element.
@@ -171,7 +144,41 @@ components:
         description:
           type: string
           description: A description of the component purpose
+    IntegrationAssembly:
+      type: object
+      description: A Studio integration assembly representing the graphical integration logic composed of configurable components, mediation chains, and transformation mappings.
+      properties:
+        id:
+          type: string
+          description: The unique Workday identifier for the assembly
+        descriptor:
+          type: string
+          description: The display name of the assembly
+        assemblyName:
+          type: string
+          description: The configured name of the assembly
+        version:
+          type: string
+          description: The version of the assembly
+        integrationSystem:
+          $ref: '#/components/schemas/ResourceReference'
+        deployedDateTime:
+          type: string
+          format: date-time
+          description: The date and time the assembly was last deployed
+        components:
+          type: array
+          description: The list of components configured in the assembly
+          items:
+            $ref: '#/components/schemas/AssemblyComponent'
   parameters:
+    offset:
+      name: offset
+      in: query
+      description: The zero-based index of the first object in a response collection
+      schema:
+        type: integer
+        default: 0
     limit:
       name: limit
       in: query
@@ -180,13 +187,12 @@ components:
         type: integer
         default: 20
         maximum: 100
-    offset:
-      name: offset
+    search:
+      name: search
       in: query
-      description: The zero-based index of the first object in a response collection
+      description: Search string used to filter results by name or descriptor
       schema:
-        type: integer
-        default: 0
+        type: string
     ID:
       name: ID
       in: path
@@ -194,19 +200,7 @@ components:
       description: The Workday ID of the resource
       schema:
         type: string
-    search:
-      name: search
-      in: query
-      description: Search string used to filter results by name or descriptor
-      schema:
-        type: string
   responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication required
       content:
@@ -215,6 +209,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:

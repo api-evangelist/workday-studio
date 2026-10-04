@@ -57,38 +57,29 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    GetCandidatesRequest:
+    CandidatesResponse:
       type: object
       properties:
-        requestCriteria:
-          $ref: '#/components/schemas/RequestCriteria'
-        jobPostingReference:
-          $ref: '#/components/schemas/ResourceReference'
-    RequestCriteria:
-      type: object
-      description: Common request criteria for filtering web service results
-      properties:
-        effectiveDate:
-          type: string
-          format: date
-          description: The effective date for the request
-        fromDate:
-          type: string
-          format: date
-          description: The start date for date range filtering
-        toDate:
-          type: string
-          format: date
-          description: The end date for date range filtering
-        pageSize:
+        total:
           type: integer
-          description: The number of records to return per page
-          default: 100
-          maximum: 999
-        page:
-          type: integer
-          description: The page number to return
-          default: 1
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              descriptor:
+                type: string
+              candidateName:
+                type: string
+              applicationDate:
+                type: string
+                format: date
+              status:
+                type: string
+              source:
+                type: string
     ErrorResponse:
       type: object
       properties:
@@ -119,38 +110,47 @@ components:
           type: string
           format: uri
           description: The API URL to retrieve the full resource
-    CandidatesResponse:
+    RequestCriteria:
+      type: object
+      description: Common request criteria for filtering web service results
+      properties:
+        effectiveDate:
+          type: string
+          format: date
+          description: The effective date for the request
+        fromDate:
+          type: string
+          format: date
+          description: The start date for date range filtering
+        toDate:
+          type: string
+          format: date
+          description: The end date for date range filtering
+        pageSize:
+          type: integer
+          description: The number of records to return per page
+          default: 100
+          maximum: 999
+        page:
+          type: integer
+          description: The page number to return
+          default: 1
+    GetCandidatesRequest:
       type: object
       properties:
-        total:
-          type: integer
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              descriptor:
-                type: string
-              candidateName:
-                type: string
-              applicationDate:
-                type: string
-                format: date
-              status:
-                type: string
-              source:
-                type: string
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        jobPostingReference:
+          $ref: '#/components/schemas/ResourceReference'
   responses:
-    BadRequest:
-      description: Invalid request parameters
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/json:
           schema:

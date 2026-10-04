@@ -74,7 +74,33 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
+    offset:
+      name: offset
+      in: query
+      description: The zero-based index of the first object in a response collection
+      schema:
+        type: integer
+        default: 0
     limit:
       name: limit
       in: query
@@ -83,13 +109,12 @@ components:
         type: integer
         default: 20
         maximum: 100
-    offset:
-      name: offset
+    search:
+      name: search
       in: query
-      description: The zero-based index of the first object in a response collection
+      description: Search string used to filter results by name or descriptor
       schema:
-        type: integer
-        default: 0
+        type: string
     ID:
       name: ID
       in: path
@@ -97,13 +122,17 @@ components:
       description: The Workday ID of the resource
       schema:
         type: string
-    search:
-      name: search
-      in: query
-      description: Search string used to filter results by name or descriptor
-      schema:
-        type: string
   schemas:
+    IntegrationTemplatesResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of templates matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationTemplate'
     ErrorResponse:
       type: object
       properties:
@@ -139,16 +168,6 @@ components:
           type: string
           format: uri
           description: The API URL to retrieve the full resource
-    IntegrationTemplatesResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of templates matching the query
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/IntegrationTemplate'
     IntegrationTemplate:
       type: object
       description: An integration template providing a starting point for building new integrations, including core connectors and document transformation templates.
@@ -175,25 +194,6 @@ components:
           description: The Workday services supported by this template
           items:
             $ref: '#/components/schemas/ResourceReference'
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     OAuth2:
       type: oauth2

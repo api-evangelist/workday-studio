@@ -52,6 +52,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   parameters:
+    offset:
+      name: offset
+      in: query
+      description: The zero-based index of the first object in a response collection
+      schema:
+        type: integer
+        default: 0
     limit:
       name: limit
       in: query
@@ -60,13 +67,6 @@ components:
         type: integer
         default: 20
         maximum: 100
-    offset:
-      name: offset
-      in: query
-      description: The zero-based index of the first object in a response collection
-      schema:
-        type: integer
-        default: 0
   schemas:
     LaunchParameter:
       type: object
@@ -97,16 +97,6 @@ components:
         isRequired:
           type: boolean
           description: Whether the parameter is required at launch time
-    LaunchParametersResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of launch parameters matching the query
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/LaunchParameter'
     ErrorResponse:
       type: object
       properties:
@@ -128,6 +118,16 @@ components:
               message:
                 type: string
                 description: Human-readable error message
+    LaunchParametersResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of launch parameters matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LaunchParameter'
   responses:
     Unauthorized:
       description: Authentication required

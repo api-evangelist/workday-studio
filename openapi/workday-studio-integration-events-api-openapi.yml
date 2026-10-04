@@ -120,6 +120,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
+    offset:
+      name: offset
+      in: query
+      description: The zero-based index of the first object in a response collection
+      schema:
+        type: integer
+        default: 0
     limit:
       name: limit
       in: query
@@ -135,24 +142,73 @@ components:
       description: The Workday ID of the resource
       schema:
         type: string
-    offset:
-      name: offset
-      in: query
-      description: The zero-based index of the first object in a response collection
-      schema:
-        type: integer
-        default: 0
   schemas:
-    IntegrationLogsResponse:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: A high-level error message
+        errors:
+          type: array
+          description: Detailed list of validation or processing errors
+          items:
+            type: object
+            properties:
+              error:
+                type: string
+                description: Error code or type
+              field:
+                type: string
+                description: The field that caused the error
+              message:
+                type: string
+                description: Human-readable error message
+    IntegrationEventsResponse:
       type: object
       properties:
         total:
           type: integer
-          description: Total number of log entries for the integration event
+          description: Total number of integration events matching the query
         data:
           type: array
           items:
-            $ref: '#/components/schemas/IntegrationLogEntry'
+            $ref: '#/components/schemas/IntegrationEvent'
+    ResourceReference:
+      type: object
+      description: A reference to a Workday resource with its identifier and display name
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the referenced resource
+        descriptor:
+          type: string
+          description: The display name of the referenced resource
+        href:
+          type: string
+          format: uri
+          description: The API URL to retrieve the full resource
+    IntegrationLogEntry:
+      type: object
+      description: A single log entry from an integration execution
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: The time the log entry was created
+        severity:
+          type: string
+          enum:
+          - INFO
+          - WARNING
+          - ERROR
+          description: The severity level of the log entry
+        message:
+          type: string
+          description: The log message text
+        componentName:
+          type: string
+          description: The name of the assembly component that generated the log entry
     IntegrationEvent:
       type: object
       description: A record of an integration execution, tracking the run status, timing, and processing statistics of an integration system run.
@@ -194,79 +250,17 @@ components:
         errorMessage:
           type: string
           description: Summary error message if the integration failed
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: A high-level error message
-        errors:
-          type: array
-          description: Detailed list of validation or processing errors
-          items:
-            type: object
-            properties:
-              error:
-                type: string
-                description: Error code or type
-              field:
-                type: string
-                description: The field that caused the error
-              message:
-                type: string
-                description: Human-readable error message
-    ResourceReference:
-      type: object
-      description: A reference to a Workday resource with its identifier and display name
-      properties:
-        id:
-          type: string
-          description: The Workday ID of the referenced resource
-        descriptor:
-          type: string
-          description: The display name of the referenced resource
-        href:
-          type: string
-          format: uri
-          description: The API URL to retrieve the full resource
-    IntegrationLogEntry:
-      type: object
-      description: A single log entry from an integration execution
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-          description: The time the log entry was created
-        severity:
-          type: string
-          enum:
-          - INFO
-          - WARNING
-          - ERROR
-          description: The severity level of the log entry
-        message:
-          type: string
-          description: The log message text
-        componentName:
-          type: string
-          description: The name of the assembly component that generated the log entry
-    IntegrationEventsResponse:
+    IntegrationLogsResponse:
       type: object
       properties:
         total:
           type: integer
-          description: Total number of integration events matching the query
+          description: Total number of log entries for the integration event
         data:
           type: array
           items:
-            $ref: '#/components/schemas/IntegrationEvent'
+            $ref: '#/components/schemas/IntegrationLogEntry'
   responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication required
       content:
@@ -275,6 +269,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
