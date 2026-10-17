@@ -56,14 +56,26 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
+  responses:
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    GetCompensationPlansRequest:
-      type: object
-      properties:
-        requestCriteria:
-          $ref: '#/components/schemas/RequestCriteria'
-        compensationPlanType:
-          type: string
     ErrorResponse:
       type: object
       properties:
@@ -81,27 +93,13 @@ components:
                 type: string
               message:
                 type: string
-    CompensationPlansResponse:
+    GetCompensationPlansRequest:
       type: object
       properties:
-        total:
-          type: integer
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              descriptor:
-                type: string
-              planType:
-                type: string
-              effectiveDate:
-                type: string
-                format: date
-              currency:
-                type: string
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        compensationPlanType:
+          type: string
     RequestCriteria:
       type: object
       description: Common request criteria for filtering web service results
@@ -127,25 +125,27 @@ components:
           type: integer
           description: The page number to return
           default: 1
-  responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    CompensationPlansResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              descriptor:
+                type: string
+              planType:
+                type: string
+              effectiveDate:
+                type: string
+                format: date
+              currency:
+                type: string
   securitySchemes:
     OAuth2:
       type: oauth2

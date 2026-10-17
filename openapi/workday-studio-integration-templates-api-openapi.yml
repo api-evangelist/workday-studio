@@ -75,8 +75,8 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: Resource not found
+    Forbidden:
+      description: Insufficient permissions
       content:
         application/json:
           schema:
@@ -87,52 +87,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Insufficient permissions
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    offset:
-      name: offset
-      in: query
-      description: The zero-based index of the first object in a response collection
-      schema:
-        type: integer
-        default: 0
-    limit:
-      name: limit
-      in: query
-      description: The maximum number of objects in a single response. Default is 20, maximum is 100.
-      schema:
-        type: integer
-        default: 20
-        maximum: 100
-    search:
-      name: search
-      in: query
-      description: Search string used to filter results by name or descriptor
-      schema:
-        type: string
-    ID:
-      name: ID
-      in: path
-      required: true
-      description: The Workday ID of the resource
-      schema:
-        type: string
   schemas:
-    IntegrationTemplatesResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of templates matching the query
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/IntegrationTemplate'
     ErrorResponse:
       type: object
       properties:
@@ -154,6 +115,16 @@ components:
               message:
                 type: string
                 description: Human-readable error message
+    IntegrationTemplatesResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of templates matching the query
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IntegrationTemplate'
     ResourceReference:
       type: object
       description: A reference to a Workday resource with its identifier and display name
@@ -194,6 +165,35 @@ components:
           description: The Workday services supported by this template
           items:
             $ref: '#/components/schemas/ResourceReference'
+  parameters:
+    offset:
+      name: offset
+      in: query
+      description: The zero-based index of the first object in a response collection
+      schema:
+        type: integer
+        default: 0
+    limit:
+      name: limit
+      in: query
+      description: The maximum number of objects in a single response. Default is 20, maximum is 100.
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+    search:
+      name: search
+      in: query
+      description: Search string used to filter results by name or descriptor
+      schema:
+        type: string
+    ID:
+      name: ID
+      in: path
+      required: true
+      description: The Workday ID of the resource
+      schema:
+        type: string
   securitySchemes:
     OAuth2:
       type: oauth2

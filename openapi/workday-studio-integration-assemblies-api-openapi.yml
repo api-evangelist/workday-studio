@@ -74,17 +74,26 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    IntegrationAssembliesResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of assemblies matching the query
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/IntegrationAssembly'
     ErrorResponse:
       type: object
       properties:
@@ -106,6 +115,33 @@ components:
               message:
                 type: string
                 description: Human-readable error message
+    IntegrationAssembly:
+      type: object
+      description: A Studio integration assembly representing the graphical integration logic composed of configurable components, mediation chains, and transformation mappings.
+      properties:
+        id:
+          type: string
+          description: The unique Workday identifier for the assembly
+        descriptor:
+          type: string
+          description: The display name of the assembly
+        assemblyName:
+          type: string
+          description: The configured name of the assembly
+        version:
+          type: string
+          description: The version of the assembly
+        integrationSystem:
+          $ref: '#/components/schemas/ResourceReference'
+        deployedDateTime:
+          type: string
+          format: date-time
+          description: The date and time the assembly was last deployed
+        components:
+          type: array
+          description: The list of components configured in the assembly
+          items:
+            $ref: '#/components/schemas/AssemblyComponent'
     ResourceReference:
       type: object
       description: A reference to a Workday resource with its identifier and display name
@@ -144,33 +180,16 @@ components:
         description:
           type: string
           description: A description of the component purpose
-    IntegrationAssembly:
+    IntegrationAssembliesResponse:
       type: object
-      description: A Studio integration assembly representing the graphical integration logic composed of configurable components, mediation chains, and transformation mappings.
       properties:
-        id:
-          type: string
-          description: The unique Workday identifier for the assembly
-        descriptor:
-          type: string
-          description: The display name of the assembly
-        assemblyName:
-          type: string
-          description: The configured name of the assembly
-        version:
-          type: string
-          description: The version of the assembly
-        integrationSystem:
-          $ref: '#/components/schemas/ResourceReference'
-        deployedDateTime:
-          type: string
-          format: date-time
-          description: The date and time the assembly was last deployed
-        components:
+        total:
+          type: integer
+          description: Total number of assemblies matching the query
+        data:
           type: array
-          description: The list of components configured in the assembly
           items:
-            $ref: '#/components/schemas/AssemblyComponent'
+            $ref: '#/components/schemas/IntegrationAssembly'
   parameters:
     offset:
       name: offset
@@ -200,25 +219,6 @@ components:
       description: The Workday ID of the resource
       schema:
         type: string
-  responses:
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     OAuth2:
       type: oauth2

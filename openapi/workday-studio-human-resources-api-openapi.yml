@@ -97,6 +97,25 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
+  responses:
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     ErrorResponse:
       type: object
@@ -115,6 +134,56 @@ components:
                 type: string
               message:
                 type: string
+    OrganizationsResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
+    GetOrganizationsRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        organizationType:
+          type: string
+          description: Filter by organization type
+    Worker:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Workday ID of the worker
+        descriptor:
+          type: string
+          description: The display name of the worker
+        workerID:
+          type: string
+          description: The employee or contingent worker ID
+        workerType:
+          type: string
+          description: The type of worker
+          enum:
+          - Employee
+          - Contingent_Worker
+        businessTitle:
+          type: string
+          description: The worker's current business title
+        primaryWorkEmail:
+          type: string
+          format: email
+          description: The worker's primary work email address
+        hireDate:
+          type: string
+          format: date
+          description: The date the worker was hired
+        supervisoryOrganization:
+          $ref: '#/components/schemas/ResourceReference'
+        location:
+          $ref: '#/components/schemas/ResourceReference'
     Organization:
       type: object
       properties:
@@ -150,15 +219,6 @@ components:
           type: string
           format: uri
           description: The API URL to retrieve the full resource
-    OrganizationsResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Organization'
     RequestCriteria:
       type: object
       description: Common request criteria for filtering web service results
@@ -184,6 +244,18 @@ components:
           type: integer
           description: The page number to return
           default: 1
+    GetWorkersRequest:
+      type: object
+      properties:
+        requestCriteria:
+          $ref: '#/components/schemas/RequestCriteria'
+        workerReferenceIDs:
+          type: array
+          description: Specific worker IDs to retrieve
+          items:
+            type: string
+        organizationReference:
+          $ref: '#/components/schemas/ResourceReference'
     ServiceMetadata:
       type: object
       description: Metadata about a Workday web service including its operations and supported versions.
@@ -210,26 +282,6 @@ components:
               description:
                 type: string
                 description: A description of the operation
-    GetOrganizationsRequest:
-      type: object
-      properties:
-        requestCriteria:
-          $ref: '#/components/schemas/RequestCriteria'
-        organizationType:
-          type: string
-          description: Filter by organization type
-    GetWorkersRequest:
-      type: object
-      properties:
-        requestCriteria:
-          $ref: '#/components/schemas/RequestCriteria'
-        workerReferenceIDs:
-          type: array
-          description: Specific worker IDs to retrieve
-          items:
-            type: string
-        organizationReference:
-          $ref: '#/components/schemas/ResourceReference'
     WorkersResponse:
       type: object
       properties:
@@ -240,58 +292,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Worker'
-    Worker:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The Workday ID of the worker
-        descriptor:
-          type: string
-          description: The display name of the worker
-        workerID:
-          type: string
-          description: The employee or contingent worker ID
-        workerType:
-          type: string
-          description: The type of worker
-          enum:
-          - Employee
-          - Contingent_Worker
-        businessTitle:
-          type: string
-          description: The worker's current business title
-        primaryWorkEmail:
-          type: string
-          format: email
-          description: The worker's primary work email address
-        hireDate:
-          type: string
-          format: date
-          description: The date the worker was hired
-        supervisoryOrganization:
-          $ref: '#/components/schemas/ResourceReference'
-        location:
-          $ref: '#/components/schemas/ResourceReference'
-  responses:
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     OAuth2:
       type: oauth2
