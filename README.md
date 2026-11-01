@@ -1,4 +1,4 @@
-# Workday Studio (workday-studio)
+# Workday Studio
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,158 +66,222 @@
 
 Workday Studio is an integrated development environment (IDE) for building custom integrations and applications on the Workday platform. It provides tools for creating web services, custom reports, and integration solutions.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/workday-studio/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/workday-studio/refs/heads/main/apis.yml)
+**Areas:** Cloud · Developer Tools · Development · Enterprise · Finance · Human Resources · IDE · Integration
 
-## Tags
+## Workday Studio on APIs.io
 
-- Cloud
-- Development
-- Enterprise
-- Finance
-- HR
-- IDE
-- Integration
+Everything profiled for Workday Studio is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/workday-studio/](https://apis.io/providers/workday-studio/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (18)
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-05-19
+- [Workday REST API](https://apis.io/apis/workday-studio/workday-rest-api/) — RESTful API providing modern JSON-based access to Workday data and services. Uses OAuth 2.0 authentication and standard HTTP methods for operations across…
+- [Workday Custom Reports API](https://apis.io/apis/workday-studio/workday-custom-reports-api/) — API for creating and executing custom reports built in Workday Studio. Exposes custom reports as RESTful web services through Report-as-a-Service (RaaS),…
+- [Workday Orchestrate API](https://apis.io/apis/workday-studio/workday-orchestrate-api/) — Low-code integration and automation platform for building event-driven and batch integrations using a visual drag-and-drop builder. Enables developers to…
+- [Workday Studio Absence Management API](https://apis.io/apis/workday-studio/workday-studio-absence-management-api/) — Web service operations for managing time-off requests, leave balances, absence plans, and return-to-work processes.
+- [Workday Studio Benefits Administration API](https://apis.io/apis/workday-studio/workday-studio-benefits-administration-api/) — Web service operations for benefits enrollment, plan management, coverage administration, and life events processing.
+- [Workday Studio Compensation API](https://apis.io/apis/workday-studio/workday-studio-compensation-api/) — Web service operations for compensation plans, pay grades, salary structures, and bonus configurations.
+- [Workday Studio Financial Management API](https://apis.io/apis/workday-studio/workday-studio-financial-management-api/) — Web service operations for financial accounting, expense management, revenue management, and financial reporting.
+- [Workday Studio Human Resources API](https://apis.io/apis/workday-studio/workday-studio-human-resources-api/) — Web service operations for managing employee data, worker records, organizational structures, and HR transactions.
+- [Workday Studio Integration Assemblies API](https://apis.io/apis/workday-studio/workday-studio-integration-assemblies-api/) — Manage Studio integration assemblies, which are the graphical representations of integration logic composed of configurable components.
+- [Workday Studio Integration Events API](https://apis.io/apis/workday-studio/workday-studio-integration-events-api/) — Monitor and retrieve integration execution events including run status, processing statistics, and error details.
+- [Workday Studio Integration Systems API](https://apis.io/apis/workday-studio/workday-studio-integration-systems-api/) — Manage integration systems configured in the Workday tenant, including Studio-built integrations and core connector configurations.
+- [Workday Studio Integration Templates API](https://apis.io/apis/workday-studio/workday-studio-integration-templates-api/) — Access available integration templates and core connectors that serve as starting points for building new integrations.
+- [Workday Studio Launch Parameters API](https://apis.io/apis/workday-studio/workday-studio-launch-parameters-api/) — Configure and retrieve launch parameters used to control integration execution behavior at runtime.
+- [Workday Studio Payroll API](https://apis.io/apis/workday-studio/workday-studio-payroll-api/) — Web service operations for payroll processing, tax management, compensation calculations, and pay component configurations.
+- [Workday Studio Recruiting API](https://apis.io/apis/workday-studio/workday-studio-recruiting-api/) — Web service operations for job postings, candidate management, application tracking, and offer management.
+- [Workday Studio Service Directory API](https://apis.io/apis/workday-studio/workday-studio-service-directory-api/) — Operations for discovering available web services, their versions, and WSDL definitions.
+- [Workday Studio Staffing API](https://apis.io/apis/workday-studio/workday-studio-staffing-api/) — Web service operations for position management, job requisitions, hiring actions, and organizational staffing.
+- [Workday Studio Time Tracking API](https://apis.io/apis/workday-studio/workday-studio-time-tracking-api/) — Web service operations for time entry, timesheet management, time calculations, and clock-in/clock-out records.
 
-## APIs
+### Published properties
 
-### Workday Studio Integration API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-API for building and deploying custom integrations using Workday Studio, an Eclipse-based IDE that provides a graphical development environment with drag-and-drop reusable components for creating sophisticated integrations with flow control, data transformation, error handling, and scripting.
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Custom
-- Development
-- Integration
+- [Workday Studio Agentic Access](https://apis.io/agentic-access/workday-studio/workday-studio-agentic-access/)
 
-#### Properties
+#### JSON Schema (40)
 
-- [Documentation](https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ)
-- [OpenAPI](openapi/workday-studio-integration-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/workday-studio-integration.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-studio-integration.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [API Reference](https://community.workday.com/sites/default/files/file-hosting/productionapi/Integrations/v17/Integrations.html)
-- [Authentication](https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/rvVKnUi_v3MwKZ1VqF_1Jw)
-- [Getting Started](https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/z~y4T3OBwNz42E1hT8azSA)
-- [SDK](https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/HdIduH8HQGat1qdv1nXNVQ)
+The data models the API reads and writes.
 
-### Workday Web Services API
+- [AbsenceInputsResponse](https://apis.io/schemas/workday-studio/workday-studio-absenceinputsresponse/)
+- [AssemblyComponent](https://apis.io/schemas/workday-studio/workday-studio-assemblycomponent/)
+- [BenefitPlansResponse](https://apis.io/schemas/workday-studio/workday-studio-benefitplansresponse/)
+- [CandidatesResponse](https://apis.io/schemas/workday-studio/workday-studio-candidatesresponse/)
+- [CompensationPlansResponse](https://apis.io/schemas/workday-studio/workday-studio-compensationplansresponse/)
+- [ErrorResponse](https://apis.io/schemas/workday-studio/workday-studio-errorresponse/)
+- [GetAbsenceInputsRequest](https://apis.io/schemas/workday-studio/workday-studio-getabsenceinputsrequest/)
+- [GetBenefitPlansRequest](https://apis.io/schemas/workday-studio/workday-studio-getbenefitplansrequest/)
+- [GetCandidatesRequest](https://apis.io/schemas/workday-studio/workday-studio-getcandidatesrequest/)
+- [GetCompensationPlansRequest](https://apis.io/schemas/workday-studio/workday-studio-getcompensationplansrequest/)
+- [GetJobPostingsRequest](https://apis.io/schemas/workday-studio/workday-studio-getjobpostingsrequest/)
+- [GetJournalEntriesRequest](https://apis.io/schemas/workday-studio/workday-studio-getjournalentriesrequest/)
+- [GetOrganizationsRequest](https://apis.io/schemas/workday-studio/workday-studio-getorganizationsrequest/)
+- [GetPayrollResultsRequest](https://apis.io/schemas/workday-studio/workday-studio-getpayrollresultsrequest/)
+- [GetTimeClockEventsRequest](https://apis.io/schemas/workday-studio/workday-studio-gettimeclockeventsrequest/)
+- [GetWorkersRequest](https://apis.io/schemas/workday-studio/workday-studio-getworkersrequest/)
+- [IntegrationAssembliesResponse](https://apis.io/schemas/workday-studio/workday-studio-integrationassembliesresponse/)
+- [IntegrationAssembly](https://apis.io/schemas/workday-studio/workday-studio-integrationassembly/)
+- [IntegrationEvent](https://apis.io/schemas/workday-studio/workday-studio-integrationevent/)
+- [IntegrationEventsResponse](https://apis.io/schemas/workday-studio/workday-studio-integrationeventsresponse/)
+- [IntegrationLaunchRequest](https://apis.io/schemas/workday-studio/workday-studio-integrationlaunchrequest/)
+- [IntegrationLogEntry](https://apis.io/schemas/workday-studio/workday-studio-integrationlogentry/)
+- [IntegrationLogsResponse](https://apis.io/schemas/workday-studio/workday-studio-integrationlogsresponse/)
+- [IntegrationSystem](https://apis.io/schemas/workday-studio/workday-studio-integrationsystem/)
+- [IntegrationSystemsResponse](https://apis.io/schemas/workday-studio/workday-studio-integrationsystemsresponse/)
+- …and 15 more published on APIs.io
 
-SOAP and REST web services for integrating with Workday applications, providing programmatic access to business management services with WSDL and XML Schema definitions across 55 service areas including Human Resources, Payroll, Benefits, and Financial Management.
+#### JSON Structure (1)
 
-#### Tags
+Data models expressed in JSON Structure.
 
-- Enterprise
-- REST
-- SOAP
-- Web Services
+- [Workday Studio Structure](https://apis.io/json-structure/workday-studio/workday-studio-structure/)
 
-#### Properties
+#### Vocabulary (1)
 
-- [Documentation](https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/root)
-- [OpenAPI](openapi/workday-studio-web-services-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/workday-studio-web-services.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-studio-web-services.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [W S D L](https://community.workday.com/sites/default/files/file-hosting/productionapi/)
-- [API Reference](https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html)
-- [Rate Limits](https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/L~jJl~pFV91hFVm2h3UFWQ)
+The provider's domain terms, defined.
 
-### Workday REST API
+- [Workday Studio Vocabulary](https://apis.io/vocabularies/workday-studio/workday-studio-vocabulary/)
 
-RESTful API providing modern JSON-based access to Workday data and services. Uses OAuth 2.0 authentication and standard HTTP methods for operations across HCM, financial management, recruiting, payroll, and other Workday domains.
+#### Collections (32)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Data Access
-- JSON
-- OAuth
-- REST
+- [Workday Studio Integration Absence Management API](https://apis.io/collections/workday-studio/open-workday-studio-absence-management-api/)
+- [Workday Studio Integration Absence Management Benefits Administration API](https://apis.io/collections/workday-studio/open-workday-studio-benefits-administration-api/)
+- [Workday Studio Integration Absence Management Compensation API](https://apis.io/collections/workday-studio/open-workday-studio-compensation-api/)
+- [Workday Studio Integration Absence Management Financial Management API](https://apis.io/collections/workday-studio/open-workday-studio-financial-management-api/)
+- [Workday Studio Integration Absence Management Human Resources API](https://apis.io/collections/workday-studio/open-workday-studio-human-resources-api/)
+- [Workday Studio Integration API](https://apis.io/collections/workday-studio/open-workday-studio-integration/)
+- [Workday Studio Integration Absence Management Integration Assemblies API](https://apis.io/collections/workday-studio/open-workday-studio-integration-assemblies-api/)
+- [Workday Studio Integration Absence Management Integration Events API](https://apis.io/collections/workday-studio/open-workday-studio-integration-events-api/)
+- [Workday Studio Integration Absence Management Integration Systems API](https://apis.io/collections/workday-studio/open-workday-studio-integration-systems-api/)
+- [Workday Studio Integration Absence Management Integration Templates API](https://apis.io/collections/workday-studio/open-workday-studio-integration-templates-api/)
+- [Workday Studio Integration Absence Management Launch Parameters API](https://apis.io/collections/workday-studio/open-workday-studio-launch-parameters-api/)
+- [Workday Studio Integration Absence Management Payroll API](https://apis.io/collections/workday-studio/open-workday-studio-payroll-api/)
+- [Workday Studio Integration Absence Management Recruiting API](https://apis.io/collections/workday-studio/open-workday-studio-recruiting-api/)
+- [Workday Studio Integration Absence Management Service Directory API](https://apis.io/collections/workday-studio/open-workday-studio-service-directory-api/)
+- [Workday Studio Integration Absence Management Staffing API](https://apis.io/collections/workday-studio/open-workday-studio-staffing-api/)
+- [Workday Studio Integration Absence Management Time Tracking API](https://apis.io/collections/workday-studio/open-workday-studio-time-tracking-api/)
+- [Workday Studio Workday Web Services API](https://apis.io/collections/workday-studio/open-workday-studio-web-services/)
+- [Workday Studio Integration Absence Management API](https://apis.io/collections/workday-studio/postman-workday-studio-absence-management-api/)
+- [Workday Studio Integration Absence Management Benefits Administration API](https://apis.io/collections/workday-studio/postman-workday-studio-benefits-administration-api/)
+- [Workday Studio Integration Absence Management Compensation API](https://apis.io/collections/workday-studio/postman-workday-studio-compensation-api/)
+- [Workday Studio Integration Absence Management Financial Management API](https://apis.io/collections/workday-studio/postman-workday-studio-financial-management-api/)
+- [Workday Studio Integration Absence Management Human Resources API](https://apis.io/collections/workday-studio/postman-workday-studio-human-resources-api/)
+- [Workday Studio Integration Absence Management Integration Assemblies API](https://apis.io/collections/workday-studio/postman-workday-studio-integration-assemblies-api/)
+- [Workday Studio Integration Absence Management Integration Events API](https://apis.io/collections/workday-studio/postman-workday-studio-integration-events-api/)
+- [Workday Studio Integration Absence Management Integration Systems API](https://apis.io/collections/workday-studio/postman-workday-studio-integration-systems-api/)
+- …and 7 more published on APIs.io
 
-#### Properties
+#### Governance rules (2)
 
-- [Documentation](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html)
-- [API Reference](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html)
-- [Authentication](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#authentication)
-- [Postman Collection](collections/workday-studio-integration.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-studio-integration.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/workday-studio-web-services.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-studio-web-services.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Spectral rulesets for the provider's contracts.
 
-### Workday Custom Reports API
+- [Workday Studio — jsonschema rules](https://apis.io/rules/workday-studio/workday-studio-jsonschema-spectral-rules/)
+- [Workday Studio API Rules](https://apis.io/rules/workday-studio/workday-studio-spectral-rules/)
 
-API for creating and executing custom reports built in Workday Studio. Exposes custom reports as RESTful web services through Report-as-a-Service (RaaS), enabling programmatic access to report data with support for query parameters and multiple output formats.
+#### Security (3)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- Analytics
-- Custom
-- Report as a Service
-- Reports
+- [Workday Studio Authentication](https://apis.io/security/workday-studio/workday-studio-authentication/)
+- [Workday Studio Domain Security](https://apis.io/security/workday-studio/workday-studio-domain-security/)
+- [Workday Studio Trust Center](https://apis.io/security/workday-studio/workday-studio-trust-center/)
 
-#### Properties
+#### OAuth scopes (1)
 
-- [Documentation](https://doc.workday.com/reader/J1YvL9yFQMumSgoRA4j4bA/ziYjYJxh2YKGvz8I5V46bQ)
-- [Tutorial](https://doc.workday.com/reader/wsiU0cnNjCc_k7shLNxLEA/kPBEj3_Lz04YDSUvAEKl4w)
-- [Postman Collection](collections/workday-studio-integration.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-studio-integration.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/workday-studio-web-services.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-studio-web-services.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The permissions the API asks for.
 
-### Workday Orchestrate API
+- [Workday Studio Scopes](https://apis.io/scopes/workday-studio/workday-studio-scopes/)
 
-Low-code integration and automation platform for building event-driven and batch integrations using a visual drag-and-drop builder. Enables developers to create workflows that connect Workday with external systems, automate business processes, and handle real-time data synchronization.
+#### Plans and pricing (1)
 
-#### Tags
+Published plans, tiers and prices.
 
-- Automation
-- Event Driven
-- Low Code
-- Orchestration
-- Workflows
+- [Workday Studio Plans Pricing](https://apis.io/plans/workday-studio/workday-studio-plans-pricing/)
 
-#### Properties
+#### Rate limits (1)
 
-- [Documentation](https://www.workday.com/en-us/products/platform-product-extensions/integrations.html)
-- [Postman Collection](collections/workday-studio-integration.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-studio-integration.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/workday-studio-web-services.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/workday-studio-web-services.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published request limits.
 
-## Common Properties
+- [Workday Studio Rate Limits](https://apis.io/rate-limits/workday-studio/workday-studio-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Workday Studio Finops](https://apis.io/finops/workday-studio/workday-studio-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.workday.com/)
-- [Portal](https://community.workday.com/)
-- [Console](https://developer.workday.com/about)
-- [Login](https://www.myworkday.com/)
-- [Sign Up](https://community.workday.com/)
 - [Documentation](https://doc.workday.com/en-us/guides.html)
-- [Getting Started](https://community.workday.com/node/97816)
-- [Authentication](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html#authentication)
-- [API Reference](https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html)
+- [Getting started](https://community.workday.com/node/97816)
+- [API reference](https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html)
 - [Support](https://www.workday.com/en-us/customer-experience/support.html)
-- [Terms of Service](https://www.workday.com/en-us/legal.html)
-- [Privacy Policy](https://www.workday.com/en-us/privacy.html)
-- [Status Page](https://status.workday.com/)
 - [Blog](https://blog.workday.com/)
-- [Developer Blog](https://workday.github.io/)
-- [Contact](https://www.workday.com/en-us/company/about-workday/contact-us.html)
-- [GitHub Organization](https://github.com/Workday)
-- [Marketplace](https://marketplace.workday.com/en-US/home)
-- [Training](https://www.workday.com/en-us/services/training-certifications.html)
-- [Studio Download](https://community.workday.com/studio-download)
-- [Spectral Rules](rules/workday-studio-spectral-rules.yml)
-- [Vocabulary](vocabulary/workday-studio-vocabulary.yaml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Solutions](undefined)
+- [Terms of service](https://www.workday.com/en-us/legal.html)
+- [Privacy policy](https://www.workday.com/en-us/privacy.html)
+- [GitHub](https://github.com/Workday)
+- [Status](https://status.workday.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**Email:** kin@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 46.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 48.2 |
+| Contract quality | 49.6 |
+| Contract governance | 27.3 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 65.5 |
+| Access clarity | 40.8 |
+
+**Agent readiness 28.9** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 39.2** — Employment & Payroll
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/workday-studio/](https://apis.io/providers/workday-studio/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Workday Studio: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/workday-studio/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
